@@ -274,3 +274,6 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,django
+
+node_modules/
+#npm install 하면 package.json에 의해 다시 깔릴 것임.
