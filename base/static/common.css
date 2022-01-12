@@ -1,9 +1,59 @@
-.t-m-\[100px\] {
-  margin: 100px;
+.t-mt-3 {
+  margin-top: 0.75rem;
 }
 
-.t-m-\[15px\] {
-  margin: 15px;
+.t-grid {
+  display: grid;
+}
+
+.t-cursor-pointer {
+  cursor: pointer;
+}
+
+.t-grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.t-gap-\[20px\] {
+  gap: 20px;
+}
+
+.t-border-solid {
+  border-style: solid;
+}
+
+.t-bg-blue-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+}
+
+.t-bg-yellow-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+}
+
+.t-text-center {
+  text-align: center;
+}
+
+.t-text-\[30px\] {
+  font-size: 30px;
+}
+
+.t-text-\[50px\] {
+  font-size: 50px;
+}
+
+.t-text-\[20px\] {
+  font-size: 20px;
+}
+
+.t-text-\[15px\] {
+  font-size: 15px;
+}
+
+.t-text-\[25px\] {
+  font-size: 25px;
 }
 
 @font-face {
@@ -32,4 +82,24 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
   font-weight:normal;
   margin:0;
   font-size:1rem;
+}
+
+@media (min-width: 640px) {
+  .sm\:t-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:t-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  @media (min-width: 640px) {
+    .lg\:sm\:t-grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
 }

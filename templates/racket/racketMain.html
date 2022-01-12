@@ -1,20 +1,42 @@
 {% extends "layout.html" %}
+
 {% block content %}
-<head>
+<div>
+    <h1 class="d-flex justify-content-center mt-4 t-text-[50px]">테니스 라켓 리스트</h1>
 
-</head>
-<body>
-<h1 class="d-flex justify-content-center mt-4">테니스 라켓 리스트</h1>
-<h3 class="d-flex justify-content-center t-m-[15px]">Powered by '세상에 나쁜 라켓은 없다' since 2010</h3>
-<div class="">
-    {%for item in racketList%}
+    <h3 class="d-flex justify-content-center my-4 t-text-[20px]">Powered by '세상에 나쁜 라켓은 없다' since 2013</h3>
 
-    <ul>
-        <li>{{item.name}}</li>
-    </ul>
+    <div class="d-flex justify-content-between bg-success py-3 mb-4 t-text-[20px]">
+        <div class="t-bg-yellow-400">
+            <form class="d-flex" action="{% url 'racket:racketMain'%}">
+                <input class="form-control me-2" type="search" name="searchKeyword" placeholder="라켓명을 기입해주세요."
+                       value="{{request.GET.searchKeyword}}">
+                <button class="btn btn-outline-secondary" id="btn_search" type="submit">찾기</button>
+            </form>
+        </div>
+        <div class="t-bg-yellow-400">정렬순</div>
+    </div>
 
-    {% endfor %}
 
+    <div class="d-flex justify-content-start ">
+        {%for item in racketList%}
+        <ul>
+            <li class="mx-4 t-border-solid t-cursor-pointer">
+                <a href="">
+                    <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
+                         width="260" height="280"><br>
+                    <div class="d-flex justify-content-center t-bg-yellow-400">
+                        <ul>
+                            <li>{{item.name}} ({{item.regDateInt}}년)</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        {% endfor %}
+
+    </div>
 </div>
-</body>
 {% endblock %}
