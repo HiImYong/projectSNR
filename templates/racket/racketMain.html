@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+
+</head>
+<body>
+<h1>테니스 라켓 리스트</h1>
+<h3>Powered by '세상에 나쁜 라켓은 없다' since 2010</h3>
+<div>
+    {%for item in racketList%}
+
+    <ul>
+        <li>{{item.name}}</li>
+    </ul>
+
+    {% endfor %}
+
+</div>
+</body>
+{% endblock %}

@@ -8,5 +8,8 @@ class Racket(models.Model):
     headsize = models.IntegerField('라켓헤드사이즈', default=0)
     length = models.FloatField('라켓길이', default=0)
     balance = models.IntegerField('라켓밸런스', default=0)
+    regDateInt = models.IntegerField('라켓생산년도', default=0)
     hitCount = models.PositiveIntegerField('조회수', default=0)
+    manufacturer = models.CharField('제조사', max_length=20, default="등록전")
+
 

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'racket.apps.RacketConfig',
-    'racketstring.apps.RacketString',
+    # 'racketstring.apps.RacketString',
 
     'django_bootstrap5',
 
@@ -62,7 +62,7 @@ ROOT_URLCONF = 'base.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,8 +84,8 @@ WSGI_APPLICATION = 'base.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'SNR',
-        'USER': 'snrdev',
+        'NAME': 'snr',
+        'USER': 'snrst',
         'PASSWORD': 'snr123414',
         'HOST': '127.0.0.1',
         'PORT': '3308',
