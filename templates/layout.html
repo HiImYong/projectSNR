@@ -42,8 +42,20 @@
     </div>
 
     <div class="t-bg-gray-500">
-        <button type="button" class="btn btn-light">카카오톡으로 로그인</button>
-        이곳에 카카오톡 로그인 구현
+
+        {%if user.is_authenticated%}
+
+        <a href="">
+            <button type="button" class="btn btn-dark">로그아웃</button>
+        </a>
+
+        {% else %}
+
+        <a href="{%url 'account:kakaologin'%}">
+            <button type="button" class="btn btn-light">카카오톡으로 로그인</button>
+        </a>
+        {% endif %}
+
     </div>
 </nav>
 
