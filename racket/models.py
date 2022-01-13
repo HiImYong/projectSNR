@@ -13,6 +13,7 @@ class Racket(models.Model):
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
 
 class RacketDetail(models.Model):
+    racket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
     adminReview = models.TextField('운영자리뷰')
     adminPower = models.FloatField('운영자파워평점', default=0)
     adminSpin = models.FloatField('운영자스핀평점', default=0)
