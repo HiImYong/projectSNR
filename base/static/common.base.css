@@ -2,8 +2,8 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-family: 'KOTRALEAP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRALEAP.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -16,7 +16,7 @@ html > body li {
 }
 
 html > body {
-    font-family: "GmarketSansMedium";
+    font-family: "KOTRALEAP";
     text-underline-position: under;
 }
 
@@ -25,3 +25,4 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
     margin:0;
     font-size:1rem;
 }
+
