@@ -4,7 +4,7 @@
 <div>
     <h1 class="d-flex justify-content-center mt-4 t-text-[50px]">테니스 라켓 리스트</h1>
     <h3 class="d-flex justify-content-center my-4 t-text-[20px]">Powered by '세상에 나쁜 라켓은 없다' since 2013</h3>
-    <div class="d-flex justify-content-between bg-danger py-3 mb-4 t-text-[20px]">
+    <div class="d-flex justify-content-between bg-dark py-1  t-text-[20px]">
         <div class="">
             <form class="d-flex" action="{% url 'racket:racketMain'%}">
                 <input class="form-control ml-2" type="search" name="searchKeyword" placeholder="라켓 이름을 적어주세요"
@@ -13,23 +13,26 @@
             </form>
         </div>
         <div class="mr-4">
-            <button type="button" class="btn btn-dark">정렬순</button>
+            <button type="button" class="btn btn-light">정렬순</button>
         </div>
     </div>
 
-    <section class="t-block section-racket-list ">
+    <section class="t-block section-racket-list t-bg-gray-100 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
             {%for item in racketList%}
-            <li class="mx-4 t-border-solid  t-cursor-pointer ">
-                <a href="" class="t-block">
+            <li class="mx-3">
+                <a href="{%url 'racket:racketDetail' item.id" class="t-block t-cursor-pointer">
                     <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
-                         height="250" class="t-bg-gray-500 w-100 "><br>
-                    <div class="d-flex justify-content-center t-bg-yellow-400">
-                        <ul>
-                            <li>{{item.name}} ({{item.regDateInt}}년)</li>
-                        </ul>
-                    </div>
+                         height="250" class=" w-100 "><br>
                 </a>
+
+                <div class="d-flex justify-content-center t-bg-gray-200 ">
+                    <ul>
+                        <li>{{item.name}} ({{item.regDateInt}}년)</li>
+                        <li>세나라 평점 : 💛💛💛🤍</li>
+                        <li>사용자 평점 : 🧡🧡🤍</li>
+                    </ul>
+                </div>
             </li>
             {% endfor %}
         </ul>

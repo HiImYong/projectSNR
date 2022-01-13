@@ -1,12 +1,17 @@
 from django.contrib import messages
-from django.http import HttpRequest
+from django.contrib.auth.views import logout_then_login
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render, redirect
 import requests
 
-
-
 # Create your views here.
 from account.models import User
+
+
+def logOut(request: HttpRequest):
+    messages.success(request, "로그아웃 되었습니다.")
+    return logout_then_login(request, login_url='/racket')
+
 
 
 def kakaoLogin(request: HttpRequest):
@@ -16,6 +21,7 @@ def kakaoLogin(request: HttpRequest):
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={REDIRECT_URI}&response_type=code"
         # client_id를 통해 인증 코드 요청. 받아온 코드를 REDIRECT_URI로 전달.
     )
+
 
 def kakaoLoginCallBack(request):
     code = request.GET.get("code")
@@ -37,8 +43,10 @@ def kakaoLoginCallBack(request):
 
     profile_request = requests.get(
         "https://kapi.kakao.com/v2/user/me", headers={"Authorization": f"Bearer {access_token}"},
+        # 가져온 토큰을 통해 API를 호출
     )
     profile_json = profile_request.json()
+    # 유효성이 확인된 토큰에 대해 응답 전달
 
     account_id = profile_json.get("id")
 

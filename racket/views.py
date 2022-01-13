@@ -14,3 +14,8 @@ def racketMain(request: HttpRequest):
         getRacketList = Racket.objects.order_by('id')
 
     return render(request, "racket/racketMain.html", {'racketList': getRacketList})
+
+
+def racketDetail(request, parameter):
+    getRacket = Racket.objects.get(id=parameter)
+    return None

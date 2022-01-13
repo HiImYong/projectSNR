@@ -18,35 +18,19 @@
   white-space: nowrap;
 }
 
-.t-rounded-sm {
-  border-radius: 0.125rem;
-}
-
-.t-border-solid {
-  border-style: solid;
-}
-
-.t-border-dashed {
-  border-style: dashed;
-}
-
-.t-border-double {
-  border-style: double;
-}
-
-.t-border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-}
-
 .t-bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
-.t-bg-yellow-400 {
+.t-bg-gray-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.t-bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .t-text-\[50px\] {

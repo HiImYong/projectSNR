@@ -12,4 +12,13 @@ class Racket(models.Model):
     hitCount = models.PositiveIntegerField('조회수', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
 
+class RacketDetail(models.Model):
+    adminReview = models.TextField('운영자리뷰')
+    adminPower = models.FloatField('운영자파워평점', default=0)
+    adminSpin = models.FloatField('운영자스핀평점', default=0)
+    adminManeuverability = models.FloatField('운영자조작성평점', default=0)
+    adminStability = models.FloatField('운영자면안정성평점', default=0)
+    adminComfort = models.FloatField('운영자안락함평점', default=0)
+
+
 
