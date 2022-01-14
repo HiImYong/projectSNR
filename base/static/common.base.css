@@ -8,6 +8,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html > body ul,
 html > body li {
     margin:0;
@@ -15,8 +22,13 @@ html > body li {
     list-style:none;
 }
 
-html > body {
+html > body .bannerfont{
     font-family: "KOTRALEAP";
+    text-underline-position: under;
+}
+
+html > body {
+    font-family: "GongGothicMedium";
     text-underline-position: under;
 }
 

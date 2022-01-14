@@ -7,19 +7,22 @@
     <meta charset="UTF-8">
     <title>세상에 나쁜 라켓은 없다</title>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'common.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'common.css' %}">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 
 
 </head>
 
 <body class="">
 
-<nav class="navbar navbar-expand-md navbar-dark bg-danger mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-danger mb-5">
     <div class="collapse navbar-collapse" id="navbarCollapse">
 
-        <a class="navbar-brand" href="{%url 'racket:racketMain'%}">K라켓 위키</a>
+        <a class="navbar-brand " href="{%url 'racket:racketMain'%} ">K라켓 위키</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

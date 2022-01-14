@@ -10,10 +10,6 @@
   cursor: pointer;
 }
 
-.t-content-center {
-  align-content: center;
-}
-
 .t-gap-5 {
   gap: 1.25rem;
 }
@@ -22,33 +18,9 @@
   white-space: nowrap;
 }
 
-.t-border-solid {
-  border-style: solid;
-}
-
-.t-border-blue-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(147 197 253 / var(--tw-border-opacity));
-}
-
 .t-bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
-}
-
-.t-bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.t-bg-gray-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-
-.t-bg-red-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
 .t-bg-white {
@@ -56,8 +28,23 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.t-text-\[50px\] {
-  font-size: 50px;
+.t-bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.t-bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.t-text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.t-text-\[60px\] {
+  font-size: 60px;
 }
 
 .t-text-\[20px\] {
@@ -79,6 +66,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'GongGothicMedium';
+
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+
+  font-weight: normal;
+
+  font-style: normal;
+}
+
 html > body ul,
 html > body li {
   margin:0;
@@ -86,8 +83,13 @@ html > body li {
   list-style:none;
 }
 
-html > body {
+html > body .bannerfont{
   font-family: "KOTRALEAP";
+  text-underline-position: under;
+}
+
+html > body {
+  font-family: "GongGothicMedium";
   text-underline-position: under;
 }
 

@@ -9,13 +9,10 @@
 
 <div class="py-3 text-center">
     <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
-        <div class="t-border-solid t-border-blue-300 me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
-            <div class="my-3 py-1">
-                <h2 class="display-5 fw-bold fs-1"><b>샘플텍스트</b></h2>
+        <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
                 {%for item1 in racketItems%}
-                <div class="fs-1">{{item1.name}}</div>
+                <div class="fs-1 m-3 fw-bold t-text-5xl">{{item1.name}}</div>
                 {%endfor%}
-            </div>
 
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
