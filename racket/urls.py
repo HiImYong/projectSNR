@@ -5,5 +5,5 @@ app_name = 'racket'
 
 urlpatterns = [
     path('', views.racketMain, name='racketMain'),
-    path('racketDetail/', views.racketDetail, name='racketDetail')
+    path('racketDetail/<int:parameter>', views.racketDetail, name='racketDetail')
 ]

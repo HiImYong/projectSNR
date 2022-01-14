@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div>
+
+
+</div>
+
+<div class="py-3 text-center">
+    <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
+        <div class="t-border-solid t-border-blue-300 me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
+            <div class="my-3 py-1">
+                <h2 class="display-5 fw-bold fs-1"><b>샘플텍스트</b></h2>
+                {%for item1 in racketItems%}
+                <div class="fs-1">{{item1.name}}</div>
+                {%endfor%}
+            </div>
+
+            <div class="card t-tm-3 t-bg-white t-text-black">
+                <div class="card-header">
+                    <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
+                         width="600" height="600">
+                </div>
+                <div class="py-2">
+                    {%for item2 in racketDetailItems%}
+
+                    <ul>
+                        <li>리뷰 : {{item2.adminReview}}</li>
+                        <li>파워 : {{item2.adminPower}}</li>
+                        <li>스핀 : {{item2.adminSpin}}</li>
+                        <li>조작성 : {{item2.adminManeuverability}}</li>
+                        <li>안정성 : {{item2.adminStability}}</li>
+                        <li>편안함 : {{item2.adminComfort}}</li>
+                    </ul>
+                    {%endfor%}
+
+                </div>
+                <div class="card-footer">
+                    <div class="container">
+                        <h4><b>샘플텍스트</b></h4><br>
+
+                        <form action="" method="POST">
+                            샘플텍스트
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+{% with img_box_after_class="after:t-content-[attr(data-before)] after:t-hidden hover:after:t-block after:t-no-underline after:t-text-white after:t-border-2 after:t-border-white after:t-border-solid after:t-rounded after:t-p-2 after:t-whitespace-nowrap after:t-absolute after:t-top-[50%] after:t-left-[50%] after:t-translate-y-[-50%] after:t-translate-x-[-50%] after:t-transition-all" %}
 <div>
     <h1 class="d-flex justify-content-center mt-4 t-text-[50px]">테니스 라켓 리스트</h1>
     <h3 class="d-flex justify-content-center my-4 t-text-[20px]">Powered by '세상에 나쁜 라켓은 없다' since 2013</h3>
@@ -19,9 +20,9 @@
 
     <section class="t-block section-racket-list t-bg-gray-100 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
-            {%for item in racketList%}
+            {%for item in racketItems%}
             <li class="mx-3">
-                <a href="{%url 'racket:racketDetail' item.id" class="t-block t-cursor-pointer">
+                <a data-before="자세히" href="{%url 'racket:racketDetail' item.id%}" class="t-block t-cursor-pointer ">
                     <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
                          height="250" class=" w-100 "><br>
                 </a>
@@ -42,4 +43,6 @@
 
 
 </div>
+{% endwith %}
+
 {% endblock %}
