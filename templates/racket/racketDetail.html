@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
+{% load static%}
+{% load django_bootstrap5 %}
+
+
 
 {% block content %}
 
@@ -10,10 +14,9 @@
 <div class="py-3 text-center">
     <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
         <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
-                {%for item1 in racketItems%}
-                <div class="fs-1 m-3 fw-bold t-text-5xl">{{item1.name}}</div>
-                {%endfor%}
-
+            {%for item1 in racketItems%}
+            <div class="fs-1 m-3 fw-bold t-text-5xl">{{item1.name}}</div>
+            {%endfor%}
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
                     <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
@@ -21,7 +24,6 @@
                 </div>
                 <div class="py-2">
                     {%for item2 in racketDetailItems%}
-
                     <ul>
                         <li>리뷰 : {{item2.adminReview}}</li>
                         <li>파워 : {{item2.adminPower}}</li>
@@ -31,22 +33,34 @@
                         <li>편안함 : {{item2.adminComfort}}</li>
                     </ul>
                     {%endfor%}
-
                 </div>
                 <div class="card-footer">
                     <div class="container">
-                        <h4><b>샘플텍스트</b></h4><br>
+                        세나라팀에서 매긴 평점은<br>
+                        <span class="t-text-3xl"><b>3.5</b></span>점<br>
+                        입니다.<br><br>
 
-                        <form action="" method="POST">
-                            샘플텍스트
-                        </form>
+                        여러분의 의견을 댓글로 남겨주세요!(✿◡‿◡)
                     </div>
-
                 </div>
             </div>
+            <div class="card t-tm-3 ">
+
+                                    <h3 class="mt-5 mb-3 t-text-3xl">방문자 리뷰 📝</h3>
+
+                <div class="card-footer">
+
+                <form>
+                    {%csrf_token%}
+                    {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
+                    {%bootstrap_button button_type="submit" content="질문작성"%}
+                    {%bootstrap_button button_type="reset" content="다시쓰기"%}
+                </form>
+</div>
+            </div>
+
         </div>
     </div>
 </div>
-
 
 {% endblock %}

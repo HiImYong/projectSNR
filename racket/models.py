@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
@@ -14,12 +15,11 @@ class Racket(models.Model):
 
 class RacketDetail(models.Model):
     racket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
-    adminReview = models.TextField('운영자리뷰')
+    adminReview = models.TextField()
     adminPower = models.FloatField('운영자파워평점', default=0)
     adminSpin = models.FloatField('운영자스핀평점', default=0)
     adminManeuverability = models.FloatField('운영자조작성평점', default=0)
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
-
 
 

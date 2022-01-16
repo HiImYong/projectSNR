@@ -51,6 +51,16 @@
   font-size: 20px;
 }
 
+.t-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.t-text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .t-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));

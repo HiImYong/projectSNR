@@ -28,3 +28,6 @@ npx tailwindcss -i ./base/static/common.base.css -o ./base/static/common.css --w
 
 아래 터미널에서 로컬 두개 열어서, 하나는 npm run css, 하나는 python manage.py runserver 해줄 것
 실시간 테일윈드 변경 가능
+
+
+

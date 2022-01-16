@@ -1,34 +1,31 @@
 {% extends "layout.html" %}
+{% load static%}
 
 {% block content %}
-{% with img_box_after_class="after:t-content-[attr(data-before)] after:t-hidden hover:after:t-block after:t-no-underline after:t-text-white after:t-border-2 after:t-border-white after:t-border-solid after:t-rounded after:t-p-2 after:t-whitespace-nowrap after:t-absolute after:t-top-[50%] after:t-left-[50%] after:t-translate-y-[-50%] after:t-translate-x-[-50%] after:t-transition-all" %}
 <div>
     <h1 class="d-flex justify-content-center mt-6 t-text-[60px] bannerfont">테니스 라켓 리스트</h1>
-    <h3 class="d-flex justify-content-center mt-4 mb-5 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
-        2013</h3>
-    <div class="d-flex justify-content-between bg-dark py-1  t-text-[20px]">
-        <div class="">
+    <h3 class="d-flex justify-content-center mt-4 mb-5 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since 2013</h3>
+
+    <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark" aria-label="Tenth navbar example">
             <form class="d-flex" action="{% url 'racket:racketMain'%}">
                 <input class="form-control ml-2" type="search" name="searchKeyword" placeholder="라켓 이름을 적어주세요"
                        value="{{request.GET.searchKeyword}}">
                 <button type="submit" class="btn btn-warning t-whitespace-nowrap">검 색</button>
             </form>
-        </div>
-        <div class="mr-4">
-            <ul>
+        <div class="d-flex collapse navbar-collapse ">
+            <ul class="d-flex navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle btn btn-light" href="#" id="dropdown08" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle btn btn-warning" href="#" id="dropdown08" data-bs-toggle="dropdown"
                        aria-expanded="false">정렬순</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown08">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">이름순</a></li>
+                        <li><a class="dropdown-item" href="#">발매순</a></li>
+                        <li><a class="dropdown-item" href="#">평점순</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
-
 
     <section class="t-block section-racket-list t-bg-gray-200 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
@@ -55,6 +52,5 @@
 
 
 </div>
-{% endwith %}
 
 {% endblock %}
