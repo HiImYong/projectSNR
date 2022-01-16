@@ -19,5 +19,9 @@ from django.urls import path, include
 urlpatterns = [
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
+    path('visitor/', include('visitor.urls')),
+
+
+
     path('admin/', admin.site.urls),
 ]

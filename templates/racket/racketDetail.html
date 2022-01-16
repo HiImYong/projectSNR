@@ -14,9 +14,8 @@
 <div class="py-3 text-center">
     <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
         <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
-            {%for item1 in racketItems%}
-            <div class="fs-1 m-3 fw-bold t-text-5xl">{{item1.name}}</div>
-            {%endfor%}
+
+            <div class="fs-1 m-3 fw-bold t-text-5xl">{{racketItems.name}}</div>
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
                     <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
@@ -50,7 +49,7 @@
 
                 <div class="card-footer">
 
-                <form>
+                <form method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
                     {%csrf_token%}
                     {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
                     {%bootstrap_button button_type="submit" content="질문작성"%}

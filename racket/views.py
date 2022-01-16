@@ -18,7 +18,8 @@ def racketMain(request: HttpRequest):
 
 
 def racketDetail(request, parameter):
-    getRacket = Racket.objects.filter(id=parameter)
+    getRacketQs = Racket.objects.filter(id=parameter)
+    getRacket = getRacketQs.first()
     getRacketDetail = RacketDetail.objects.filter(racket_id=parameter)
     getReviewForm = visitor.forms.ReviewForm()
 
