@@ -3,19 +3,24 @@
 
 {% block content %}
 <div>
-    <h1 class="d-flex justify-content-center mt-6 t-text-[60px] bannerfont">테니스 라켓 리스트</h1>
-    <h3 class="d-flex justify-content-center mt-4 mb-5 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since 2013</h3>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[60px] bannerfont">테니스 라켓 리스트</h1>
+    <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
+        2013</h3>
 
-    <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark" aria-label="Tenth navbar example">
+    <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark"
+         aria-label="Tenth navbar example">
+        <div>
             <form class="d-flex" action="{% url 'racket:racketMain'%}">
                 <input class="form-control ml-2" type="search" name="searchKeyword" placeholder="라켓 이름을 적어주세요"
                        value="{{request.GET.searchKeyword}}">
                 <button type="submit" class="btn btn-warning t-whitespace-nowrap">검 색</button>
             </form>
+        </div>
         <div class="d-flex collapse navbar-collapse ">
-            <ul class="d-flex navbar-nav">
+            <ul class=" navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle btn btn-warning" href="#" id="dropdown08" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle btn btn-warning" href="#" id="dropdown08"
+                       data-bs-toggle="dropdown"
                        aria-expanded="false">정렬순</a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown08">
                         <li><a class="dropdown-item" href="#">이름순</a></li>
@@ -38,7 +43,7 @@
 
                 <div class="d-flex justify-content-center t-bg-gray-300 ">
                     <ul>
-                        <li>{{item.name}} ({{item.regDateInt}}년)</li>
+                        <li> {{item.name}} ({{item.regDateInt}}년)</li>
                         <li>세나라 평점 : 💛💛💛🤍</li>
                         <li>사용자 평점 : 🧡🧡🤍</li>
                     </ul>

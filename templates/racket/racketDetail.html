@@ -3,7 +3,6 @@
 {% load django_bootstrap5 %}
 
 
-
 {% block content %}
 
 <div>
@@ -15,48 +14,91 @@
     <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
         <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
 
-            <div class="fs-1 m-3 fw-bold t-text-5xl">{{racketItems.name}}</div>
+            <div class="fs-1 m-3 fw-bold t-text-5xl">- {{racketItems.name}} -</div>
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
                     <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
                          width="600" height="600">
                 </div>
-                <div class="py-2">
-                    {%for item2 in racketDetailItems%}
+                <div class="py-3 t-leading-normal">
+                    {%for item1 in racketDetailItems%}
                     <ul>
-                        <li>리뷰 : {{item2.adminReview}}</li>
-                        <li>파워 : {{item2.adminPower}}</li>
-                        <li>스핀 : {{item2.adminSpin}}</li>
-                        <li>조작성 : {{item2.adminManeuverability}}</li>
-                        <li>안정성 : {{item2.adminStability}}</li>
-                        <li>편안함 : {{item2.adminComfort}}</li>
+                        <li>리뷰 : {{item1.adminReview}}</li>
+                        <li>파워 : {{item1.adminPower}}</li>
+                        <li>스핀 : {{item1.adminSpin}}</li>
+                        <li>조작성 : {{item1.adminManeuverability}}</li>
+                        <li>안정성 : {{item1.adminStability}}</li>
+                        <li>편안함 : {{item1.adminComfort}}</li>
                     </ul>
                     {%endfor%}
                 </div>
                 <div class="card-footer">
-                    <div class="container">
-                        세나라팀에서 매긴 평점은<br>
-                        <span class="t-text-3xl"><b>3.5</b></span>점<br>
+                    <div class="container mt-5 t-text-2xl t-leading-relaxed">
+                        이 라켓에 대해<br>세나라팀에서 매긴 평점은<br>
+                        <span class="t-text-sm t-text-red-500"><b>(3.5)</b></span>점<br>
                         입니다.<br><br>
 
-                        여러분의 의견을 댓글로 남겨주세요!(✿◡‿◡)
+
                     </div>
                 </div>
             </div>
             <div class="card t-tm-3 ">
 
-                                    <h3 class="mt-5 mb-3 t-text-3xl">방문자 리뷰 📝</h3>
+                <h3 class="mt-5 mb-5 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!</h3>
 
                 <div class="card-footer">
+        {% if user.is_authenticated %}
 
-                <form method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
-                    {%csrf_token%}
-                    {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
-                    {%bootstrap_button button_type="submit" content="질문작성"%}
-                    {%bootstrap_button button_type="reset" content="다시쓰기"%}
-                </form>
-</div>
+                    <form method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
+                        {%csrf_token%}
+                        {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
+                        {%bootstrap_button button_type="submit" content="질문작성"%}
+                        {%bootstrap_button button_type="reset" content="다시쓰기"%}
+                    </form>
+                            {%else%}
+        <div>로그인 후 이용할 수 있습니다.
+            <a href="">  <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
+        {%endif%}
+                </div>
             </div>
+            <div class="card t-tm-3 ">
+                <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
+
+                <div class="card-footer">
+            <table class="table">
+                <thead class="my-4">
+                  <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
+
+
+                <tr class="table-info">
+
+                    <th>사용자 평점</th>
+                    <th>사용 후기</th>
+                    <th>작성자</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {%if getReivewList%}
+                {%for item1 in getReivewList%}
+                <a name="anchor{{1}}"></a>
+                <tr>
+                    <td>{{item1.visitorScore}}</td>
+                    <td>{{item1.visitorReview}}</td>
+                    <td>{{item1.visitorAccount}}</td>
+                </tr>
+                {%endfor%}
+
+                {%else%}
+                <tr>
+                    <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
+                </tr>
+                {%endif%}
+
+                </tbody>
+            </table>
+                </div>
+                </div>
 
         </div>
     </div>

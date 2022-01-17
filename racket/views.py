@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 import visitor.forms
 from racket.models import Racket, RacketDetail
+from visitor.models import VisitorReview
 
 
 def racketMain(request: HttpRequest):
@@ -22,7 +23,9 @@ def racketDetail(request, parameter):
     getRacket = getRacketQs.first()
     getRacketDetail = RacketDetail.objects.filter(racket_id=parameter)
     getReviewForm = visitor.forms.ReviewForm()
+    getReivewList = VisitorReview.objects.filter(visitorRacket_id=parameter)
 
     return render(request, 'racket/racketDetail.html', {'racketItems': getRacket,
                                                         'racketDetailItems': getRacketDetail,
-                                                        'racketReviewForm': getReviewForm})
+                                                        'racketReviewForm': getReviewForm,
+                                                        'getReivewList': getReivewList})
