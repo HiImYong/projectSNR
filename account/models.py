@@ -28,7 +28,7 @@ class User(AbstractUser):
             user: User = qs.first()
 
         else:
-            username = getProviderType + "__" + str(account_id)
+            username = account_id
             name = getProviderType + "__" + str(account_id)
             email = ""
             password = ""

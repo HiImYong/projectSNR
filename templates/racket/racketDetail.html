@@ -47,7 +47,7 @@
                 <h3 class="mt-5 mb-5 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!</h3>
 
                 <div class="card-footer">
-        {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
 
                     <form method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
                         {%csrf_token%}
@@ -55,53 +55,69 @@
                         {%bootstrap_button button_type="submit" content="질문작성"%}
                         {%bootstrap_button button_type="reset" content="다시쓰기"%}
                     </form>
-                            {%else%}
-        <div>로그인 후 이용할 수 있습니다.
-            <a href="">  <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
-        {%endif%}
+                    {%else%}
+                    <div>로그인 후 이용할 수 있습니다.
+                        <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
+                    {%endif%}
                 </div>
             </div>
             <div class="card t-tm-3 ">
                 <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
 
                 <div class="card-footer">
-            <table class="table">
-                <thead class="my-4">
-                  <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
+                    <table class="table table-hover">
+                        <thead class="my-4">
+                        <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
 
 
-                <tr class="table-info">
+                        <tr class="table-info ">
+                            <th>사용자 평점</th>
+                            <th>사용 후기</th>
+                            <th>작성자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    <th>사용자 평점</th>
-                    <th>사용 후기</th>
-                    <th>작성자</th>
-                </tr>
-                </thead>
-                <tbody>
+                        {%if getReivewList%}
+                        {%for item1 in getReivewList%}
+                        <a name="anchor{{1}}"></a>
+                        <tr>
+                            <td>{{item1.visitorScore}}</td>
+                            <td>
+                                <ul class="d-flex justify-content-center">
+                                    <li>{{item1.visitorReview}}</li>
+                                    {% if user.is_authenticated%}
+                                    {% if user.id == item1.id%}
+                                            <li><a href="">🔺</a></li>
+                                            <li><a href="">❌</a></li>
+                                    {%endif%}
+                                    {%else%}
+                                    <li class="t-hidden"><a href="">🔺</a></li>
+                                    <li class="t-hidden"><a href="">❌</a></li>
+                                    {%endif%}
+                                </ul>
+                            </td>
+                            <td>{{item1.visitorAccount}}</td>
+                        </tr>
+                        {%endfor%}
 
-                {%if getReivewList%}
-                {%for item1 in getReivewList%}
-                <a name="anchor{{1}}"></a>
-                <tr>
-                    <td>{{item1.visitorScore}}</td>
-                    <td>{{item1.visitorReview}}</td>
-                    <td>{{item1.visitorAccount}}</td>
-                </tr>
-                {%endfor%}
+                        {%else%}
+                        <tr>
+                            <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
+                        </tr>
+                        {%endif%}
 
-                {%else%}
-                <tr>
-                    <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
-                </tr>
-                {%endif%}
-
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
                 </div>
-                </div>
+            </div>
 
         </div>
     </div>
 </div>
 
+{% endblock %}
+
+
+{% block script %}
 {% endblock %}

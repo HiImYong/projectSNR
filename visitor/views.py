@@ -22,3 +22,8 @@ def newReview(request, parameter):
     else:
         getForm = ReviewForm()
 
+
+# def modifyReview(request, parameter):
+#     getReivew = VisitorReview.objects.get(id=parameter)
+#     if request.method == "POST":
+#         getForm =

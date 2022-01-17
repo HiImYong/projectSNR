@@ -26,8 +26,16 @@
   display: block;
 }
 
+.t-flex {
+  display: flex;
+}
+
 .t-grid {
   display: grid;
+}
+
+.t-hidden {
+  display: none;
 }
 
 .t-cursor-pointer {
