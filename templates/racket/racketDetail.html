@@ -86,12 +86,12 @@
                         <a name="anchor{{1}}"></a>
                         <tr>
                             <td>{{item1.visitorScore}}</td>
-                            <td>
+                            <td class="d-flex justify-content-center">
+                                <input type="text" size="%" class="classVisitorReview{{item1.id}} t-flex-grow"
+                                                        value="{{item1.visitorReview}}" readOnly>
+                                <span class="control hidden"  id="control_id{{ forloop.counter0 }}">
                                 <ul class="d-flex justify-content-center">
-                                    <li class=""><input type="text" size="50" class="classVisitorReview{{item1.id}} "
-                                                        value="{{item1.visitorReview}}" readOnly></li>
-                                    {% if user.is_authenticated%}
-                                    {% if user.username == item1.visitorAccount%}
+<!--                                    {if user.is_authenticated}-->
                                     <li class="modifyReview{{ item1.id }}"><input type="button" value="수정"
                                                                                   onclick="onModifyReview({{ item1.id }})">
                                     </li>
@@ -106,15 +106,13 @@
                                                                                                        value="취소"
                                                                                                        onclick="onCancelModify({{ item1.id }})">
                                     </li>
-                                    {%else%}
-                                    <li>(글 작성자가 다름)</li>
-                                    {%endif%}
-                                    {%else%}
-                                    <li>(로그인이 안되어있음)</li>
-                                    {%endif%}
+<!--                                    {else}-->
+<!--                                    <li>(로그인이 안되어있음)</li>-->
+<!--                                    {endif}-->
                                 </ul>
+                                    </span>
                             </td>
-                            <td>{{item1.visitorAccount}} // {{user.username}}</td>
+                            <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span></td>
                         </tr>
                         {%endfor%}
 
@@ -132,6 +130,7 @@
         </div>
     </div>
 </div>
+<span class="t-hidden" id="spanUserName">{{ user.username }}</span>
 
 {% endblock %}
 
@@ -189,11 +188,15 @@ const onSubmitModify = (id) => {
     });
 }
 
+$("#spanUserName").text()
+$(".spanVisitorAccount")
+$(".spanVisitorAccount")[0].innerHTML
 
-
-
-
-
+for(i = 0; i < $(".spanVisitorAccount").length; i++){
+  if($("#spanUserName").text() == $(".spanVisitorAccount")[i].innerHTML){
+    $("#control_id"+i).removeClass("hidden");
+  }
+}
 
 
 

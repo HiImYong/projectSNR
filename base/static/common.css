@@ -14,16 +14,16 @@
   display: grid;
 }
 
+.t-hidden {
+  display: none;
+}
+
+.t-flex-grow {
+  flex-grow: 1;
+}
+
 .t-cursor-pointer {
   cursor: pointer;
-}
-
-.t-auto-cols-auto {
-  grid-auto-columns: auto;
-}
-
-.t-auto-rows-auto {
-  grid-auto-rows: auto;
 }
 
 .t-gap-5 {
@@ -143,6 +143,10 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
   font-size:1rem;
 }
 
+html > body .hidden{
+  display:none
+}
+
 @media (min-width: 640px) {
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -166,4 +170,3 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
-
