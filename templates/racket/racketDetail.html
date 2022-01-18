@@ -44,7 +44,10 @@
             </div>
             <div class="card t-tm-3 ">
 
-                <h3 class="mt-5 mb-5 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!</h3>
+                <h3 class="mt-5 mb-5 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!<br>
+                    <img src="https://media1.giphy.com/media/uADTQTTlpQWeydiHfs/giphy.gif?cid=790b76116267b3b683d11414f434288099844816cf9d736c&rid=giphy.gif&ct=g"
+                         width="200">
+                </h3>
 
                 <div class="card-footer">
                     {% if user.is_authenticated %}
@@ -85,19 +88,33 @@
                             <td>{{item1.visitorScore}}</td>
                             <td>
                                 <ul class="d-flex justify-content-center">
-                                    <li>{{item1.visitorReview}}</li>
+                                    <li class=""><input type="text" size="50" class="classVisitorReview{{item1.id}} "
+                                                        value="{{item1.visitorReview}}" readOnly></li>
                                     {% if user.is_authenticated%}
-                                    {% if user.id == item1.id%}
-                                            <li><a href="">🔺</a></li>
-                                            <li><a href="">❌</a></li>
+                                    {% if user.username == item1.visitorAccount%}
+                                    <li class="modifyReview{{ item1.id }}"><input type="button" value="수정"
+                                                                                  onclick="onModifyReview({{ item1.id }})">
+                                    </li>
+                                    <li class="deleteReview{{ item1.id }}"><input type="button" value="삭제"
+                                                                                  onclick="startDeleteReview({{ item1.id }})">
+                                    </li>
+                                    <li class="submitModify{{ item1.id }}" style="display:none"><input type="button"
+                                                                                                       value="수정완료"
+                                                                                                       onclick="onSubmitModify({{ item1.id }})">
+                                    </li>
+                                    <li class="cancelModify{{ item1.id }}" style="display:none"><input type="button"
+                                                                                                       value="취소"
+                                                                                                       onclick="onCancelModify({{ item1.id }})">
+                                    </li>
+                                    {%else%}
+                                    <li>(글 작성자가 다름)</li>
                                     {%endif%}
                                     {%else%}
-                                    <li class="t-hidden"><a href="">🔺</a></li>
-                                    <li class="t-hidden"><a href="">❌</a></li>
+                                    <li>(로그인이 안되어있음)</li>
                                     {%endif%}
                                 </ul>
                             </td>
-                            <td>{{item1.visitorAccount}}</td>
+                            <td>{{item1.visitorAccount}} // {{user.username}}</td>
                         </tr>
                         {%endfor%}
 
@@ -120,4 +137,66 @@
 
 
 {% block script %}
+<script type='text/javascript'>
+
+const onModifyReview = (id) => {
+  let modifyReview = document.querySelector(`.modifyReview${id}`);
+  let deleteReview = document.querySelector(`.deleteReview${id}`);
+  let submitModify = document.querySelector(`.submitModify${id}`);
+  let cancelModify = document.querySelector(`.cancelModify${id}`);
+  let classVisitorReview = document.querySelector(`.classVisitorReview${id}`);
+
+  modifyReview.style.display = 'none';
+  deleteReview.style.display = 'none';
+  submitModify.style.display = 'inline-block';
+  cancelModify.style.display = 'inline-block';
+  classVisitorReview.readOnly=false;
+}
+
+const onSubmitModify = (id) => {
+    let classVisitorReview = document.querySelector(`.classVisitorReview${id}`).value;
+    let param = {
+        'id': id,
+        'content': classVisitorReview
+    }
+
+    $.ajax({
+        url: '{%url 'visitor:modifyReview' %}',
+        type: 'POST',
+        headers: {
+            'X-CSRFTOKEN': '{{csrf_token}}'
+        },
+        data: JSON.stringify(param),
+        success:function(data){
+            console.log(data);
+            if(data.result=='ok') {
+            let modifyReview = document.querySelector(`.modifyReview${id}`);
+            let deleteReview = document.querySelector(`.deleteReview${id}`);
+            let submitModify = document.querySelector(`.submitModify${id}`);
+            let cancelModify = document.querySelector(`.cancelModify${id}`);
+            let classVisitorReview = document.querySelector(`.classVisitorReview${id}`);
+
+            modifyReview.style.display = 'inline-block';
+            deleteReview.style.display = 'inline-block';
+            submitModify.style.display = 'none';
+            cancelModify.style.display = 'none';
+            classVisitorReview.readOnly=true;
+            }
+        },
+        error: function(){
+            alert('불가');
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+</script>
+
 {% endblock %}

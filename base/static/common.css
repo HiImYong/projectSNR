@@ -1,45 +1,29 @@
-.t-mt-8 {
-  margin-top: 2rem;
-}
-
-.t-mt-9 {
-  margin-top: 2.25rem;
-}
-
-.t-mb-8 {
-  margin-bottom: 2rem;
+.t-mt-\[100px\] {
+  margin-top: 100px;
 }
 
 .t-mb-9 {
   margin-bottom: 2.25rem;
 }
 
-.t-mt-10 {
-  margin-top: 2.5rem;
-}
-
-.t-mt-\[100px\] {
-  margin-top: 100px;
-}
-
 .t-block {
   display: block;
-}
-
-.t-flex {
-  display: flex;
 }
 
 .t-grid {
   display: grid;
 }
 
-.t-hidden {
-  display: none;
-}
-
 .t-cursor-pointer {
   cursor: pointer;
+}
+
+.t-auto-cols-auto {
+  grid-auto-columns: auto;
+}
+
+.t-auto-rows-auto {
+  grid-auto-rows: auto;
 }
 
 .t-gap-5 {
@@ -98,12 +82,12 @@
   font-size: 20px;
 }
 
-.t-leading-relaxed {
-  line-height: 1.625;
-}
-
 .t-leading-normal {
   line-height: 1.5;
+}
+
+.t-leading-relaxed {
+  line-height: 1.625;
 }
 
 .t-text-black {
