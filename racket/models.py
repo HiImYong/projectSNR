@@ -13,6 +13,24 @@ class Racket(models.Model):
     hitCount = models.PositiveIntegerField('조회수', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
 
+    def thumb_img_url(self):
+
+        img_names = {
+            1: '블레이드 98 덴스',
+            2: '퓨어 드라이브',
+            3: '퓨어 에어로',
+            4: '스피드 프로',
+            5: '프레스티지 프로',
+            6: '그래비티 투어',
+            7: '프로스태프 97 RF',
+            8: '라디칼 프로'
+        }
+
+        img_name = img_names[self.id]
+
+        return f"https://raw.githubusercontent.com/HiImYong/snrPictures/master/{img_name}.jpg"
+
+
 class RacketDetail(models.Model):
     racket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
     adminReview = models.TextField()

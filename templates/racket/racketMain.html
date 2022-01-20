@@ -6,11 +6,11 @@
     <h1 class="d-flex justify-content-center mt-7 t-text-[60px] bannerfont">테니스 라켓 콘텐츠</h1>
     <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
         2013</h3>
-    <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다!  ~</h4>
+    <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다! ╰(*°▽°*)╯</h4>
 
-    <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark"
+    <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark mr-auto"
          aria-label="Tenth navbar example">
-        <div>
+        <div class="">
             <form class="d-flex mr-auto" action="{% url 'racket:racketMain'%}">
                 <input class="form-control ml-2" type="search" name="searchKeyword" placeholder="라켓 이름을 적어주세요"
                        value="{{request.GET.searchKeyword}}">
@@ -18,8 +18,8 @@
             </form>
         </div>
 
-        <div class="collapse navbar-collapse ">
-            <ul class=" navbar-nav">
+        <div class=" collapse navbar-collapse ">
+            <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle btn btn-warning" href="#" id="dropdown08"
                        data-bs-toggle="dropdown"
@@ -40,7 +40,7 @@
             {%for item in racketItems%}
             <li class="mx-3">
                 <a data-before="자세히" href="{%url 'racket:racketDetail' item.id%}" class="t-block t-cursor-pointer ">
-                    <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
+                    <img src="{{item.thumb_img_url}}"
                          height="250" class=" w-100 "><br>
                 </a>
 

@@ -17,7 +17,7 @@
             <div class="fs-1 m-3 fw-bold t-text-5xl">- {{racketItems.name}} -</div>
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
-                    <img src="https://www.smashinn.com/f/13607/136074793/wilson-pro-staff-97-unstrung-tennis-racket.jpg"
+                    <img src="{{racketItems.thumb_img_url}}"
                          width="600" height="600">
                 </div>
                 <div class="py-3 t-leading-normal">
@@ -76,7 +76,7 @@
                            size="%" required id="id_content"><br><br>
 
 
-                    <button type="submit">
+                    <button type="submit" class="btn btn-success">
                         등록
                     </button>
                 </form>
