@@ -51,83 +51,105 @@
 
                 <div class="card-footer">
                     {% if user.is_authenticated %}
-
-                    <form method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
-                        {%csrf_token%}
-                        {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
-                        {%bootstrap_button button_type="submit" content="질문작성"%}
-                        {%bootstrap_button button_type="reset" content="다시쓰기"%}
+                    <div class="col text-center"></div>
+                    <form class="rate-form" action="" method="POST" id="1">
+                        {% csrf_token%}
+                        <button type="submit" class="fa fa-star fa-2x my-btn" id="first"></button>
+                        <button type="submit" class="fa fa-star fa-2x my-btn" id="second"></button>
+                        <button type="submit" class="fa fa-star fa-2x my-btn" id="third"></button>
+                        <button type="submit" class="fa fa-star fa-2x my-btn" id="fourth"></button>
+                        <button type="submit" class="fa fa-star fa-2x my-btn" id="fifth"></button>
                     </form>
-                    {%else%}
-                    <div>로그인 후 이용할 수 있습니다.
-                        <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
-                    {%endif%}
                 </div>
+                <br>
+                <div id="confirm-box">내가 선택한 점수는~?</div>
+
+
+                <form action="{% url 'visitor:newReview' racketItems.id %}" method="POST">
+
+                    {%csrf_token%}
+
+                    <div><input id="inputNumForm" name="visitorScore" class="scoreReview" value="0"></div>
+                    <label for="id_content"></label>
+
+                    <input type="text" name="visitorReview" class="textReview" placeholder="한줄평을 작성해주세요"
+                           size="%" required id="id_content"><br><br>
+
+
+                    <button type="submit">
+                        등록
+                    </button>
+                </form>
+
+
+                {%else%}
+                <div>로그인 후 이용할 수 있습니다.
+                    <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
+                {%endif%}
+
             </div>
-            <div class="card t-tm-3 ">
-                <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
+        </div>
+        <div class="card t-tm-3 ">
+            <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
 
-                <div class="card-footer">
-                    <table class="table table-hover">
-                        <thead class="my-4">
-                        <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
+            <div class="card-footer">
+                <table class="table table-hover">
+                    <thead class="my-4">
+                    <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
 
 
-                        <tr class="table-info ">
-                            <th>사용자 평점</th>
-                            <th>사용 후기</th>
-                            <th>작성자</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <tr class="table-info ">
+                        <th>사용자 평점</th>
+                        <th>사용 후기</th>
+                        <th>작성자</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                        {%if getReivewList%}
-                        {%for item1 in getReivewList%}
-                        <a name="anchor{{1}}"></a>
-                        <tr>
-                            <td>{{item1.visitorScore}}</td>
-                            <td class="d-flex justify-content-center">
-                                <input type="text" size="%" class="classVisitorReview{{item1.id}} t-flex-grow"
-                                                        value="{{item1.visitorReview}}" readOnly>
-                                <span class="control hidden"  id="control_id{{ forloop.counter0 }}">
+                    {%if getReivewList%}
+                    {%for item1 in getReivewList%}
+                    <a name="anchor{{1}}"></a>
+                    <tr>
+                        <td>{{item1.visitorScore}}</td>
+                        <td class="d-flex justify-content-center">
+                            <input type="text" size="%" class="classInputReview{{item1.id}} t-flex-grow"
+                                   value="{{item1.visitorReview}}" readOnly>
+                            <span class="control hidden" id="control_id{{ forloop.counter0 }}">
                                 <ul class="d-flex justify-content-center">
 <!--                                    {if user.is_authenticated}-->
-                                    <li class="modifyReview{{ item1.id }}"><input type="button" value="수정"
-                                                                                  onclick="onModifyReview({{ item1.id }})">
+                                    <li class="modifyReview{{ item1.id }}">
+                                        <input type="button" value="수정" onclick="onModifyReview({{ item1.id }})">
                                     </li>
-                                    <li class="deleteReview{{ item1.id }}"><input type="button" value="삭제"
-                                                                                  onclick="startDeleteReview({{ item1.id }})">
+                                    <li class="deleteReview{{ item1.id }}">
+                                        <input type="button" value="삭제" onclick="startDeleteReview({{ item1.id }})">
                                     </li>
-                                    <li class="submitModify{{ item1.id }}" style="display:none"><input type="button"
-                                                                                                       value="수정완료"
-                                                                                                       onclick="onSubmitModify({{ item1.id }})">
+                                    <li class="submitModify{{ item1.id }}" style="display:none">
+                                        <input type="button" value="수정완료" onclick="onSubmitModify({{ item1.id }})">
                                     </li>
-                                    <li class="cancelModify{{ item1.id }}" style="display:none"><input type="button"
-                                                                                                       value="취소"
-                                                                                                       onclick="onCancelModify({{ item1.id }})">
+                                    <li class="cancelModify{{ item1.id }}" style="display:none">
+                                        <input type="button" value="취소" onclick="onCancelModify({{ item1.id }})">
                                     </li>
-<!--                                    {else}-->
-<!--                                    <li>(로그인이 안되어있음)</li>-->
-<!--                                    {endif}-->
+                                    <!--                                    {else}-->
+                                    <!--                                    <li>(로그인이 안되어있음)</li>-->
+                                    <!--                                    {endif}-->
                                 </ul>
                                     </span>
-                            </td>
-                            <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span></td>
-                        </tr>
-                        {%endfor%}
+                        </td>
+                        <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span></td>
+                    </tr>
+                    {%endfor%}
 
-                        {%else%}
-                        <tr>
-                            <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
-                        </tr>
-                        {%endif%}
+                    {%else%}
+                    <tr>
+                        <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
+                    </tr>
+                    {%endif%}
 
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
-
         </div>
+
     </div>
 </div>
 <span class="t-hidden" id="spanUserName">{{ user.username }}</span>
@@ -143,20 +165,21 @@ const onModifyReview = (id) => {
   let deleteReview = document.querySelector(`.deleteReview${id}`);
   let submitModify = document.querySelector(`.submitModify${id}`);
   let cancelModify = document.querySelector(`.cancelModify${id}`);
-  let classVisitorReview = document.querySelector(`.classVisitorReview${id}`);
+  let classInputReview = document.querySelector(`.classInputReview${id}`);
 
   modifyReview.style.display = 'none';
   deleteReview.style.display = 'none';
   submitModify.style.display = 'inline-block';
   cancelModify.style.display = 'inline-block';
-  classVisitorReview.readOnly=false;
+  classInputReview.readOnly=false;
 }
 
+// 매개변수(id)를 받아와서 내용을 수정하고 버튼 상태를 재조정한다.
 const onSubmitModify = (id) => {
-    let classVisitorReview = document.querySelector(`.classVisitorReview${id}`).value;
+    let classInputReview = document.querySelector(`.classInputReview${id}`).value;
     let param = {
         'id': id,
-        'content': classVisitorReview
+        'content': classInputReview
     }
 
     $.ajax({
@@ -166,6 +189,8 @@ const onSubmitModify = (id) => {
             'X-CSRFTOKEN': '{{csrf_token}}'
         },
         data: JSON.stringify(param),
+
+        // 내용 수정 완료 후 버튼 상태 변경
         success:function(data){
             console.log(data);
             if(data.result=='ok') {
@@ -173,13 +198,13 @@ const onSubmitModify = (id) => {
             let deleteReview = document.querySelector(`.deleteReview${id}`);
             let submitModify = document.querySelector(`.submitModify${id}`);
             let cancelModify = document.querySelector(`.cancelModify${id}`);
-            let classVisitorReview = document.querySelector(`.classVisitorReview${id}`);
+            let classInputReview = document.querySelector(`.classInputReview${id}`);
 
             modifyReview.style.display = 'inline-block';
             deleteReview.style.display = 'inline-block';
             submitModify.style.display = 'none';
             cancelModify.style.display = 'none';
-            classVisitorReview.readOnly=true;
+            classInputReview.readOnly=true;
             }
         },
         error: function(){
@@ -188,8 +213,8 @@ const onSubmitModify = (id) => {
     });
 }
 
-$("#spanUserName").text()
-$(".spanVisitorAccount")
+$("#spanUserName").text() //태그의 아이디로서 태그값을 가져온다.
+$(".spanVisitorAccount") //태그의 클래스로서 태그값을 가져온다
 $(".spanVisitorAccount")[0].innerHTML
 
 for(i = 0; i < $(".spanVisitorAccount").length; i++){
@@ -197,6 +222,11 @@ for(i = 0; i < $(".spanVisitorAccount").length; i++){
     $("#control_id"+i).removeClass("hidden");
   }
 }
+
+
+
+
+
 
 
 

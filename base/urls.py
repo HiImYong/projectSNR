@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from base import views
+
 urlpatterns = [
+    path('', views.index, name="main"),
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
     path('visitor/', include('visitor.urls')),

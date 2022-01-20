@@ -82,6 +82,10 @@
   font-size: 20px;
 }
 
+.t-text-\[15px\] {
+  font-size: 15px;
+}
+
 .t-leading-normal {
   line-height: 1.5;
 }
@@ -145,6 +149,15 @@ html > body :is(h1, h2, h3, h4, h5, h6) {
 
 html > body .hidden{
   display:none
+}
+
+.checked {
+  color: red
+}
+
+.my-btn{
+  background-color: inherit !important;
+  border: 0 !important;
 }
 
 @media (min-width: 640px) {

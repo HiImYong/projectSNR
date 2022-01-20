@@ -3,20 +3,22 @@
 
 {% block content %}
 <div>
-    <h1 class="d-flex justify-content-center mt-7 t-text-[60px] bannerfont">테니스 라켓 리스트</h1>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[60px] bannerfont">테니스 라켓 콘텐츠</h1>
     <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
         2013</h3>
+    <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다!  ~</h4>
 
     <div class="navbar navbar-expand-lg d-flex justify-content-between navbar-dark bg-dark"
          aria-label="Tenth navbar example">
         <div>
-            <form class="d-flex" action="{% url 'racket:racketMain'%}">
+            <form class="d-flex mr-auto" action="{% url 'racket:racketMain'%}">
                 <input class="form-control ml-2" type="search" name="searchKeyword" placeholder="라켓 이름을 적어주세요"
                        value="{{request.GET.searchKeyword}}">
                 <button type="submit" class="btn btn-warning t-whitespace-nowrap">검 색</button>
             </form>
         </div>
-        <div class="d-flex collapse navbar-collapse ">
+
+        <div class="collapse navbar-collapse ">
             <ul class=" navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle btn btn-warning" href="#" id="dropdown08"
@@ -32,6 +34,7 @@
         </div>
     </div>
 
+
     <section class="t-block section-racket-list t-bg-gray-200 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
             {%for item in racketItems%}
@@ -44,8 +47,8 @@
                 <div class="d-flex justify-content-center t-bg-gray-300 ">
                     <ul>
                         <li> {{item.name}} ({{item.regDateInt}}년)</li>
-                        <li>세나라 평점 : 💛💛💛🤍</li>
-                        <li>사용자 평점 : 🧡🧡🤍</li>
+                        <li>세나라 평점 : <span class="t-text-red-500">4.5</span></li>
+                        <li>사용자 평점 : <span class="t-text-red-500">4.5</span></li>
                     </ul>
                 </div>
             </li>

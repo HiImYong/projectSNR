@@ -14,3 +14,6 @@ class VisitorReview(models.Model):
     visitorReview = models.CharField('라켓 리뷰', max_length=500)
     visitorRacket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
     visitorScore = models.FloatField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+
+
+

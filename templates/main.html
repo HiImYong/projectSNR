@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+
+
+<h3>메인화면 테스트</h3>
+<div class="low">
+    <div class="col text-center"></div>
+    <form class="rate-form" action="" method="POST" id="1">
+        {% csrf_token%}
+    <button  class="fa fa-star fa-2x my-btn" id="first"></button>
+    <button  class="fa fa-star fa-2x my-btn" id="second"></button>
+    <button  class="fa fa-star fa-2x my-btn" id="third"></button>
+    <button  class="fa fa-star fa-2x my-btn" id="fourth"></button>
+    <button  class="fa fa-star fa-2x my-btn" id="fifth"></button>
+        <button type="submit"> 제출 </button>
+    </form>
+</div>
+<br>
+<div id="confirm-box">confirm-box</div>
+<div><input id="num" value="22"></div>
+
+
+
+
+{%endblock%}
+
+
+{% block script %}
+
+
+{% endblock %}

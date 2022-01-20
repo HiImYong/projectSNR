@@ -2,8 +2,10 @@
   "devDependencies": {
     "tailwindcss": "^3.0.13"
   },
-    "scripts" : {
-    "css" : "npx tailwindcss -i ./base/static/common.base.css -o ./base/static/common.css --watch"
+  "scripts": {
+    "css": "npx tailwindcss -i ./base/static/common.base.css -o ./base/static/common.css --watch"
+  },
+  "dependencies": {
+    "jquery-bar-rating": "^1.2.2"
   }
 }
-

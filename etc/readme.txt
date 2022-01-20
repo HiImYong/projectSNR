@@ -30,4 +30,61 @@ npx tailwindcss -i ./base/static/common.base.css -o ./base/static/common.css --w
 실시간 테일윈드 변경 가능
 
 
+requirement 한번에 설치
+pip install -r requirements/dev.txt
+
+
+
+
+
+
+
+
+
+
+if(one){
+const arr = [one, two, three, four, five]
+
+arr.forEach(item=> item.addEventListener('mouseover', (event)=> {handleSelect(event.target.id)}))
+
+arr.forEach(item=> item.addEventListener('click', (event)=>{
+    const val = event.target.id
+    console.log(val)
+    let numval = getNumericValue(val)
+        console.log(numval)
+
+
+//    starForm.addEventListener('submit', e=>{
+//            e.preventDefault()
+//            if (isSubmit){
+//                return
+//            }
+//            isSubmit=true
+//
+//            const id = e.target.id
+//            console.log(id)
+//            const val_num = getNumericValue(val)
+//
+//
+////            $.ajax({
+////                type:'POST',
+////                url:'rate/'
+////                data:{
+////                    'csrfmiddlewaretoken': csrf[0].value
+////                    'el_id' = id
+////                    'val' = val_num
+////                },success: function(response){
+////                    console.log(response)
+////                    confirmBox.innerHTML=`<hi>점수 등록이 완료되었음..${response.score}</h1>`
+////                },
+////                error: function(error){
+////                    console.log(error)
+////                    confirmBox.innerHTML = '<h1>Ups... something went wrong</h1>'
+////                }
+////            })
+//        })
+    }))
+}
+
+
 
