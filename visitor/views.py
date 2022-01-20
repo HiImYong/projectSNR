@@ -26,11 +26,10 @@ def newReview(request, parameter):
             VisitorReview.objects.create(visitorAccount=request.user, visitorReview=savedText,
                                          visitorRacket_id=parameter, visitorScore=savedScore)
             messages.success(request, "리뷰가 등록되었습니다")
-            return redirect('{}#anchor{}'.format(resolve_url('racket:racketDetail', parameter=parameter), 1))
+            return redirect('{}#anchor{}'.format(resolve_url('racket:racketDetail', parameter=parameter), 9999))
 
         else:
-            return redirect('{}#anchor{}'.format(resolve_url('racket:racketDetail', parameter=parameter), 1))
-
+            return redirect('{}#anchor{}'.format(resolve_url('racket:racketDetail', parameter=parameter), 9999))
 
     else:
         getForm = ReviewForm()

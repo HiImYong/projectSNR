@@ -109,7 +109,7 @@ if (one) {
                 },
                 success: function(response){
                     console.log(response)
-                    confirmBox.innerHTML = `<h1>이 라켓의 별점은 <span class="t-text-red-500 t-text-xl">${val_num}</span>점이에요!</h1>`
+                    confirmBox.innerHTML = `<h1>이 라켓의 별점을 <span class="t-text-red-500 t-text-xl">${val_num}</span>점으로 제출합니다</h1>`
                     document.getElementById(`inputNumForm`).value = `${val_num}`
                     console.log(val)
                     console.log(val_num)

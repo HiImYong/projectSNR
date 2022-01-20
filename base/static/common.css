@@ -6,8 +6,16 @@
   margin-bottom: 2.25rem;
 }
 
+.t-ml-\[3px\] {
+  margin-left: 3px;
+}
+
 .t-block {
   display: block;
+}
+
+.t-inline-block {
+  display: inline-block;
 }
 
 .t-grid {
@@ -28,6 +36,18 @@
 
 .t-gap-5 {
   gap: 1.25rem;
+}
+
+.t-gap-1 {
+  gap: 0.25rem;
+}
+
+.t-gap-\[5px\] {
+  gap: 5px;
+}
+
+.t-gap-3 {
+  gap: 0.75rem;
 }
 
 .t-whitespace-nowrap {
@@ -84,6 +104,11 @@
 
 .t-text-\[15px\] {
   font-size: 15px;
+}
+
+.t-text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .t-leading-normal {
@@ -164,6 +189,14 @@ html > body .hidden{
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .sm\:t-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sm\:t-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 768px) {
@@ -181,5 +214,13 @@ html > body .hidden{
 @media (min-width: 1280px) {
   .xl\:t-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .xl\:t-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .xl\:t-grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

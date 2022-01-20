@@ -17,8 +17,7 @@
             <div class="fs-1 m-3 fw-bold t-text-5xl">- {{racketItems.name}} -</div>
             <div class="card t-tm-3 t-bg-white t-text-black">
                 <div class="card-header">
-                    <img src="{{racketItems.thumb_img_url}}"
-                         width="600" height="600">
+                    <img src="{{racketItems.thumb_img_url}}"  width="%" height="600">
                 </div>
                 <div class="py-3 t-leading-normal">
                     {%for item1 in racketDetailItems%}
@@ -30,23 +29,30 @@
                         <li>안정성 : {{item1.adminStability}}</li>
                         <li>편안함 : {{item1.adminComfort}}</li>
                     </ul>
-                    {%endfor%}
+
                 </div>
-                <div class="card-footer">
-                    <div class="container mt-5 t-text-2xl t-leading-relaxed">
-                        이 라켓에 대해<br>세나라팀에서 매긴 평점은<br>
-                        <span class="t-text-sm t-text-red-500"><b>(3.5)</b></span>점<br>
-                        입니다.<br><br>
+                <div class="card-footer border t-grid sm:t-grid-cols-2">
+                        <span class="t-text-2xl t-leading-relaxed my-3">
+                        이 라켓에 대한<br>🎾세나라팀의 평점은<br>
+                        <span class="t-text-lg t-text-red-500"><b>(평균값 구해서 이곳에 집어넣기)</b></span>점<br>
+                        입니다.<br>
+</span>
+                        {%endfor%}
+                        <span class="t-text-2xl t-leading-relaxed my-3">
+
+                        이 라켓에 대한<br>😀사용자 평점은<br>
+                        <span class="t-text-lg t-text-red-500"><b>[{{racketAvgScoreItem.visitorScore__avg|floatformat:"1"}}]</b></span>점<br>
+                        입니다.<br>
+                            </span>
 
 
-                    </div>
                 </div>
             </div>
             <div class="card t-tm-3 ">
 
-                <h3 class="mt-5 mb-5 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!<br>
+                <h3 class="my-4 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!<br>
                     <img src="https://media1.giphy.com/media/uADTQTTlpQWeydiHfs/giphy.gif?cid=790b76116267b3b683d11414f434288099844816cf9d736c&rid=giphy.gif&ct=g"
-                         width="200">
+                         width="200" class="mt-2">
                 </h3>
 
                 <div class="card-footer">
@@ -62,22 +68,22 @@
                     </form>
                 </div>
                 <br>
-                <div id="confirm-box">내가 선택한 점수는~?</div>
+                <div id="confirm-box">별을 눌러서 점수를 매겨주세요!</div>
 
 
                 <form action="{% url 'visitor:newReview' racketItems.id %}" method="POST">
 
                     {%csrf_token%}
 
-                    <div><input id="inputNumForm" name="visitorScore" class="scoreReview" value="0"></div>
-                    <label for="id_content"></label>
+                    <div><input id="inputNumForm" name="visitorScore" class="scoreReview" value="0" type="hidden"></div>
+                    <label for="id_content"></label><br>
 
                     <input type="text" name="visitorReview" class="textReview" placeholder="한줄평을 작성해주세요"
                            size="%" required id="id_content"><br><br>
 
 
-                    <button type="submit" class="btn btn-success">
-                        등록
+                    <button type="submit" class="btn btn-success mb-2">
+                        리뷰 제출
                     </button>
                 </form>
 
@@ -106,9 +112,10 @@
                     </thead>
                     <tbody>
 
-                    {%if getReivewList%}
-                    {%for item1 in getReivewList%}
-                    <a name="anchor{{1}}"></a>
+                    {%if racketReivewListItems%}
+                    {%for item1 in racketReivewListItems%}
+                    <a name="anchor{{9999}}"></a>
+
                     <tr>
                         <td>{{item1.visitorScore}}</td>
                         <td class="d-flex justify-content-center">
@@ -222,6 +229,7 @@ for(i = 0; i < $(".spanVisitorAccount").length; i++){
     $("#control_id"+i).removeClass("hidden");
   }
 }
+
 
 
 
