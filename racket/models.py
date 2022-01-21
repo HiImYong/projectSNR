@@ -31,6 +31,8 @@ class Racket(models.Model):
         return f"https://raw.githubusercontent.com/HiImYong/snrPictures/master/{img_name}.jpg"
 
 
+
+
 class RacketDetail(models.Model):
     racket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
     adminReview = models.TextField()
@@ -39,5 +41,19 @@ class RacketDetail(models.Model):
     adminManeuverability = models.FloatField('운영자조작성평점', default=0)
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
+
+    @property
+    def adminAvgScore(self):
+        scoreAvg = (
+            self.adminPower +
+            self.adminSpin +
+            self.adminManeuverability +
+            self.adminStability +
+            self.adminComfort
+        ) / 5
+        return round(scoreAvg, 2)
+
+
+
 
 

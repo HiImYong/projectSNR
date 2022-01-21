@@ -22,19 +22,20 @@
                 <div class="py-3 t-leading-normal">
                     {%for item1 in racketDetailItems%}
                     <ul>
-                        <li>리뷰 : {{item1.adminReview}}</li>
+                        <li>=리뷰= {{item1.adminReview|linebreaks}}</li>
                         <li>파워 : {{item1.adminPower}}</li>
                         <li>스핀 : {{item1.adminSpin}}</li>
                         <li>조작성 : {{item1.adminManeuverability}}</li>
                         <li>안정성 : {{item1.adminStability}}</li>
                         <li>편안함 : {{item1.adminComfort}}</li>
+
                     </ul>
 
                 </div>
                 <div class="card-footer border t-grid sm:t-grid-cols-2">
                         <span class="t-text-2xl t-leading-relaxed my-3">
                         이 라켓에 대한<br>🎾세나라팀의 평점은<br>
-                        <span class="t-text-lg t-text-red-500"><b>(평균값 구해서 이곳에 집어넣기)</b></span>점<br>
+                        <span class="t-text-lg t-text-red-500"><b>[{{item1.adminAvgScore}}]</b></span>점<br>
                         입니다.<br>
 </span>
                         {%endfor%}

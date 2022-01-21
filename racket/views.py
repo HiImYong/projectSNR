@@ -7,8 +7,8 @@ from racket.models import Racket, RacketDetail
 from visitor.models import VisitorReview
 
 
-class Round(Func):
-  function = 'ROUND'
+
+
 
 def racketMain(request: HttpRequest):
     getSearchKeyword = request.GET.get('searchKeyword', '')
@@ -33,7 +33,6 @@ def racketDetail(request, parameter):
     getReivewList = VisitorReview.objects.filter(visitorRacket_id=parameter)
 
     getAvgScore = VisitorReview.objects.filter(visitorRacket_id=parameter).aggregate(Avg('visitorScore'))
-    # getAvgScore = VisitorReview.objects.filter(visitorRacket_id=parameter).aggregate(average_completion=Round(Avg(F('visitorScore')), 2), output_field=FloatField())
 
     return render(request, 'racket/racketDetail.html', {'racketItems': getRacket,
                                                         'racketDetailItems': getRacketDetail,

@@ -1,5 +1,5 @@
 <form class="" id="" method="POST" action="{%url 'visitor:newReview' racketItems.id%}">
-                    <div><input id="inputNumForm" value="000000000000000"></div>
+                    <div><input id="inputNumForm" value="1"></div>
                     {%csrf_token%}
                     {%bootstrap_form racketReviewForm%} <!--render 함수에서 question_form 받아서 규격대로 생성-->
                     {%bootstrap_button button_type="submit" content="질문작성"%}

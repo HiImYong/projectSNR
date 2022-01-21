@@ -3,7 +3,7 @@
 
 {% block content %}
 <div>
-    <h1 class="d-flex justify-content-center mt-7 t-text-[60px] bannerfont">테니스 라켓 콘텐츠</h1>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[70px] bannerfont">테니스 라켓 콘텐츠</h1>
     <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
         2013</h3>
     <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다! ╰( °▽° )╯</h4>
@@ -16,19 +16,22 @@
                        value="{{request.GET.searchKeyword}}">
                 <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
             </form>
-</div>
-<div class="btn-group ml-auto">
-  <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    이곳에 정렬순 구현하기⛔
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
+        </div>
+        <div class="btn-group ml-auto">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                이곳에 정렬순 구현하기⛔
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+        </div>
 
     </div>
 
@@ -36,8 +39,10 @@
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
             {%for item in racketItems%}
             <li class="group">
-                <a href="{%url 'racket:racketDetail' item.id%}" class="t-block t-cursor-pointer block overflow-hidden relative">
-                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%" width="200" class="w-100 block transition-all group-hover:scale-[150%]"><br>
+                <a href="{%url 'racket:racketDetail' item.id%}"
+                   class="t-block t-cursor-pointer block overflow-hidden relative">
+                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%" width="200"
+                         class="w-100 block transition-all group-hover:scale-[150%]"><br>
                 </a>
 
                 <div class="d-flex justify-content-center t-bg-gray-300 ">

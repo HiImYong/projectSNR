@@ -111,6 +111,14 @@
   line-height: 1.75rem;
 }
 
+.t-text-\[100px\] {
+  font-size: 100px;
+}
+
+.t-text-\[70px\] {
+  font-size: 70px;
+}
+
 .t-leading-normal {
   line-height: 1.5;
 }
@@ -127,6 +135,11 @@
 .t-text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.t-text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 @font-face {
