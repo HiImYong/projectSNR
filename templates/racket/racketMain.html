@@ -17,39 +17,35 @@
                 <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
             </form>
         </div>
-        <div class="btn-group ml-auto">
-            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                이곳에 정렬순 구현하기⛔
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-        </div>
+
+        <select class="btn btn-warning ml-auto" id="sort-select" onchange="location = this.value;">
+            <option class="none" value="/">전체정렬</option>
+            <option class="sort-id" value="?sort=id">아이디순</option>
+            <option class="sort-likes" value="?sort=names">이름순</option>
+            {% if user.is_authenticated %}
+            <option class="sort-mypost" value="?sort=mypost">구현중</option>
+            {% endif %}
+        </select>
 
     </div>
 
     <section class="t-block section-racket-list t-bg-gray-200 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
             {%for item in racketItems%}
-            <li class="group">
+            <li class="t-group">
                 <a href="{%url 'racket:racketDetail' item.id%}"
-                   class="t-block t-cursor-pointer block overflow-hidden relative">
+                   class="t-block t-block overflow-hidden ">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%" width="200"
-                         class="w-100 block transition-all group-hover:scale-[150%]"><br>
+                         class="t-w-full block t-transition-all t-group-hover:scale-[150%]"><br>
                 </a>
 
                 <div class="d-flex justify-content-center t-bg-gray-300 ">
                     <ul>
                         <li> {{item.name}} ({{item.regDateInt}}년)</li>
-                        <li>세나라 평점 : <span class="t-text-red-500">세나라 점수 띄우기⛔</span></li>
-                        <li>사용자 평점 : <span class="t-text-red-500">사용자 점수 띄우기⛔</span></li>
+                        <li>세나라 평점 : <span
+                                class="t-text-red-500">[ {{racketAdminScore.adminAvgScore|floatformat:"1"}} ]</span></li>
+                        <li>사용자 평점 : <span
+                                class="t-text-red-500">[ {{racketUserScore.visitorScore__avg|floatformat:"1"}} ]</span></li>
                     </ul>
                 </div>
             </li>

@@ -11,18 +11,43 @@ from visitor.models import VisitorReview
 
 
 def racketMain(request: HttpRequest):
+
     getSearchKeyword = request.GET.get('searchKeyword', '')
+    sort = request.GET.get('sort', '')
+
 
     if getSearchKeyword:
         getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
+        getAdminScore = RacketDetail.objects.get(racket_id=1)
+        getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+
 
     else:
-        getRacket = Racket.objects.order_by('id')
+        if sort == 'names':
+            getRacket = Racket.objects.order_by('name')
+            getAdminScore = RacketDetail.objects.get(racket_id=1)
+            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
+            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+        elif sort == 'id' or '':
+            getRacket = Racket.objects.order_by('id')
+            getAdminScore = RacketDetail.objects.get(racket_id=1)
+            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
+            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+        else:
+            getRacket = Racket.objects.order_by('name')
+            getAdminScore = RacketDetail.objects.get(racket_id=1)
+            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
+            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+
+
+
 
     # getRacket = VisitorReview.objects.filter
     # getRacketAvgScore =
 
-    return render(request, "racket/racketMain.html", {'racketItems': getRacket})
+    return render(request, "racket/racketMain.html", {'racketItems': getRacket,
+                                                      'racketAdminScore': getAdminScore,
+                                                      'racketUserScore': getAvgScore})
 
 
 def racketDetail(request, parameter):

@@ -26,6 +26,10 @@
   display: none;
 }
 
+.t-w-full {
+  width: 100%;
+}
+
 .t-flex-grow {
   flex-grow: 1;
 }
@@ -48,6 +52,10 @@
 
 .t-gap-3 {
   gap: 0.75rem;
+}
+
+.t-overflow-hidden {
+  overflow: hidden;
 }
 
 .t-whitespace-nowrap {
@@ -140,6 +148,12 @@
 .t-text-gray-600 {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
+}
+
+.t-transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @font-face {
