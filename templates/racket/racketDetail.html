@@ -14,172 +14,224 @@
     <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
         <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
 
-            <div class="fs-1 m-3 fw-bold t-text-5xl">- {{racketItems.name}} -</div>
-            <div class="card t-tm-3 t-bg-white t-text-black">
-                <div class="card-header">
-                    <img src="{{racketItems.thumb_img_url}}"  width="%" height="600">
+
+            <div class="my-3">
+                <div>
+                    <div class="t-text-[3rem] m-3 fw-bold mx-auto t-whitespace-nowrap">- {{racketItems.name}} -</div>
                 </div>
-                <div class="py-3 t-leading-normal">
-                    {%for item1 in racketDetailItems%}
-                    <ul>
-                        <li>=리뷰= {{item1.adminReview|linebreaks}}</li>
-                        <li>파워 : {{item1.adminPower}}</li>
-                        <li>스핀 : {{item1.adminSpin}}</li>
-                        <li>조작성 : {{item1.adminManeuverability}}</li>
-                        <li>안정성 : {{item1.adminStability}}</li>
-                        <li>편안함 : {{item1.adminComfort}}</li>
+                <div class="card t-tm-3 t-bg-white t-text-black">
+                    <div class="card-header">
+                        <img src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="500" width="%">
+                    </div>
+                    <div class="t-grid-cols-7"> <!-- 추천영역 -->
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'racket:like' racketItems.id  %}"
+                           data-uri="{% url 'racket:like' racketItems.id  %}"
+                           class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
+                        {%endif%}
+                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
+                            <span class="t-text-red-500">{{racketItems.like.count}} </span>명이 이 라켓을 좋아해요.
+                        </div>
+                    </div>
 
-                    </ul>
+                    <div class="py-3 t-leading-normal">
+                        {% if racketDetailItems %}
+                        {%for item1 in racketDetailItems%}
+                        <ul>
+                            <li>=리뷰= {{item1.adminReview|linebreaks}}</li>
+                            <li>파워  :  {{item1.adminPower|floatformat:"0"}}점</li>
+                            <li>스핀  :  {{item1.adminSpin|floatformat:"0"}}점</li>
+                            <li>조작성  :  {{item1.adminManeuverability|floatformat:"0"}}점</li>
+                            <li>안정성  :  {{item1.adminStability|floatformat:"0"}}점</li>
+                            <li>편안함  :  {{item1.adminComfort|floatformat:"0"}}점</li>
 
+                        </ul>
+
+                    </div>
+                    {%endfor%}{%endif%}
+
+
+                    <div class="card-footer border t-grid sm:t-grid-cols-2 t-text-2xl t-leading-relaxed my-3">
+                        <div class="my-4">
+                            {% if racketDetailItems %}
+                            {%for item1 in racketDetailItems%}
+                            <div>
+                                이 라켓에 대한<br>🎾세나라팀의 평점은<br>
+                                <span class="t-text-red-500">
+                            <b>[{{item1.adminAvgScore}}]</b></span>점<br>
+                                입니다.<br>
+                            </div>
+                            {%endfor%}
+                            {%else%}
+                            <div>
+                             <span class="t-text-2xl t-leading-relaxed">
+                             이 라켓에 대해<br>🎾세나라팀은 <br> 아직 평가 전입니다.😪<br></span>
+                            </div>
+                            {%endif%}
+                        </div>
+                        <div class="my-4">
+                            {% if racketAvgScoreItem.visitorScore__avg %}
+                            이 라켓에 대한<br>😀사용자 평점은<br>
+                            <span class="t-text-red-500"><b>[{{racketAvgScoreItem.visitorScore__avg|floatformat:"1"}}]</b></span>점<br>
+                            입니다.<br>
+                            {%else%}
+                            이 라켓에 대한<br>사용자 평점이<br> 아직 없습니다😥<br>
+                            {%endif%}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer border t-grid sm:t-grid-cols-2">
-                        <span class="t-text-2xl t-leading-relaxed my-3">
-                        이 라켓에 대한<br>🎾세나라팀의 평점은<br>
-                        <span class="t-text-lg t-text-red-500"><b>[{{item1.adminAvgScore}}]</b></span>점<br>
-                        입니다.<br>
-</span>
-                        {%endfor%}
-                        <span class="t-text-2xl t-leading-relaxed my-3">
 
-                        이 라켓에 대한<br>😀사용자 평점은<br>
-                        <span class="t-text-lg t-text-red-500"><b>[{{racketAvgScoreItem.visitorScore__avg|floatformat:"1"}}]</b></span>점<br>
-                        입니다.<br>
-                            </span>
 
+                <div class="card t-tm-3 ">
+
+                    <h3 class="my-4 t-text-2xl">이 라켓 어떠셨나요?<br>의견을 댓글로 남겨주세요!<br>
+                        <img src="https://media1.giphy.com/media/uADTQTTlpQWeydiHfs/giphy.gif?cid=790b76116267b3b683d11414f434288099844816cf9d736c&rid=giphy.gif&ct=g"
+                             width="200" class="mt-2">
+                    </h3>
+
+                    <div class="card-footer">
+                        {% if user.is_authenticated %}
+                        <div class="col text-center"></div>
+                        <form class="rate-form" action="" method="POST" id="1">
+                            {% csrf_token%}
+                            <button type="submit" class="fa fa-star fa-2x my-btn " id="first"></button>
+                            <button type="submit" class="fa fa-star fa-2x my-btn" id="second"></button>
+                            <button type="submit" class="fa fa-star fa-2x my-btn" id="third"></button>
+                            <button type="submit" class="fa fa-star fa-2x my-btn" id="fourth"></button>
+                            <button type="submit" class="fa fa-star fa-2x my-btn" id="fifth"></button>
+                        </form>
+                    </div>
+                    <br>
+                    <div id="confirm-box">별을 눌러서 점수를 매겨주세요!</div>
+
+
+                    <form action="{% url 'visitor:newReview' racketItems.id %}" method="POST">
+
+                        {%csrf_token%}
+
+                        <div class="d-flex"><input id="inputNumForm" name="visitorScore" class="scoreReview"
+                                                   value="0"
+                                                   type="hidden"></div>
+                        <label for="id_content"></label><br>
+
+                        <input type="text" name="visitorReview" class="t-flex-grow textReview"
+                               placeholder="한줄평을 작성해주세요"
+                               style="width:74%" required id="id_content"><br><br>
+
+
+                        <button type="submit" class="btn btn-success mb-2">
+                            리뷰 제출
+                        </button>
+                    </form>
+
+
+                    {%else%}
+                    <div>로그인 후 이용할 수 있습니다.
+                        <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
+                    {%endif%}
 
                 </div>
             </div>
             <div class="card t-tm-3 ">
-
-                <h3 class="my-4 t-text-2xl">이 라켓 어떠셨나요?<br>여러분의 의견을 댓글로 남겨주세요!<br>
-                    <img src="https://media1.giphy.com/media/uADTQTTlpQWeydiHfs/giphy.gif?cid=790b76116267b3b683d11414f434288099844816cf9d736c&rid=giphy.gif&ct=g"
-                         width="200" class="mt-2">
-                </h3>
+                <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
 
                 <div class="card-footer">
-                    {% if user.is_authenticated %}
-                    <div class="col text-center"></div>
-                    <form class="rate-form" action="" method="POST" id="1">
-                        {% csrf_token%}
-                        <button type="submit" class="fa fa-star fa-2x my-btn" id="first"></button>
-                        <button type="submit" class="fa fa-star fa-2x my-btn" id="second"></button>
-                        <button type="submit" class="fa fa-star fa-2x my-btn" id="third"></button>
-                        <button type="submit" class="fa fa-star fa-2x my-btn" id="fourth"></button>
-                        <button type="submit" class="fa fa-star fa-2x my-btn" id="fifth"></button>
-                    </form>
-                </div>
-                <br>
-                <div id="confirm-box">별을 눌러서 점수를 매겨주세요!</div>
+                    <table class="table table-hover">
+                        <thead class="my-4">
+                        <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
 
 
-                <form action="{% url 'visitor:newReview' racketItems.id %}" method="POST">
+                        <tr class="table-info ">
+                            <th style="width:13%">사용자 평점</th>
+                            <th style="width:74%">사용 후기</th>
+                            <th style="width:13%">작성자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-                    {%csrf_token%}
+                        {%if racketReivewListItems%}
+                        {%for item1 in racketReivewListItems%}
+                        <a name="anchor{{9999}}"></a>
 
-                    <div class="d-flex"><input id="inputNumForm" name="visitorScore" class="scoreReview" value="0" type="hidden"></div>
-                    <label for="id_content"></label><br>
+                        <tr class="reviewTr{{item1.id}}">
+                            <td>{{item1.visitorScore|floatformat:"0"}}점</td>
+                            <td class="d-flex justify-content-center">
+                                <span class="showReview{{ item1.id }}">{{item1.visitorReview}}</span><br>
+                                <input type="text" style="width:100%" class="hidden classInputReview{{item1.id}} "
+                                       value="{{item1.visitorReview}}" >
 
-                    <input type="text" name="visitorReview" class="t-flex-grow textReview" placeholder="한줄평을 작성해주세요"
-                           size="%" required id="id_content"><br><br>
-
-
-                    <button type="submit" class="btn btn-success mb-2">
-                        리뷰 제출
-                    </button>
-                </form>
-
-
-                {%else%}
-                <div>로그인 후 이용할 수 있습니다.
-                    <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
-                {%endif%}
-
-            </div>
-        </div>
-        <div class="card t-tm-3 ">
-            <h3 class="t-mt-[100px] mb-3 t-text-3xl">사용 후기(✿◡‿◡)</h3>
-
-            <div class="card-footer">
-                <table class="table table-hover">
-                    <thead class="my-4">
-                    <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
-
-
-                    <tr class="table-info ">
-                        <th>사용자 평점</th>
-                        <th>사용 후기</th>
-                        <th>작성자</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    {%if racketReivewListItems%}
-                    {%for item1 in racketReivewListItems%}
-                    <a name="anchor{{9999}}"></a>
-
-                    <tr>
-                        <td>{{item1.visitorScore}}</td>
-                        <td class="d-flex justify-content-center">
-                            <input type="text" size="%" class="classInputReview{{item1.id}} t-flex-grow"
-                                   value="{{item1.visitorReview}}" readOnly>
-                            <span class="control hidden" id="control_id{{ forloop.counter0 }}">
+                            </td>
+                            <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span>
+                                                            <span class="control hidden" id="control_id{{ forloop.counter0 }}">
                                 <ul class="d-flex justify-content-center">
-<!--                                    {if user.is_authenticated}-->
                                     <li class="modifyReview{{ item1.id }}">
                                         <input type="button" value="수정" onclick="onModifyReview({{ item1.id }})">
                                     </li>
                                     <li class="deleteReview{{ item1.id }}">
-                                        <input type="button" value="삭제" onclick="startDeleteReview({{ item1.id }})">
+                                        <input type="button" value="삭제" onclick="onDeleteReview({{ item1.id }}), window.location.reload()">
                                     </li>
                                     <li class="submitModify{{ item1.id }}" style="display:none">
-                                        <input type="button" value="수정완료" onclick="onSubmitModify({{ item1.id }})">
+                                        <input type="button" value="수정완료" onclick="onSubmitModify({{ item1.id }}), window.location.reload()">
                                     </li>
                                     <li class="cancelModify{{ item1.id }}" style="display:none">
                                         <input type="button" value="취소" onclick="onCancelModify({{ item1.id }})">
                                     </li>
-                                    <!--                                    {else}-->
-                                    <!--                                    <li>(로그인이 안되어있음)</li>-->
-                                    <!--                                    {endif}-->
+
                                 </ul>
                                     </span>
-                        </td>
-                        <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span></td>
-                    </tr>
-                    {%endfor%}
+                            </td>
+                        </tr>
+                        {%endfor%}
 
-                    {%else%}
-                    <tr>
-                        <td>사용후기가 없어요. 제일 먼저 위키를 남겨주세요!</td>
-                    </tr>
-                    {%endif%}
+                        {%else%}
+                        <tr>
+                            <td></td>
+                            <td>사용후기가 없어요. 제일 먼저 의견을 남겨주세요!</td>
+                        </tr>
+                        {%endif%}
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
-
     </div>
-</div>
-<span class="t-hidden" id="spanUserName">{{ user.username }}</span>
+    <span class="t-hidden" id="spanUserName">{{ user.username }}</span>
 
-{% endblock %}
+    {% endblock %}
 
 
-{% block script %}
-<script type='text/javascript'>
+    {% block script %}
+    <script type='text/javascript'>
+
+$("#spanUserName").text() //# = 태그의 아이디로서 태그값을 가져온다.
+$(".spanVisitorAccount") //. = 태그의 클래스로서 태그값을 가져온다
+$(".spanVisitorAccount")[0].innerHTML
+
+for(i = 0; i < $(".spanVisitorAccount").length; i++){
+  if($("#spanUserName").text() == $(".spanVisitorAccount")[i].innerHTML){
+    $("#control_id"+i).removeClass("hidden");
+  }
+}
+
 
 const onModifyReview = (id) => {
+  let showReview = document.querySelector(`.showReview${id}`);
   let modifyReview = document.querySelector(`.modifyReview${id}`);
   let deleteReview = document.querySelector(`.deleteReview${id}`);
   let submitModify = document.querySelector(`.submitModify${id}`);
   let cancelModify = document.querySelector(`.cancelModify${id}`);
   let classInputReview = document.querySelector(`.classInputReview${id}`);
 
+  showReview.style.display = 'none';
   modifyReview.style.display = 'none';
   deleteReview.style.display = 'none';
   submitModify.style.display = 'inline-block';
   cancelModify.style.display = 'inline-block';
-  classInputReview.readOnly=false;
+  classInputReview.style.display = 'inline-block';
+
+  //classInputReview.readOnly=false;
 }
 
 // 매개변수(id)를 받아와서 내용을 수정하고 버튼 상태를 재조정한다.
@@ -202,17 +254,20 @@ const onSubmitModify = (id) => {
         success:function(data){
             console.log(data);
             if(data.result=='ok') {
+            let showReview = document.querySelector(`.showReview${id}`);
             let modifyReview = document.querySelector(`.modifyReview${id}`);
             let deleteReview = document.querySelector(`.deleteReview${id}`);
             let submitModify = document.querySelector(`.submitModify${id}`);
             let cancelModify = document.querySelector(`.cancelModify${id}`);
             let classInputReview = document.querySelector(`.classInputReview${id}`);
 
+            showReview.style.display = 'inline-block';
             modifyReview.style.display = 'inline-block';
             deleteReview.style.display = 'inline-block';
             submitModify.style.display = 'none';
             cancelModify.style.display = 'none';
-            classInputReview.readOnly=true;
+            classInputReview.style.display='none';
+
             }
         },
         error: function(){
@@ -221,14 +276,32 @@ const onSubmitModify = (id) => {
     });
 }
 
-$("#spanUserName").text() //# = 태그의 아이디로서 태그값을 가져온다.
-$(".spanVisitorAccount") //. = 태그의 클래스로서 태그값을 가져온다
-$(".spanVisitorAccount")[0].innerHTML
 
-for(i = 0; i < $(".spanVisitorAccount").length; i++){
-  if($("#spanUserName").text() == $(".spanVisitorAccount")[i].innerHTML){
-    $("#control_id"+i).removeClass("hidden");
-  }
+const onDeleteReview = (id) => {
+    let param = {
+        'id': id,
+    }
+
+    $.ajax({
+        url: '{%url 'visitor:deleteReview' %}',
+        type: 'POST',
+        headers: {
+            'X-CSRFTOKEN': '{{csrf_token}}'
+        },
+        data: JSON.stringify(param),
+
+        success:function(data){
+            if(data.result == 'ok'){
+            let reviewTr = document.querySelector(`.reviewTr${id}`);
+            reviewTr.remove;
+            alert('삭제되었습니다.')
+
+            }
+        },
+        error: function(){
+            alert('불가');
+        }
+    });
 }
 
 
@@ -239,6 +312,14 @@ for(i = 0; i < $(".spanVisitorAccount").length; i++){
 
 
 
-</script>
 
-{% endblock %}
+
+
+
+
+
+
+
+    </script>
+
+    {% endblock %}

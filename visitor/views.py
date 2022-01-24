@@ -48,3 +48,18 @@ def modifyReview(request):
         }
         return JsonResponse(context)
     return JsonResponse(context)
+
+
+def deleteReview(request):
+    jsonObject = json.loads(request.body)
+    getReview = VisitorReview.objects.filter(id=jsonObject.get('id'))
+    context = {
+        'result': 'no'
+    }
+    if getReview is not None:
+        getReview.delete()
+        context = {
+            'result': 'ok'
+        }
+        return JsonResponse(context)
+    return JsonResponse(context)

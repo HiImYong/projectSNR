@@ -1,52 +1,34 @@
+from django.contrib import messages
 from django.db.models import Avg, Func, FloatField, F
-from django.http import HttpRequest
-from django.shortcuts import render
+from django.http import HttpRequest, request
+from django.shortcuts import render, redirect, get_object_or_404
 
 import visitor.forms
 from racket.models import Racket, RacketDetail
 from visitor.models import VisitorReview
 
 
-
-
-
 def racketMain(request: HttpRequest):
-
     getSearchKeyword = request.GET.get('searchKeyword', '')
     sort = request.GET.get('sort', '')
-
 
     if getSearchKeyword:
         getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
         getAdminScore = RacketDetail.objects.get(racket_id=1)
         getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
 
-
     else:
         if sort == 'names':
             getRacket = Racket.objects.order_by('name')
-            getAdminScore = RacketDetail.objects.get(racket_id=1)
-            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
             getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
         elif sort == 'id' or '':
             getRacket = Racket.objects.order_by('id')
-            getAdminScore = RacketDetail.objects.get(racket_id=1)
-            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
             getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
         else:
             getRacket = Racket.objects.order_by('name')
-            getAdminScore = RacketDetail.objects.get(racket_id=1)
-            # getAdminScore = RacketDetail.objects.get(racket_id=getRacket.id)
             getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
 
-
-
-
-    # getRacket = VisitorReview.objects.filter
-    # getRacketAvgScore =
-
     return render(request, "racket/racketMain.html", {'racketItems': getRacket,
-                                                      'racketAdminScore': getAdminScore,
                                                       'racketUserScore': getAvgScore})
 
 
@@ -65,3 +47,11 @@ def racketDetail(request, parameter):
                                                         'racketReivewListItems': getReivewList,
                                                         'racketAvgScoreItem': getAvgScore
                                                         })
+
+
+def like(request, parameter):
+    getRacketQs = Racket.objects.filter(id=parameter)
+    getRacket = getRacketQs.first()
+    getRacket.like.add(request.user)
+    return redirect('racket:racketDetail', parameter=parameter)
+

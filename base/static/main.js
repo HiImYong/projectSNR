@@ -47,7 +47,7 @@ const handleSelect = (selection) => {
         }
     }
 }
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////// 선택한 것에 따른 점수
 
 const getNumericValue = (stringValue) => {
     let numericValue;
@@ -73,6 +73,7 @@ const getNumericValue = (stringValue) => {
     return numericValue
 
 }
+////////////////////////////////////////////////////////////////////////// 각 버튼별 행렬 구현, 마우스 오버, 클릭 구현
 
 
 if (one) {
@@ -83,7 +84,6 @@ if (one) {
     }))
 
     arr.forEach(item=> item.addEventListener('click', (event)=>{
-        // value of the rating not numeric
         const val = event.target.id
 
         let isSubmit = false
@@ -93,11 +93,8 @@ if (one) {
                 return
             }
             isSubmit = true
-            // picture id
-//            const id = e.target.id
-            // value of the rating translated into numeric
-            const val_num = getNumericValue(val)
 
+            const val_num = getNumericValue(val)
 
             $.ajax({
                 type: 'POST',

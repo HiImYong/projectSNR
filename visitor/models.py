@@ -12,7 +12,7 @@ User = user_model()
 class VisitorReview(models.Model):
     visitorAccount = models.ForeignKey(User, on_delete=models.CASCADE)
     visitorReview = models.CharField('라켓 리뷰', max_length=500)
-    visitorRacket = models.ForeignKey(Racket, on_delete=models.CASCADE, default=999999)
+    visitorRacket = models.ForeignKey(Racket, on_delete=models.CASCADE, related_name='visitorRacket')
     visitorScore = models.FloatField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
 

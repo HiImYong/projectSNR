@@ -2,6 +2,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
+from account.models import User
+
+
 class Racket(models.Model):
     name = models.CharField('라켓이름', max_length=20)
     weight = models.IntegerField('라켓무게', default=0)
@@ -12,10 +15,9 @@ class Racket(models.Model):
     regDateInt = models.IntegerField('라켓생산년도', default=0)
     hitCount = models.PositiveIntegerField('조회수', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
-
+    like = models.ManyToManyField(User, related_name='like')
 
     def thumb_img_url(self):
-
         img_names = {
             1: '블레이드 98 덴스',
             2: '퓨어 드라이브',
@@ -32,11 +34,8 @@ class Racket(models.Model):
         return f"https://raw.githubusercontent.com/HiImYong/snrPictures/master/{img_name}.jpg"
 
 
-
-
-
 class RacketDetail(models.Model):
-    racket = models.ForeignKey(Racket, related_name='noooo', on_delete=models.CASCADE, default=999999)
+    racket = models.ForeignKey(Racket, on_delete=models.CASCADE)
     adminReview = models.TextField()
     adminPower = models.FloatField('운영자파워평점', default=0)
     adminSpin = models.FloatField('운영자스핀평점', default=0)
@@ -47,15 +46,10 @@ class RacketDetail(models.Model):
     @property
     def adminAvgScore(self):
         scoreAvg = (
-            self.adminPower +
-            self.adminSpin +
-            self.adminManeuverability +
-            self.adminStability +
-            self.adminComfort
-        ) / 5
+                           self.adminPower +
+                           self.adminSpin +
+                           self.adminManeuverability +
+                           self.adminStability +
+                           self.adminComfort
+                   ) / 5
         return round(scoreAvg, 2)
-
-
-
-
-

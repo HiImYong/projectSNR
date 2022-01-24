@@ -3,10 +3,19 @@
 
 {% block content %}
 <div>
+    <div>
+        {%for a in racketItems%}
+        {%for b in a_racket_set.all%}
+        {{b.adminComfort}}
+        {%endfor%}
+
+
+        {%endfor%}
+</div>
     <h1 class="d-flex justify-content-center mt-7 t-text-[70px] bannerfont">테니스 라켓 콘텐츠</h1>
     <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] bannerfont">Powered by '세상에 나쁜 라켓은 없다' since
         2013</h3>
-    <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다! ╰( °▽° )╯</h4>
+    <h4 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[15px] ">라켓은 계속 추가됩니다! ╰( °▽° )╯🧡</h4>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
         <div>
@@ -39,11 +48,18 @@
                          class="t-w-full block t-transition-all t-group-hover:scale-[150%]"><br>
                 </a>
 
+
                 <div class="d-flex justify-content-center t-bg-gray-300 ">
                     <ul>
-                        <li> {{item.name}} ({{item.regDateInt}}년)</li>
-                        <li>세나라 평점 : <span
-                                class="t-text-red-500">[ {{racketAdminScore.adminAvgScore|floatformat:"1"}} ]</span></li>
+                        <li> {{item.name}} ({{item.regDateInt}}년) </li>
+                        <li>세나라 평점 :
+                            {% if item.detail.adminAvgScore %}
+                            <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>
+                            {% else %}
+                            <span class="t-text-red-500">[ 평가전 ]</span>
+                            {% endif %}
+                        </li>
+
                         <li>사용자 평점 : <span
                                 class="t-text-red-500">[ {{racketUserScore.visitorScore__avg|floatformat:"1"}} ]</span></li>
                     </ul>
@@ -51,8 +67,6 @@
             </li>
             {% endfor %}
         </ul>
-
-
     </section>
 
 

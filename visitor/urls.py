@@ -7,7 +7,8 @@ app_name = 'visitor'
 urlpatterns = [
     path('visitor/<int:parameter>', views.newReview, name='newReview'),
     path('visitor/modifyReview/', views.modifyReview, name='modifyReview'),
-    # path('visitor/delete/<int:parameter>', views.deleteReview, name='deleteReview'),
+    path('racketDetail/deleteReview', views.deleteReview, name='deleteReview')
+
 
 ]
 
