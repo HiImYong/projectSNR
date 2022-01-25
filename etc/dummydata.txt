@@ -21,6 +21,14 @@ def gen_master(apps, schema_editor):
     Racket(name="라디칼 프로", weight=315, pattern="16 : 19", headsize=98, length=27, balance=315, regDateInt=2020,
            manufacturer="HEAD").save()
 
+
+
+from django.db import migrations
+
+from racket.models import Racket, RacketDetail
+
+
+def gen_master(apps, schema_editor):
     RacketDetail(racket_id=1, adminReview="괜찮은 라켓입니다. 파워와 컨트롤을 둘다 골고루 가진 똑똑한 라켓입니다. "
                                           "약간의 무게감이 문제였지만 이번 버전에선 발란스가 일부 조정되었습니다."
                                           "이것저것 라켓 고르는데 힘들다면, 거의 실패없는 라켓이라고 할 수 있습니다."

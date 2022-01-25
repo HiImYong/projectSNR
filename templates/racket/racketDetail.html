@@ -17,11 +17,11 @@
 
             <div class="my-3">
                 <div>
-                    <div class="t-text-[30px] sm:t-text-[40px] lg:t-text-[50px] xl:t-text-[70px] m-3 fw-bold mx-auto t-whitespace-nowrap">- {{racketItems.name}} -</div>
+                    <div class="fadein t-text-[30px] sm:t-text-[40px] lg:t-text-[50px] xl:t-text-[50px] m-3 fw-bold mx-auto t-whitespace-nowrap">- {{racketItems.name}} -</div>
                 </div>
                 <div class="card t-tm-3 t-bg-white t-text-black">
                     <div class="card-header">
-                        <img src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1"  width="100%">
+                        <img class="fadein" src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1"  width="50%">
                     </div>
                     <div class="t-grid-cols-7"> <!-- 추천영역 -->
                         {% if user.is_authenticated %}
@@ -127,7 +127,7 @@
 
                     {%else%}
                     <div>로그인 후 이용할 수 있습니다.
-                        <a href=""> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
+                        <a href="{%url 'account:kakaologin'%}"> <img src="https://i.imgur.com/zBJaCQd.png" width="60"></a></div>
                     {%endif%}
 
                 </div>
@@ -305,18 +305,23 @@ const onDeleteReview = (id) => {
 }
 
 
+const onCancelModify = (id) => {
+  let showReview = document.querySelector(`.showReview${id}`);
+  let modifyReview = document.querySelector(`.modifyReview${id}`);
+  let deleteReview = document.querySelector(`.deleteReview${id}`);
+  let submitModify = document.querySelector(`.submitModify${id}`);
+  let cancelModify = document.querySelector(`.cancelModify${id}`);
+  let classInputReview = document.querySelector(`.classInputReview${id}`);
 
+  showReview.style.display = 'inline-block';
+  modifyReview.style.display = 'inline-block';
+  deleteReview.style.display = 'inline-block';
+  submitModify.style.display = 'none';
+  cancelModify.style.display = 'none';
+  classInputReview.style.display = 'none';
 
-
-
-
-
-
-
-
-
-
-
+  //classInputReview.readOnly=false;
+}
 
 
 
