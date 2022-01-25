@@ -2,6 +2,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
+from django.db.models import Avg
+
 from account.models import User
 
 
@@ -16,6 +18,11 @@ class Racket(models.Model):
     hitCount = models.PositiveIntegerField('조회수', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
     like = models.ManyToManyField(User, related_name='like')
+
+    @property
+    def visitorReviewScore(self):
+        return self.visitorreview_set.aggregate(Avg('visitorScore'))['visitorScore__avg']
+
 
     def thumb_img_url(self):
         img_names = {
@@ -35,7 +42,7 @@ class Racket(models.Model):
 
 
 class RacketDetail(models.Model):
-    racket = models.ForeignKey(Racket, on_delete=models.CASCADE)
+    racket = models.OneToOneField(Racket, related_name='detail', on_delete=models.CASCADE)
     adminReview = models.TextField()
     adminPower = models.FloatField('운영자파워평점', default=0)
     adminSpin = models.FloatField('운영자스핀평점', default=0)

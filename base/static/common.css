@@ -93,6 +93,10 @@
   font-size: 15px;
 }
 
+.t-text-\[30px\] {
+  font-size: 30px;
+}
+
 .t-leading-normal {
   line-height: 1.5;
 }
@@ -177,6 +181,14 @@ html > body .hidden{
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .sm\:t-text-\[30px\] {
+    font-size: 30px;
+  }
+
+  .sm\:t-text-\[40px\] {
+    font-size: 40px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -189,10 +201,18 @@ html > body .hidden{
   .lg\:t-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+
+  .lg\:t-text-\[50px\] {
+    font-size: 50px;
+  }
 }
 
 @media (min-width: 1280px) {
   .xl\:t-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .xl\:t-text-\[70px\] {
+    font-size: 70px;
   }
 }

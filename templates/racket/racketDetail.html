@@ -17,11 +17,11 @@
 
             <div class="my-3">
                 <div>
-                    <div class="t-text-[3rem] m-3 fw-bold mx-auto t-whitespace-nowrap">- {{racketItems.name}} -</div>
+                    <div class="t-text-[30px] sm:t-text-[40px] lg:t-text-[50px] xl:t-text-[70px] m-3 fw-bold mx-auto t-whitespace-nowrap">- {{racketItems.name}} -</div>
                 </div>
                 <div class="card t-tm-3 t-bg-white t-text-black">
                     <div class="card-header">
-                        <img src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="500" width="%">
+                        <img src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1"  width="100%">
                     </div>
                     <div class="t-grid-cols-7"> <!-- 추천영역 -->
                         {% if user.is_authenticated %}
@@ -142,7 +142,7 @@
 
 
                         <tr class="table-info ">
-                            <th style="width:13%">사용자 평점</th>
+                            <th style="width:13%">평점</th>
                             <th style="width:74%">사용 후기</th>
                             <th style="width:13%">작성자</th>
                         </tr>
