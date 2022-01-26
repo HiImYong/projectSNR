@@ -165,16 +165,16 @@
                                                             <span class="control hidden" id="control_id{{ forloop.counter0 }}">
                                 <ul class="d-flex justify-content-center">
                                     <li class="modifyReview{{ item1.id }}">
-                                        <input type="button" value="수정" onclick="onModifyReview({{ item1.id }})">
+                                        <input type="button" class="btn btn-light" value="수정" onclick="onModifyReview({{ item1.id }})">
                                     </li>
                                     <li class="deleteReview{{ item1.id }}">
-                                        <input type="button" value="삭제" onclick="onDeleteReview({{ item1.id }}), window.location.reload()">
+                                        <input type="button" class="btn btn-light" value="삭제" onclick="onDeleteReview({{ item1.id }}), window.location.reload()">
                                     </li>
                                     <li class="submitModify{{ item1.id }}" style="display:none">
-                                        <input type="button" value="수정완료" onclick="onSubmitModify({{ item1.id }}), window.location.reload()">
+                                        <input type="button" class="btn btn-success" value="수정완료" onclick="onSubmitModify({{ item1.id }}), window.location.reload()">
                                     </li>
                                     <li class="cancelModify{{ item1.id }}" style="display:none">
-                                        <input type="button" value="취소" onclick="onCancelModify({{ item1.id }})">
+                                        <input type="button" class="btn btn-light" value="취소" onclick="onCancelModify({{ item1.id }})">
                                     </li>
 
                                 </ul>

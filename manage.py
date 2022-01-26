@@ -5,8 +5,8 @@ import sys
 
 
 def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
+    """Run administrative tasks. 개발환경을 변경하였으므로 .dev를 붙여줌"""
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings.dev')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -19,4 +19,5 @@ def main():
 
 
 if __name__ == '__main__':
+    dotenv.read_dotenv()
     main()
