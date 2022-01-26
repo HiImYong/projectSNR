@@ -1,3 +1,5 @@
+import os
+
 from django.contrib import messages
 from django.contrib.auth.views import logout_then_login
 from django.http import HttpRequest, HttpResponseRedirect
@@ -13,23 +15,22 @@ def logOut(request: HttpRequest):
     return logout_then_login(request, login_url='/racket')
 
 
-
 def kakaoLogin(request: HttpRequest):
-    client_id = "KAKAO_APP__REST_API_KEY"
-    REDIRECT_URI = "KAKAO_APP__LOGIN__REDIRECT_URI"
+    REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
+    REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
     return redirect(
-        f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={REDIRECT_URI}&response_type=code"
+        f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
         # client_id를 통해 인증 코드 요청. 받아온 코드를 REDIRECT_URI로 전달.
     )
 
 
 def kakaoLoginCallBack(request):
     code = request.GET.get("code")
-    client_id = "KAKAO_APP__REST_API_KEY"
-    REDIRECT_URI = "KAKAO_APP__LOGIN__REDIRECT_URI"
+    REST_API_KEY = os.environ.get("KAKAO_APP__REST_API_KEY")
+    REDIRECT_URI = os.environ.get("KAKAO_APP__LOGIN__REDIRECT_URI")
 
     token_request = requests.get(
-        f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={REDIRECT_URI}&code={code}"
+        f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&code={code}"
         # 인증 코드를 합쳐서 인증 토큰을 요청
     )
 

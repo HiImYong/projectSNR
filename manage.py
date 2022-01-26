@@ -3,6 +3,7 @@
 import os
 import sys
 
+import dotenv
 
 def main():
     """Run administrative tasks. 개발환경을 변경하였으므로 .dev를 붙여줌"""
