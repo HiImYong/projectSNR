@@ -21,7 +21,7 @@
                 </div>
                 <div class="card t-tm-3 t-bg-white t-text-black">
                     <div class="card-header">
-                        <img class="fadein" src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1"  width="50%">
+                        <img class="fadein" src="{{racketItems.thumb_img_url}}" style="aspect-ratio: 1 / 1"   width="50%">
                     </div>
                     <div class="t-grid-cols-7"> <!-- 추천영역 -->
                         {% if user.is_authenticated %}
@@ -86,7 +86,7 @@
 
                     <h3 class="my-4 t-text-2xl">이 라켓 어떠셨나요?<br>의견을 댓글로 남겨주세요!<br>
                         <img src="https://media1.giphy.com/media/uADTQTTlpQWeydiHfs/giphy.gif?cid=790b76116267b3b683d11414f434288099844816cf9d736c&rid=giphy.gif&ct=g"
-                             width="200" class="mt-2">
+                             width="200" class="mt-2 fadein">
                     </h3>
 
                     <div class="card-footer">
@@ -138,11 +138,11 @@
                 <div class="card-footer">
                     <table class="table table-hover">
                         <thead class="my-4">
-                        <caption>비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
+                        <caption class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">비방성, 광고성 등 취지와 관계없는 글은 안내없이 삭제될 수 있습니다.</caption>
 
 
-                        <tr class="table-info ">
-                            <th style="width:13%">평점</th>
+                        <tr class="table-info t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
+                            <th style="width:13%" class="">평점</th>
                             <th style="width:74%">사용 후기</th>
                             <th style="width:13%">작성자</th>
                         </tr>
@@ -186,7 +186,7 @@
                         {%else%}
                         <tr>
                             <td></td>
-                            <td>사용후기가 없어요. 제일 먼저 의견을 남겨주세요!</td>
+                            <td class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">사용후기가 없어요. 제일 먼저 의견을 남겨주세요!</td>
                         </tr>
                         {%endif%}
 

@@ -88,6 +88,10 @@
   font-size: 15px;
 }
 
+.t-text-\[10px\] {
+  font-size: 10px;
+}
+
 .t-leading-normal {
   line-height: 1.5;
 }
@@ -220,6 +224,14 @@ html > body .hidden{
   .sm\:t-text-\[13px\] {
     font-size: 13px;
   }
+
+  .sm\:t-text-\[10px\] {
+    font-size: 10px;
+  }
+
+  .sm\:t-text-\[12px\] {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -248,6 +260,14 @@ html > body .hidden{
   .lg\:t-text-\[15px\] {
     font-size: 15px;
   }
+
+  .lg\:t-text-\[20px\] {
+    font-size: 20px;
+  }
+
+  .lg\:t-text-\[13px\] {
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -261,5 +281,13 @@ html > body .hidden{
 
   .xl\:t-text-\[70px\] {
     font-size: 70px;
+  }
+
+  .xl\:t-text-\[25px\] {
+    font-size: 25px;
+  }
+
+  .xl\:t-text-\[15px\] {
+    font-size: 15px;
   }
 }
