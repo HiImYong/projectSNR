@@ -76,6 +76,10 @@
   line-height: 2.25rem;
 }
 
+.t-text-\[10px\] {
+  font-size: 10px;
+}
+
 .t-text-\[20px\] {
   font-size: 20px;
 }
@@ -86,10 +90,6 @@
 
 .t-text-\[15px\] {
   font-size: 15px;
-}
-
-.t-text-\[10px\] {
-  font-size: 10px;
 }
 
 .t-leading-normal {
@@ -213,6 +213,10 @@ html > body .hidden{
     font-size: 40px;
   }
 
+  .sm\:t-text-\[12px\] {
+    font-size: 12px;
+  }
+
   .sm\:t-text-\[50px\] {
     font-size: 50px;
   }
@@ -223,14 +227,6 @@ html > body .hidden{
 
   .sm\:t-text-\[13px\] {
     font-size: 13px;
-  }
-
-  .sm\:t-text-\[10px\] {
-    font-size: 10px;
-  }
-
-  .sm\:t-text-\[12px\] {
-    font-size: 12px;
   }
 }
 
@@ -249,6 +245,10 @@ html > body .hidden{
     font-size: 50px;
   }
 
+  .lg\:t-text-\[13px\] {
+    font-size: 13px;
+  }
+
   .lg\:t-text-\[60px\] {
     font-size: 60px;
   }
@@ -259,14 +259,6 @@ html > body .hidden{
 
   .lg\:t-text-\[15px\] {
     font-size: 15px;
-  }
-
-  .lg\:t-text-\[20px\] {
-    font-size: 20px;
-  }
-
-  .lg\:t-text-\[13px\] {
-    font-size: 13px;
   }
 }
 
@@ -279,15 +271,11 @@ html > body .hidden{
     font-size: 50px;
   }
 
-  .xl\:t-text-\[70px\] {
-    font-size: 70px;
-  }
-
-  .xl\:t-text-\[25px\] {
-    font-size: 25px;
-  }
-
   .xl\:t-text-\[15px\] {
     font-size: 15px;
+  }
+
+  .xl\:t-text-\[70px\] {
+    font-size: 70px;
   }
 }
