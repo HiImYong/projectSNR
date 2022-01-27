@@ -18,9 +18,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="fontawesome-stars.css">
 
-    <script src="{%static 'main.js'%}" defer></script>
+    <script src="{%static 'star.js'%}" defer></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+
+
+
 
 
 </head>
@@ -37,7 +46,8 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-danger mb-5">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{%url 'racket:racketMain'%}">K 라켓 위키</a>
+        <a class="navbar-brand" href="{%url 'main'%}">
+            <img src="https://i.imgur.com/0fDAAdi.png">&nbsp;K 라켓 위키</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

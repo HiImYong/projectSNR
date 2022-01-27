@@ -60,3 +60,5 @@ def like(request, parameter):
     getRacket.like.add(request.user)
     return redirect('racket:racketDetail', parameter=parameter)
 
+
+

@@ -4,30 +4,86 @@
 {% block content %}
 
 
-<h3>메인화면 테스트</h3>
-<div class="low">
-    <div class="col text-center"></div>
-    <form class="rate-form" action="" method="POST" id="1">
-        {% csrf_token%}
-    <button  class="fa fa-star fa-2x my-btn" id="first"></button>
-    <button  class="fa fa-star fa-2x my-btn" id="second"></button>
-    <button  class="fa fa-star fa-2x my-btn" id="third"></button>
-    <button  class="fa fa-star fa-2x my-btn" id="fourth"></button>
-    <button  class="fa fa-star fa-2x my-btn" id="fifth"></button>
-        <button type="submit"> 제출 </button>
-    </form>
+<div>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+        세상에 나쁜 라켓은 없다<br></h1>
+
+    <marquee scrollamount=8>
+        <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+            🤗테린이부터 테고수까지 모두의 사랑방입니다🤗 리뷰는 계속 추가됩니다 🧡╰( °▽° )_🎾</h4></marquee>
 </div>
-<br>
-<div id="confirm-box">confirm-box</div>
-<div><input id="num" value="22"></div>
+
+<div class="mt-3 d-flex justify-content-center mt-7 t-text-[25px] sm:t-text-[40px] lg:t-text-[45px] ">[신규 등록된 리뷰]</div>
 
 
+<div class="">
+    <div class="t-my-[50px] swiper-container">
+        <div class="swiper-wrapper ">
+            {%for item in racketItems%}
 
+            <div class="swiper-slide d-flex justify-content-center">
+                <!--                <div class=" block">{{item.name}}</div>-->
+                <a href="{%url 'racket:racketDetail' item.id%}">
+                <div class=" block"><img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%"
+                                         width="350"></div>
+                <br>
+
+                </a>
+            </div>
+            {%endfor%}
+
+
+        </div>
+        <!-- If we need pagination -->
+        <!--        <div class="swiper-pagination"></div>-->
+        <!--        <div class="swiper-scrollbar"></div>-->
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev "></div>
+        <div class="swiper-button-next"></div>
+
+
+    </div>
+
+</div>
 
 {%endblock%}
 
 
 {% block script %}
+
+<script type='text/javascript'>
+
+var mySwiper = new Swiper('.swiper-container', {
+// 슬라이드를 버튼으로 움직일 수 있습니다.
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+// 현재 페이지를 나타내는 점이 생깁니다. 클릭하면 이동합니다.
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+
+// 현재 페이지를 나타내는 스크롤이 생깁니다. 클릭하면 이동합니다.
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
+  },
+
+// 3초마다 자동으로 슬라이드가 넘어갑니다. 1초 = 1000
+  autoplay: {
+    delay: 3000,
+  },
+});
+
+
+
+
+
+
+</script>
 
 
 {% endblock %}
