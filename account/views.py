@@ -38,7 +38,7 @@ def kakaoLoginCallBack(request):
 
     error = token_json.get("error", None)
     if error is not None:
-        raise KakaoException("에러가 발생하였습니다.")
+        raise Exception("에러가 발생하였습니다.")
 
     access_token = token_json.get("access_token")
 
