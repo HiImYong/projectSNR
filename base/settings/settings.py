@@ -155,3 +155,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.User'
+
+# 실제 운영서버 도메인
+# 장고 최신버전부터 이걸 안하면 안됨
+CSRF_TRUSTED_ORIGINS = ['https://tennis.uyong.site', 'https://cdpn.io']
+
+# 이거 안하면 외부에서 이 서버의 API를 사용하지 못합니다.
+CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS
