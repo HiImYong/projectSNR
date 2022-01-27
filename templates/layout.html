@@ -56,13 +56,16 @@
         {%if user.is_authenticated%}
 
         <a href="{%url 'account:logOut'%}" >
-            <button type="button" class="btn btn-dark text-nowrap">접속중 : ({{user.username}})</button>
+            <button type="button" class="btn btn-dark text-nowrap">접속중 : {{user.name}}
+            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block" src="{{ user.profile_img.url }}"/></button>
         </a>
+
+
 
         {% else %}
 
         <a href="{%url 'account:kakaologin'%}">
-            <button type="button" class="btn btn-light">카카오톡으로 로그인</button>
+            <button type="button" class="btn btn-light text-nowrap">카카오톡으로 로그인</button>
         </a>
         {% endif %}
 

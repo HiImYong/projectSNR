@@ -50,9 +50,12 @@ def kakaoLoginCallBack(request):
     # 유효성이 확인된 토큰에 대해 응답 전달
 
     account_id = profile_json.get("id")
+    profile: dict = profile_json.get("kakao_account").get("profile")
+    nickname = profile.get("nickname", "")
+    thumbnail_image_url = profile.get("thumbnail_image_url", "")
 
-    User.dbRegisterAndLoginKakao(request, account_id)
+    User.dbRegisterAndLoginKakao(request, account_id, nickname, thumbnail_image_url)
 
-    messages.success(request, "카카오톡 계정으로 로그인되었습니다")
+    messages.success(request, f"{nickname}님 환영합니다. 카카오톡 계정으로 로그인되었습니다")
 
     return redirect("racket:racketMain")

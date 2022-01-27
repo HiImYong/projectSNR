@@ -142,9 +142,9 @@
 
 
                         <tr class="table-info t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
-                            <th style="width:13%" class="">평점</th>
-                            <th style="width:74%">사용 후기</th>
-                            <th style="width:13%">작성자</th>
+                            <th style="width:15%" class="">평점</th>
+                            <th style="width:70%">사용 후기</th>
+                            <th style="width:15%">작성자</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -153,15 +153,17 @@
                         {%for item1 in racketReivewListItems%}
                         <a name="anchor{{9999}}"></a>
 
-                        <tr class="reviewTr{{item1.id}}">
+                        <tr class="reviewTr{{item1.id}} t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
                             <td>{{item1.visitorScore|floatformat:"0"}}점</td>
                             <td class="d-flex justify-content-center">
-                                <span class="showReview{{ item1.id }}">{{item1.visitorReview}}</span><br>
+                                <span class="showReview{{ item1.id }} ">{{item1.visitorReview}}</span><br>
                                 <input type="text" style="width:100%" class="hidden classInputReview{{item1.id}} "
                                        value="{{item1.visitorReview}}" >
 
                             </td>
-                            <td><span class="spanVisitorAccount">{{item1.visitorAccount}}</span>
+                            <td>
+<!--                                <span class="spanVisitorAccount">{{item1.visitorAccount.name}}</span>-->
+                                <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block" src="{{ item1.visitorAccount.profile_img.url }}"/>
                                                             <span class="control hidden" id="control_id{{ forloop.counter0 }}">
                                 <ul class="d-flex justify-content-center">
                                     <li class="modifyReview{{ item1.id }}">
