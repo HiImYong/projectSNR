@@ -2,11 +2,6 @@
   z-index: 0;
 }
 
-.t-my-\[50px\] {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
 .t-my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -16,16 +11,16 @@
   margin-bottom: 2.25rem;
 }
 
+.t-mt-\[30px\] {
+  margin-top: 30px;
+}
+
 .t-mt-\[100px\] {
   margin-top: 100px;
 }
 
 .t-ml-\[3px\] {
   margin-left: 3px;
-}
-
-.t-mt-\[30px\] {
-  margin-top: 30px;
 }
 
 .t-block {
@@ -52,11 +47,11 @@
   width: 22px;
 }
 
-.t-w-full {
+.t-w-\[100\%\] {
   width: 100%;
 }
 
-.t-w-\[100\%\] {
+.t-w-full {
   width: 100%;
 }
 
@@ -259,6 +254,21 @@ html > body .hidden{
   }
 }
 
+.swiper-button-next {
+  background: url(/godiva/img/common/next.png) no-repeat;
+  background-size: 50% auto;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background: url(/godiva/img/common/prev.png) no-repeat;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
 @media (min-width: 640px) {
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -300,14 +310,6 @@ html > body .hidden{
 }
 
 @media (min-width: 1024px) {
-  .lg\:t-w-\[50\%\] {
-    width: 50%;
-  }
-
-  .lg\:t-w-\[70\%\] {
-    width: 70%;
-  }
-
   .lg\:t-w-\[60\%\] {
     width: 60%;
   }
@@ -358,5 +360,3 @@ html > body .hidden{
     font-size: 15px;
   }
 }
-
-
