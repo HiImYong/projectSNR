@@ -1,6 +1,15 @@
+.t-z-0 {
+  z-index: 0;
+}
+
 .t-my-\[50px\] {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.t-my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .t-mb-9 {
@@ -15,8 +24,8 @@
   margin-left: 3px;
 }
 
-.t-mt-\[50px\] {
-  margin-top: 50px;
+.t-mt-\[30px\] {
+  margin-top: 30px;
 }
 
 .t-block {
@@ -47,6 +56,10 @@
   width: 100%;
 }
 
+.t-w-\[100\%\] {
+  width: 100%;
+}
+
 .t-flex-grow {
   flex-grow: 1;
 }
@@ -67,6 +80,10 @@
   border-radius: 9999px;
 }
 
+.t-rounded {
+  border-radius: 0.25rem;
+}
+
 .t-bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
@@ -85,6 +102,15 @@
 .t-bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.t-object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.t-text-center {
+  text-align: center;
 }
 
 .t-text-\[30px\] {
@@ -246,10 +272,6 @@ html > body .hidden{
     font-size: 13px;
   }
 
-  .sm\:t-text-\[45px\] {
-    font-size: 45px;
-  }
-
   .sm\:t-text-\[40px\] {
     font-size: 40px;
   }
@@ -278,6 +300,18 @@ html > body .hidden{
 }
 
 @media (min-width: 1024px) {
+  .lg\:t-w-\[50\%\] {
+    width: 50%;
+  }
+
+  .lg\:t-w-\[70\%\] {
+    width: 70%;
+  }
+
+  .lg\:t-w-\[60\%\] {
+    width: 60%;
+  }
+
   .lg\:t-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -290,8 +324,8 @@ html > body .hidden{
     font-size: 15px;
   }
 
-  .lg\:t-text-\[55px\] {
-    font-size: 55px;
+  .lg\:t-text-\[45px\] {
+    font-size: 45px;
   }
 
   .lg\:t-text-\[50px\] {
@@ -304,10 +338,6 @@ html > body .hidden{
 
   .lg\:t-text-\[25px\] {
     font-size: 25px;
-  }
-
-  .lg\:t-text-\[45px\] {
-    font-size: 45px;
   }
 }
 

@@ -16,33 +16,39 @@
 <div class="mt-5 d-flex justify-content-center mt-7 t-text-[25px] sm:t-text-[40px] lg:t-text-[45px] ">[신규 등록된 리뷰]</div>
 
 
-<div class="">
-    <div class="t-my-[50px] swiper-container">
-        <div class="swiper-wrapper ">
-            {%for item in racketItems%}
+<!-- Slider main container -->
+<div class="swiper t-w-[100%] lg:t-w-[60%] t-mt-[30px]">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper t-text-center t-my-3">
+        <!-- Slides -->
+        <div class="swiper-slide">
+            <div>
+                <img src="https://i.ytimg.com/vi/NBJ9wL22L3g/maxresdefault.jpg"
+                     class="t-block t-w-full t-object-cover t-z-0 t-rounded mb-1" style="aspect-ratio: 1.5 / 1;">
 
-            <div class="swiper-slide d-flex justify-content-center">
-                <!--                <div class=" block">{{item.name}}</div>-->
-                <a href="{%url 'racket:racketDetail' item.id%}">
-                <div class=" block"><img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%"
-                                         width="350"></div>
-                <br>
-
-                </a>
+                <span class="bg-warning "><I><b>- WILSON PROSTAFF RF 97 -</b></I></span>
             </div>
-            {%endfor%}
+        </div>
+        <div class="swiper-slide">
 
+
+            <img src="https://www.newsdelivers.com/wp-content/uploads/2022/01/Australian-Open-2022-Results-Stefanos-Tsitsipas-Wins-Final-Quarter-Final.jpg"
+                 class="t-block t-w-full t-object-cover t-z-0 t-rounded mb-1" style="aspect-ratio: 1.5 / 1;">
+            <span class="bg-warning "><I><b>- WILSON BLADE 98 -</b></I></span>
 
         </div>
-        <!-- If we need pagination -->
-        <!--        <div class="swiper-pagination"></div>-->
-        <!--        <div class="swiper-scrollbar"></div>-->
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev "></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-slide">
 
+            <img src="https://www.altoadige.it/image/contentid/policy:1.3113394:1643118616/image.jpg?a=191:100&q=0.6&w=1200&$p$a$q$w=e3c1d56"
+                 class="t-block t-w-full t-object-cover t-z-0 t-rounded mb-1" style="aspect-ratio: 1.5 / 1;">
+            <span class="bg-warning "><I><b>- HEAD EXTREME TOUR -</b></I></span>
+
+        </div>
 
     </div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
 
 </div>
 
@@ -53,7 +59,7 @@
 
 <script type='text/javascript'>
 
-var mySwiper = new Swiper('.swiper-container', {
+var mySwiper = new Swiper('.swiper', {
 // 슬라이드를 버튼으로 움직일 수 있습니다.
   navigation: {
     nextEl: '.swiper-button-next',
@@ -77,6 +83,10 @@ var mySwiper = new Swiper('.swiper-container', {
     delay: 3000,
   },
 });
+
+
+
+
 
 
 
