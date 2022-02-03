@@ -28,7 +28,7 @@
 
         <select class="btn btn-dark ml-auto" id="sort-select" style="" onchange="location = this.value;">
             <option class="none" value="/">전체정렬</option>
-            <option class="sort-id" value="?sort=id">아이디순</option>
+            <option class="sort-id" value="?sort=adminScore">세나라평점순</option>
             <option class="sort-likes" value="?sort=names">이름순</option>
             {% if user.is_authenticated %}
             <option class="sort-mypost" value="?sort=mypost">구현중</option>
@@ -79,7 +79,7 @@
         <!-- 이전페이지 -->
         {% if racketItems.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ racketItems.previous_page_number }}">◀</a>
+            <a class="page-link" href="?page={{ racketItems.previous_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">◀</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -88,20 +88,24 @@
         {% endif %}
         <!-- 페이지리스트 -->
         {% for page_number in racketItems.paginator.page_range %}
+        {% if page_number >= racketItems.number|add:-5 and page_number <= racketItems.number|add:5 %}
+
             {% if page_number == racketItems.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
             </li>
             {% endif %}
+        {% endif %}
+
         {% endfor %}
         <!-- 다음페이지 -->
         {% if racketItems.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ racketItems.next_page_number }}">▶</a>
+            <a class="page-link" href="?page={{ racketItems.next_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">▶</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -110,7 +114,7 @@
         {% endif %}
     </ul>
     <!-- 페이징처리 끝 -->
-    
+
 
 
 </div>

@@ -14,27 +14,31 @@ def racketMain(request: HttpRequest):
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
 
+
+
     if getSearchKeyword:
         getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
-        getAdminScore = RacketDetail.objects.get(racket_id=1)
-        getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
+        page = request.GET.get('page')
+        getRacket = paginator.get_page(page)
+
+        return render(request, "racket/racketMain.html", {'racketItems': getRacket, })
 
     else:
         if sort == 'names':
             getRacket = Racket.objects.order_by('name')
-            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
-        elif sort == 'id' or '':
-            getRacket = Racket.objects.order_by('id')
-            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+        elif sort == 'adminScore':
+            getRacket = Racket.objects.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
+
         else:
             getRacket = Racket.objects.order_by('name')
-            getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
 
-    paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
-    getRacket = paginator.get_page(page)
+        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
+        getRacket = paginator.get_page(page)
 
-    return render(request, "racket/racketMain.html", {'racketItems': getRacket,
-                                                      'racketUserScore': getAvgScore})
+        return render(request, "racket/racketMain.html", {'racketItems': getRacket, })
+
+
 
 
 def racketDetail(request, parameter):
@@ -43,7 +47,6 @@ def racketDetail(request, parameter):
     getRacketDetail = RacketDetail.objects.filter(racket_id=parameter)
     getReviewForm = visitor.forms.ReviewForm()
     getReivewList = VisitorReview.objects.filter(visitorRacket_id=parameter)
-
     getAvgScore = VisitorReview.objects.filter(visitorRacket_id=parameter).aggregate(Avg('visitorScore'))
 
     return render(request, 'racket/racketDetail.html', {'racketItems': getRacket,
@@ -57,8 +60,9 @@ def racketDetail(request, parameter):
 def like(request, parameter):
     getRacketQs = Racket.objects.filter(id=parameter)
     getRacket = getRacketQs.first()
-    getRacket.like.add(request.user)
+    checkUser = getRacket.like.filter(id=request.user.id)
+    if checkUser.exists():
+        getRacket.like.remove(request.user)
+    else:
+        getRacket.like.add(request.user)
     return redirect('racket:racketDetail', parameter=parameter)
-
-
-

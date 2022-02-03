@@ -15,7 +15,6 @@ class Racket(models.Model):
     length = models.FloatField('라켓길이', default=0)
     balance = models.IntegerField('라켓밸런스', default=0)
     regDateInt = models.IntegerField('라켓생산년도', default=0)
-    hitCount = models.PositiveIntegerField('조회수', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
     like = models.ManyToManyField(User, related_name='like')
 
@@ -31,7 +30,7 @@ class Racket(models.Model):
             3: '퓨어 에어로',
             4: '스피드 프로',
             5: '프레스티지 프로',
-            6: '그래비티 투어',
+            6: '그래비티 프로',
             7: '프로스태프 97 RF v5',
             8: '라디칼 프로',
             9: '퓨어스트라이크 98 오픈 v3',
@@ -50,26 +49,25 @@ class Racket(models.Model):
             22: '퓨어 드라이브 v6',
             23: '퓨어 드라이브 v7',
             24: '퓨어 드라이브 v8',
-            25: '퓨어 드라이브 v4',
-            26: '퓨어 드라이브 v4 로딕',
-            27: '퓨어 드라이브 v4 로딕 플러스',
-            28: '퓨어 드라이브 v5 로딕',
-            29: '퓨어 드라이브 v5 로딕 플러스',
-            30: '퓨어 드라이브 v6 로딕',
-            31: '퓨어 드라이브 v7 투어',
-            32: '퓨어 드라이브 v8 투어',
-            33: '브이코어 95 v1',
-            34: '브이코어 95 v2',
-            35: '프로스태프 97 RF v2',
-            36: '프로스태프 97 RF v3',
-            37: '스피드 프로 v1',
-            38: '스피드 프로 v2',
-            39: '스피드 프로 v3',
-            40: '스피드 프로 v4',
-            41: '스피드 프로 v5',
-            42: '스피드 프로 v6',
-            43: '스피드 프로 v7',
-            44: '큐5 315',
+            25: '퓨어 드라이브 v4 로딕',
+            26: '퓨어 드라이브 v4 로딕 플러스',
+            27: '퓨어 드라이브 v5 로딕',
+            28: '퓨어 드라이브 v5 로딕 플러스',
+            29: '퓨어 드라이브 v6 로딕',
+            30: '퓨어 드라이브 v7 투어',
+            31: '퓨어 드라이브 v8 투어',
+            32: '브이코어 95 v1',
+            33: '브이코어 95 v2',
+            34: '프로스태프 97 RF v2',
+            35: '프로스태프 97 RF v3',
+            36: '스피드 프로 v1',
+            37: '스피드 프로 v2',
+            38: '스피드 프로 v3',
+            39: '스피드 프로 v4',
+            40: '스피드 프로 v5',
+            41: '스피드 프로 v6',
+            42: '스피드 프로 v7',
+            43: '큐5 315',
 
         }
 
@@ -86,14 +84,5 @@ class RacketDetail(models.Model):
     adminManeuverability = models.FloatField('운영자조작성평점', default=0)
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
+    adminAvgScore = models.FloatField('운영자안락함평점', default=0)
 
-    @property
-    def adminAvgScore(self):
-        scoreAvg = (
-                           self.adminPower +
-                           self.adminSpin +
-                           self.adminManeuverability +
-                           self.adminStability +
-                           self.adminComfort
-                   ) / 5
-        return round(scoreAvg, 2)
