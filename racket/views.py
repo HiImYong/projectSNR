@@ -30,6 +30,9 @@ def racketMain(request: HttpRequest):
         elif sort == 'adminScore':
             getRacket = Racket.objects.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
 
+        elif sort == 'visitorScore':
+            getRacket = Racket.objects.order_by(F('visitorAvgScore').desc(nulls_last=True))
+
         else:
             getRacket = Racket.objects.order_by('name')
 

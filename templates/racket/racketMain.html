@@ -27,11 +27,12 @@
         </div>
 
         <select class="btn btn-dark ml-auto" id="sort-select" style="" onchange="location = this.value;">
-            <option class="none" value="/">전체정렬</option>
-            <option class="sort-id" value="?sort=adminScore">세나라평점순</option>
+            <option class="none" value="/">전체정렬기능</option>
             <option class="sort-likes" value="?sort=names">이름순</option>
+            <option class="sort-id" value="?sort=adminScore">세나라평점순</option>
+            <option class="sort-id" value="?sort=visitorScore">사용자평점순</option>
             {% if user.is_authenticated %}
-            <option class="sort-mypost" value="?sort=mypost">구현중</option>
+            <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
             {% endif %}
         </select>
 
@@ -60,8 +61,8 @@
                         </li>
 
                         <li>사용자 평점 :
-                            {% if item.visitorReviewScore %}
-                            <span class="t-text-red-500">[ {{item.visitorReviewScore|floatformat:"1"}} ]</span></li>
+                            {% if item.visitorAvgScore %}
+                            <span class="t-text-red-500">[ {{item.visitorAvgScore|floatformat:"1"}} ]</span></li>
                             {% else %}
                             <span class="t-text-red-500">[ 평가전 ]</span>
                             {% endif %}

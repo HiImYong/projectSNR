@@ -17,10 +17,9 @@ class Racket(models.Model):
     regDateInt = models.IntegerField('라켓생산년도', default=0)
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
     like = models.ManyToManyField(User, related_name='like')
+    visitorAvgScore = models.FloatField('사용자평점평균', default=0)
 
-    @property
-    def visitorReviewScore(self):
-        return self.visitorreview_set.aggregate(Avg('visitorScore'))['visitorScore__avg']
+
 
 
     def thumb_img_url(self):
@@ -84,5 +83,5 @@ class RacketDetail(models.Model):
     adminManeuverability = models.FloatField('운영자조작성평점', default=0)
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
-    adminAvgScore = models.FloatField('운영자안락함평점', default=0)
+    adminAvgScore = models.FloatField('운영자평점평균', default=0)
 
