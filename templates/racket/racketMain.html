@@ -6,31 +6,33 @@
     <div>
 
 
-
-
-
-</div>
-    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">테니스 라켓 콘텐츠</h1>
-    <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] sm:t-text-[20px] lg:t-text-[25px]  bannerfont">Powered by '세상에 나쁜 라켓은 없다'<br> since
+    </div>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+        테니스 라켓 콘텐츠</h1>
+    <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] sm:t-text-[20px] lg:t-text-[25px]  bannerfont">
+        Powered by '세상에 나쁜 라켓은 없다'<br> since
         2013</h3>
-     <marquee scrollamount=8>
-         <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
-       라켓은 계속 추가됩니다! 🧡╰( °▽° )_🎾</h4></marquee>
+    <marquee scrollamount=8>
+        <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+            라켓은 계속 추가됩니다! 🧡╰( °▽° )_🎾</h4></marquee>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
         <div class="mb-2">
             <form class="" action="{% url 'racket:racketMain'%}">
-                <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword" placeholder="라켓 이름"
+                <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword"
+                       placeholder="라켓 이름"
                        value="{{request.GET.searchKeyword}}" style="width:80%">
                 <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
             </form>
         </div>
 
-        <select class="btn btn-dark ml-auto" id="sort-select" style="" onchange="location = this.value;">
-            <option class="none" value="/">전체정렬기능</option>
-            <option class="sort-likes" value="?sort=names">이름순</option>
-            <option class="sort-id" value="?sort=adminScore">세나라평점순</option>
-            <option class="sort-id" value="?sort=visitorScore">사용자평점순</option>
+        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style="" onchange="location.href = this.value;">
+            <option class="" value="/">전체정렬기능</option>
+            <option class="sort-names" value="?sort=names">이름순</option>
+            <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
+            <option class="sort-visitorScore" value="?sort=visitorScore">사용자평점순</option>
+            <option class="sort-like" value="?sort=countLike">좋아요순</option>
+
             {% if user.is_authenticated %}
             <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
             {% endif %}
@@ -42,6 +44,12 @@
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
             {%for item in racketItems%}
             <li class="t-group">
+                {% if item.countLike %}
+                <div>🧡 + {{item.countLike}} </div>
+                                            {% else %}
+                <div>🤍 </div>
+                            {% endif %}
+
                 <a href="{%url 'racket:racketDetail' item.id%}"
                    class="t-block t-block overflow-hidden ">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%" width="200"
@@ -51,7 +59,7 @@
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
                     <ul>
-                        <li> {{item.manufacturer}} ({{item.regDateInt}}년형)<br> - {{item.name}}  </li>
+                        <li> {{item.manufacturer}} ({{item.regDateInt}}년형)<br> - {{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>
@@ -63,9 +71,9 @@
                         <li>사용자 평점 :
                             {% if item.visitorAvgScore %}
                             <span class="t-text-red-500">[ {{item.visitorAvgScore|floatformat:"1"}} ]</span></li>
-                            {% else %}
-                            <span class="t-text-red-500">[ 평가전 ]</span>
-                            {% endif %}
+                        {% else %}
+                        <span class="t-text-red-500">[ 평가전 ]</span>
+                        {% endif %}
 
 
                     </ul>
@@ -74,13 +82,14 @@
             {% endfor %}
         </ul>
     </section>
-    
-     <!-- 페이징처리 시작 -->
+
+    <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center my-5">
         <!-- 이전페이지 -->
         {% if racketItems.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ racketItems.previous_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">◀</a>
+            <a class="page-link"
+               href="?page={{ racketItems.previous_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">◀</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -91,22 +100,25 @@
         {% for page_number in racketItems.paginator.page_range %}
         {% if page_number >= racketItems.number|add:-5 and page_number <= racketItems.number|add:5 %}
 
-            {% if page_number == racketItems.number %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
-            </li>
-            {% endif %}
+        {% if page_number == racketItems.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link"
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link"
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+        </li>
+        {% endif %}
         {% endif %}
 
         {% endfor %}
         <!-- 다음페이지 -->
         {% if racketItems.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ racketItems.next_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">▶</a>
+            <a class="page-link"
+               href="?page={{ racketItems.next_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">▶</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -117,7 +129,27 @@
     <!-- 페이징처리 끝 -->
 
 
-
 </div>
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+
+$(function() {
+    var selectValue = localStorage.getItem("selectValue");
+    if(selectValue != null) {
+        $("select[name=sort-select]").val(selectValue);
+    }
+
+    $("select[name=sort-select]").on("change", function() {
+        localStorage.setItem("selectValue", $(this).val());
+    });
+})
+
+</script>
+
 
 {% endblock %}

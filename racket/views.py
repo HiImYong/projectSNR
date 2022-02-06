@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.db.models import Avg, Func, FloatField, F
+from django.db.models import Avg, Func, FloatField, F, Count
 from django.http import HttpRequest, request
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -13,8 +13,6 @@ def racketMain(request: HttpRequest):
     getSearchKeyword = request.GET.get('searchKeyword', '')
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
-
-
 
     if getSearchKeyword:
         getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
@@ -33,6 +31,9 @@ def racketMain(request: HttpRequest):
         elif sort == 'visitorScore':
             getRacket = Racket.objects.order_by(F('visitorAvgScore').desc(nulls_last=True))
 
+        elif sort == 'countLike':
+            getRacket = Racket.objects.order_by(F('countLike').desc(nulls_last=True))
+
         else:
             getRacket = Racket.objects.order_by('name')
 
@@ -40,8 +41,6 @@ def racketMain(request: HttpRequest):
         getRacket = paginator.get_page(page)
 
         return render(request, "racket/racketMain.html", {'racketItems': getRacket, })
-
-
 
 
 def racketDetail(request, parameter):
@@ -60,12 +59,17 @@ def racketDetail(request, parameter):
                                                         })
 
 
-def like(request, parameter):
-    getRacketQs = Racket.objects.filter(id=parameter)
-    getRacket = getRacketQs.first()
-    checkUser = getRacket.like.filter(id=request.user.id)
-    if checkUser.exists():
-        getRacket.like.remove(request.user)
+def like(request, parameter, self=None):
+    getRacketQs = Racket.objects.filter(id=parameter) # 딕셔너리 변수에 파라미터를 받아와 라켓들 넣어줌
+    getRacket = getRacketQs.first() # 혹시 모르니까 첫번째 라켓만 딕셔너리에서 빼냄
+    checkUser = getRacket.like.filter(id=request.user.id)  # name이 와서는 안되나요? # 리퀘스트와 함께 온 라켓정보와 유저 정보 중 디비를 뒤져서 id를 통해 좋아요한 유저 빼냄.
+    if checkUser.exists():  # 만약에 해당 라켓에 이전에 그 유저가 좋아요를 했다면
+        getRacket.like.remove(request.user)  # 해당 유저 정보를 삭제함. 이 때
     else:
         getRacket.like.add(request.user)
+        getLikeCount = getRacket.like.all().aggregate(Count('id'))['id__count']
+        print(getLikeCount)
+        getRacket.countLike = getLikeCount
+        getRacket.save(self)
+
     return redirect('racket:racketDetail', parameter=parameter)

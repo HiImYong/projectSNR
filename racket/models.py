@@ -18,7 +18,12 @@ class Racket(models.Model):
     manufacturer = models.CharField('제조사', max_length=20, default="등록전")
     like = models.ManyToManyField(User, related_name='like')
     visitorAvgScore = models.FloatField('사용자평점평균', default=0)
+    countLike = models.IntegerField('좋아요개수', default=0)
 
+    # def countLikeSave(self):
+    #     getCount = Racket.values('created', 'name').annotate(product_cnt=Count('name'))
+    #
+    # self.visitorreview_set.aggregate(Avg('visitorScore'))['visitorScore__avg']
 
 
 
