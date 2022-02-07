@@ -26,7 +26,8 @@
             </form>
         </div>
 
-        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style="" onchange="location.href = this.value;">
+        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style=""
+                onchange="location.href = this.value;">
             <option class="" value="/">전체정렬기능</option>
             <option class="sort-names" value="?sort=names">이름순</option>
             <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
@@ -45,10 +46,10 @@
             {%for item in racketItems%}
             <li class="t-group">
                 {% if item.countLike %}
-                <div>🧡 + {{item.countLike}} </div>
-                                            {% else %}
-                <div>🤍 </div>
-                            {% endif %}
+                    <div class="bg-warning" style="border-radius: 15px 15px 0 0">&nbsp🧡 + {{item.countLike}}</div>
+                    {% else %}
+                    <div class="t-bg-gray-300" style="border-radius: 15px 15px 0 0">&nbsp🤍</div>
+                    {% endif %}
 
                 <a href="{%url 'racket:racketDetail' item.id%}"
                    class="t-block t-block overflow-hidden ">
@@ -103,12 +104,14 @@
         {% if page_number == racketItems.number %}
         <li class="page-item active" aria-current="page">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{
+                page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{
+                page_number }}</a>
         </li>
         {% endif %}
         {% endif %}
@@ -148,6 +151,8 @@ $(function() {
         localStorage.setItem("selectValue", $(this).val());
     });
 })
+
+
 
 </script>
 

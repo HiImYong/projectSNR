@@ -12,7 +12,7 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
 //////////////////////////////////////////////////////////////////////////////////
 
-const handleStarSelect = (size) => {
+const handleStarSelect = (size) => {  //가장 아래에서 행렬별 별 색상바꿀 때 적용되는 메소드
     const children = form.children
     for (let i=0; i < children.length; i++)
     if(i<= size){
@@ -76,26 +76,25 @@ const getNumericValue = (stringValue) => {
 ////////////////////////////////////////////////////////////////////////// 각 버튼별 행렬 구현, 마우스 오버, 클릭 구현
 
 
-if (one) {
-    const arr = [one, two, three, four, five]
+if (one) {  //1. 만약 one 변수가 있다면
+    const arr = [one, two, three, four, five] // 2. 행렬을 만들어준다.
 
-    arr.forEach(item=> item.addEventListener('mouseover', (event)=>{
+    arr.forEach(item=> item.addEventListener('mouseover', (event)=>{ //3. 마우스 오버에 대한 별 색상 변경 이벤트
         handleSelect(event.target.id)
     }))
 
-    arr.forEach(item=> item.addEventListener('click', (event)=>{
+    arr.forEach(item=> item.addEventListener('click', (event)=>{ //4. 별을 클릭했을 때 발생하는 이벤트
         const val = event.target.id
 
-        let isSubmit = false
-        form.addEventListener('submit', e=>{
-            e.preventDefault()
-            if (isSubmit) {
-                return
+        let isSubmit = false // 5. isSubmit 변수 선언. 현재 별점이 제출 되었는지 여부 판단
+        form.addEventListener('submit', e=>{ // 6. 제출이 실행되면 이하 내용 실행 시작
+        ////////////-------------------------------------------------------------------------------------------------//////////////
+            e.preventDefault() // a 태그나 submit 태그는 누르게 되면 href 를 통해 이동하거나 , 창이 새로고침하여 실행되는데 이것을 못하게 막음
+            if (isSubmit) { // 7. 만약 isSubmit 이 True라면
+                return  // 8.폼 값을 제출한다.
             }
-            isSubmit = true
-
-            const val_num = getNumericValue(val)
-
+            isSubmit = true // 9. isSubmit을 True로 바꿔준다
+            const val_num = getNumericValue(val)  //10. val_num 변수 선언.
             $.ajax({
                 type: 'POST',
                 url: '/',
@@ -107,7 +106,7 @@ if (one) {
                 success: function(response){
                     console.log(response)
                     confirmBox.innerHTML = `<h1>이 라켓의 별점을 <span class="t-text-red-500 t-text-xl">${val_num}</span>점으로 제출합니다</h1>`
-                    document.getElementById(`inputNumForm`).value = `${val_num}`
+                    document.getElementById(`inputNumForm`).value = `${val_num}` // 이 부분에서 폼에 값이 들어감.
                     console.log(val)
                     console.log(val_num)
 
