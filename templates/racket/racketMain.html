@@ -104,14 +104,12 @@
         {% if page_number == racketItems.number %}
         <li class="page-item active" aria-current="page">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{
-                page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{
-                page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endif %}
