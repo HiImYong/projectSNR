@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+<div>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+        - 선수 도감 -</h1>
+    <h3 class="d-flex justify-content-center mt-4 t-mb-9 t-text-[20px] sm:t-text-[20px] lg:t-text-[25px]  bannerfont">
+        Powered by '세상에 나쁜 라켓은 없다'<br> since
+        2013</h3>
+    <marquee scrollamount=8>
+        <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+            프로 선수의 정보를 확인해보세요. 그리고 그 선수에 대한 의견을 남겨보세요! 🟡✧( •̀ ω •́  )_🎾</h4></marquee>
+
+    <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
+        <div class="mb-2">
+            <form class="" action="">
+                <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword"
+                       placeholder="라켓 이름"
+                       value="" style="width:80%">
+                <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
+            </form>
+        </div>
+
+        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style=""
+                onchange="location.href = this.value;">
+            <option class="" value="/">전체정렬기능</option>
+            <option class="sort-names" value="?sort=names">이름순</option>
+            <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
+            <option class="sort-visitorScore" value="?sort=visitorScore">사용자평점순</option>
+            <option class="sort-like" value="?sort=countLike">좋아요순</option>
+
+            {% if user.is_authenticated %}
+            <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
+            {% endif %}
+        </select>
+
+    </div>
+
+        <section class="t-block section-player-list t-bg-gray-200 pt-4">
+        <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-7 t-gap-5">
+            {%for item in playerItems%}
+            <li class="t-group ">
+                {% if item.countLike %}
+                    <div class="bg-warning t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🧡 + {{item.countLike}}</div>
+                    {% else %}
+                    <div class="t-bg-gray-300 t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🤍 + 0</div>
+                    {% endif %}
+                <a href="" class="t-block t-block overflow-hidden ">
+                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1.1" height="%" width="170"
+                         class="border border-warning t-w-full block t-transition-all t-group-hover:border-red-600  "><br>
+                </a>
+
+                <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
+                    <ul>
+                        <li> {{item.name}}</li>
+                        <li> {{item.birth}}</li>
+                    </ul>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

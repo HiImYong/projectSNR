@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'racket.apps.RacketConfig',
     'account.apps.AccountConfig',
     'visitor.apps.VisitorConfig',
+    'player.apps.PlayerConfig',
+
     # 'racketstring.apps.RacketString',
 
     'django_bootstrap5',

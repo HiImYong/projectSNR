@@ -21,11 +21,12 @@ from django.urls import path, include
 from base import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('', views.index, name="main"),
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
     path('visitor/', include('visitor.urls')),
-    path('admin/', admin.site.urls),
+    path('player/', include('player.urls'))
 ]
 
 

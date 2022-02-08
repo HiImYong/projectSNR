@@ -25,8 +25,6 @@ class Racket(models.Model):
     #
     # self.visitorreview_set.aggregate(Avg('visitorScore'))['visitorScore__avg']
 
-
-
     def thumb_img_url(self):
         img_names = {
             1: '블레이드 98 덴스',
@@ -89,4 +87,3 @@ class RacketDetail(models.Model):
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
     adminAvgScore = models.FloatField('운영자평점평균', default=0)
-

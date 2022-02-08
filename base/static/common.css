@@ -356,6 +356,14 @@ html > body .hidden{
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .xl\:t-grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .xl\:t-grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
   .xl\:t-text-\[70px\] {
     font-size: 70px;
   }
