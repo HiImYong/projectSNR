@@ -31,6 +31,10 @@
   display: inline-block;
 }
 
+.t-inline-flex {
+  display: inline-flex;
+}
+
 .t-grid {
   display: grid;
 }
@@ -102,6 +106,10 @@
 .t-object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.t-pr-\[20px\] {
+  padding-right: 20px;
 }
 
 .t-text-center {

@@ -46,11 +46,10 @@
             {%for item in racketItems%}
             <li class="t-group">
                 {% if item.countLike %}
-                    <div class="bg-warning" style="border-radius: 15px 15px 0 0">&nbsp🧡 + {{item.countLike}}</div>
+                    <div class="bg-warning t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🧡 + {{item.countLike}}</div>
                     {% else %}
-                    <div class="t-bg-gray-300" style="border-radius: 15px 15px 0 0">&nbsp🤍</div>
+                    <div class="t-bg-gray-300 t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🤍 + 0</div>
                     {% endif %}
-
                 <a href="{%url 'racket:racketDetail' item.id%}"
                    class="t-block t-block overflow-hidden ">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1" height="%" width="200"
