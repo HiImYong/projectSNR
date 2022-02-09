@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+<div class="py-3 text-center">
+    <div class="d-xxl-flex flex-md-equal w-100 my-md-2 ps-md-1">
+        <div class=" me-md-3 pt-1 px-3 pt-md-3 pb-md-3 px-md-5 text-center overflow-hidden">
+
+
+            <div class="my-3">
+                <div>
+                    <div class="fadein t-text-[30px] sm:t-text-[40px] lg:t-text-[50px] xl:t-text-[50px] m-3 fw-bold mx-auto t-whitespace-nowrap">
+                        - {{playerItems.name}} -
+                    </div>
+                </div>
+                <div class="card t-tm-3 t-bg-white t-text-black">
+                    <div class="card-header ">
+                        <div class="d-flex justify-content-center">
+                            <img class="fadein mt-3 t-bg-white"  src="{{playerItems.thumb_img_url}}" style="aspect-ratio: 1 / 1.1"
+                                  width="30%"></div>
+                        <br>
+                        <div class="t-text-[10px] sm:t-text-[15px]">
+                            <span class="t-text-[15px] sm:t-text-[25px]">- {{playerItems.country}} -</span><br>
+                            <span>몸무게 : {{playerItems.weight}} kg</span><br>
+                            <span>키 : {{playerItems.height}} cm</span><br>
+                            <span>프로전향 : {{playerItems.turnPro}}년 </span><br>
+                            <span>생일 : {{playerItems.birth|date:'Y-m-d'}} </span><br>
+                            <span>포핸드 : {{playerItems.forehand}} </span><br>
+                            <span>백핸드 : {{playerItems.backhand}} </span><br>
+
+
+                    </div>
+                    <div class="t-grid-cols-7"> <!-- 추천영역 -->
+                        {% if user.is_authenticated %}
+                        <a href="" data-uri="" class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
+                        {%endif%}
+                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
+                            <span class="t-text-red-500"> </span>명이 이 선수를 좋아해요.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

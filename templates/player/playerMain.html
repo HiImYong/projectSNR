@@ -10,7 +10,7 @@
         2013</h3>
     <marquee scrollamount=8>
         <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
-            프로 선수의 정보를 확인해보세요. 그리고 그 선수에 대한 의견을 남겨보세요! 🟡✧( •̀ ω •́  )_🎾</h4></marquee>
+            프로 선수의 정보를 확인해보세요. 원하는 선수에 대해 의견을 남겨보세요! 🟡✧( •̀ ω •́  )_🎾</h4></marquee>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
         <div class="mb-2">
@@ -46,9 +46,9 @@
                     {% else %}
                     <div class="t-bg-gray-300 t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🤍 + 0</div>
                     {% endif %}
-                <a href="" class="t-block t-block overflow-hidden ">
-                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1.1" height="%" width="170"
-                         class="border border-warning t-w-full block t-transition-all t-group-hover:border-red-600  "><br>
+                <a href="{%url 'player:playerDetail' item.id%}" class="">
+                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1.1"
+                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
                 </a>
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">

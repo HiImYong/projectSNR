@@ -2,16 +2,21 @@ from django.db import models
 
 
 # Create your models here.
+from account.models import User
+
+
 class Player(models.Model):
     name = models.CharField('선수이름', max_length=20)
     birth = models.DateTimeField('생일', default="0000.00.00")
-    trunPro = models.IntegerField('프로전향', default=0)
+    turnPro = models.IntegerField('프로전향', default=0)
     weight = models.IntegerField('몸무게', default=0)
     height = models.FloatField('키', default=0)
-    contury = models.IntegerField('국가', default=0)
-    forehand = models.IntegerField('포핸드위치', default=0)
+    country = models.CharField('국가', max_length=20, default="등록전")
+    forehand = models.CharField('포핸드사용손', max_length=20, default="등록전")
     backhand = models.CharField('백핸드종류', max_length=20, default="등록전")
     racketBrand = models.CharField('선수이름', max_length=20, default="등록전")
+    like = models.ManyToManyField(User, related_name='like')
+
 
     def thumb_img_url(self):
         img_names = {

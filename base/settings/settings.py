@@ -97,6 +97,9 @@ DATABASES = {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             # 추가, 만약에 이 부분 때문에 오류가 난다면 삭제할 것
             # MySQL Strict Mode 켜기
+            'charset': 'utf8mb4',
+            # 이모지 등록 가능
+            'use_unicode': True,
         }
     }
 }

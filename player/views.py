@@ -8,3 +8,9 @@ from player.models import Player
 def playerMain(request: HttpRequest):
     getPlayers = Player.objects.all().order_by('name')
     return render(request, "player/playerMain.html", {'playerItems': getPlayers, })
+
+
+def playerDetail(request, parameter):
+    getPlayerQs = Player.objects.filter(id=parameter)
+    getPlayer = getPlayerQs.first()
+    return render(request, "player/playerDetail.html", {'playerItems': getPlayer, })
