@@ -15,8 +15,8 @@ class Player(models.Model):
     forehand = models.CharField('포핸드사용손', max_length=20, default="등록전")
     backhand = models.CharField('백핸드종류', max_length=20, default="등록전")
     racketBrand = models.CharField('선수이름', max_length=20, default="등록전")
-    like = models.ManyToManyField(User, related_name='like')
-
+    like = models.ManyToManyField(User, related_name='likePlayer')
+    countLike = models.IntegerField('좋아요개수', default=0)
 
     def thumb_img_url(self):
         img_names = {

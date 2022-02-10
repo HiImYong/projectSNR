@@ -32,10 +32,11 @@
                     </div>
                     <div class="t-grid-cols-7"> <!-- 추천영역 -->
                         {% if user.is_authenticated %}
-                        <a href="" data-uri="" class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
+                        <a href="{% url 'player:likePlayer' playerItems.id  %}" data-uri="{% url 'player:likePlayer' playerItems.id  %}"
+                           class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
                         {%endif%}
                         <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
-                            <span class="t-text-red-500"> </span>명이 이 선수를 좋아해요.
+                            <span class="t-text-red-500"> {{playerItems.like.count}}</span>명이 이 선수를 좋아해요.
                         </div>
                     </div>
                 </div>
