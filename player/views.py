@@ -3,18 +3,22 @@ from django.http import HttpRequest
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from player.models import Player
+from player.models import Player, playerCharacteristic
 
 
 def playerMain(request: HttpRequest):
     getPlayers = Player.objects.all().order_by('name')
-    return render(request, "player/playerMain.html", {'playerItems': getPlayers, })
+    getPlayerCharacteristic = playerCharacteristic.objects.all()
+    return render(request, "player/playerMain.html", {'playerItems': getPlayers,
+                                                      'characteristicItems': getPlayerCharacteristic})
 
 
 def playerDetail(request, parameter):
     getPlayerQs = Player.objects.filter(id=parameter)
     getPlayer = getPlayerQs.first()
-    return render(request, "player/playerDetail.html", {'playerItems': getPlayer, })
+    getPlayerCharacteristic = playerCharacteristic.objects.filter(playerJoin_id=parameter)
+    return render(request, "player/playerDetail.html", {'playerItems': getPlayer,
+                                                        'characteristicItems': getPlayerCharacteristic})
 
 
 def likePlayer(request, parameter, self=None):

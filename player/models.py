@@ -18,6 +18,7 @@ class Player(models.Model):
     like = models.ManyToManyField(User, related_name='likePlayer')
     countLike = models.IntegerField('좋아요개수', default=0)
 
+
     def thumb_img_url(self):
         img_names = {
             1: '가엘 몽피스',
@@ -104,3 +105,35 @@ class Player(models.Model):
         img_name = img_names[self.id]
 
         return f"https://raw.githubusercontent.com/HiImYong/snrPictures_players/master/{img_name}.jpg"
+
+
+class playerCharacteristic(models.Model):
+    Characteristic = models.CharField('선수특성', max_length=20)
+    aboutCharacteristic = models.CharField('선수특성설명', max_length=20)
+    playerJoin = models.ForeignKey(Player, related_name='Player', on_delete=models.CASCADE, default='')
+
+    def thumb_img_url(self):
+        img_names = {
+            '메이저우승': '메이저우승',
+            '메이저준우승': '메이저준우승',
+            '백핸드 스페셜리스트': '백핸드 스페셜리스트',
+            '분노': '분노',
+            '서브 스페셜리스트': '서브 스페셜리스트',
+            '스프린터': '스프린터',
+            '스핀머신': '스핀머신',
+            '엔터테이너': '엔터테이너',
+            '유연성 스페셜리스트': '유연성 스페셜리스트',
+            '뉴튜버': '뉴튜버',
+            '잔디코트 스페셜리스트': '잔디코트 스페셜리스트',
+            '컨트롤러': '컨트롤러',
+            '클레이코트 스페셜리스트': '클레이코트 스페셜리스트',
+            '통곡의 벽': '통곡의 벽',
+            '포핸드 스페셜리스트': '포핸드 스페셜리스트',
+            '하드코트 스페셜리스트': '하드코트 스페셜리스트',
+            '발리 스페셜리스트': '발리 스페셜리스트',
+            '올라운더': '올라운더',
+        }
+
+        img_name = img_names[self.Characteristic]
+
+        return f"https://raw.githubusercontent.com/HiImYong/snrPictures_players_characteristic/master/{img_name}.jpg"

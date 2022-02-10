@@ -10,7 +10,7 @@
         2013</h3>
     <marquee scrollamount=8>
         <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
-            프로 선수의 정보를 확인해보세요. 원하는 선수에 대해 의견을 남겨보세요! 🟡✧( •̀ ω •́  )_🎾</h4></marquee>
+            프로 선수의 정보를 확인해보세요. 원하는 선수에 대해 의견을 남겨보세요! 🟡✧( •̀ ω •́ )_🎾</h4></marquee>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
         <div class="mb-2">
@@ -37,15 +37,19 @@
 
     </div>
 
-        <section class="t-block section-player-list t-bg-gray-200 pt-4">
+    <section class="t-block section-player-list t-bg-gray-200 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-7 t-gap-5">
             {%for item in playerItems%}
             <li class="t-group ">
                 {% if item.countLike %}
-                    <div class="bg-warning t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🧡 + {{item.countLike}}</div>
-                    {% else %}
-                    <div class="t-bg-gray-300 t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🤍 + 0</div>
-                    {% endif %}
+                <div class="bg-warning t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🧡 +
+                    {{item.countLike}}
+                </div>
+                {% else %}
+                <div class="t-bg-gray-300 t-inline-flex t-pr-[20px]" style="border-radius: 12px 12px 0 0">&nbsp&nbsp🤍 +
+                    0
+                </div>
+                {% endif %}
                 <a href="{%url 'player:playerDetail' item.id%}" class="">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1.1"
                          class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
@@ -56,7 +60,19 @@
                         <li> {{item.name}}</li>
                         <li> {{item.birth|date:'Y-m-d'}}</li>
                     </ul>
+
                 </div>
+
+                {%for item1 in characteristicItems%}
+                {%if item.id == item1.playerJoin_id%}
+                <div class="t-inline-block d-flex justify-content-center">
+<!--                            {{item1.Characteristic}}-->
+                    <img src="{{item1.thumb_img_url}}" style="aspect-ratio: 1/1" width="15%" class="t-inline-block" >
+                </div>
+                {%else%}
+
+                {%endif%}
+                {%endfor%}
             </li>
             {% endfor %}
         </ul>

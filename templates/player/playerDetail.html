@@ -27,10 +27,20 @@
                             <span>생일 : {{playerItems.birth|date:'Y-m-d'}} </span><br>
                             <span>포핸드 : {{playerItems.forehand}} </span><br>
                             <span>백핸드 : {{playerItems.backhand}} </span><br>
-
-
                     </div>
-                    <div class="t-grid-cols-7"> <!-- 추천영역 -->
+                        <div class="mt-4" > [선수특성]</div>
+                        <div class="mt-3" >
+
+                            {%if characteristicItems%}
+                            {%for item in characteristicItems%}
+                            <span class="mx-1" id="playerChar"><img src="{{item.thumb_img_url}}" style="aspect-ratio: 1/1" width="10%"
+                         class="t-inline-block t-border t-border-gray-300 t-bg-white t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4"></span>
+                            <p class="arrow_box">{{item.Characteristic}}</p>
+                            {%endfor%}
+                            {%endif%}
+
+                        </div>
+                    <div class="t-grid-cols-7 mt-5"> <!-- 추천영역 -->
                         {% if user.is_authenticated %}
                         <a href="{% url 'player:likePlayer' playerItems.id  %}" data-uri="{% url 'player:likePlayer' playerItems.id  %}"
                            class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
