@@ -14,10 +14,10 @@
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
         <div class="mb-2">
-            <form class="" action="">
+            <form class="" action="{% url 'player:playerMain'%}">
                 <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword"
-                       placeholder="라켓 이름"
-                       value="" style="width:80%">
+                       placeholder="선수 이름"
+                       value="{{request.GET.searchKeyword}}" style="width:80%">
                 <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
             </form>
         </div>
@@ -26,19 +26,13 @@
                 onchange="location.href = this.value;">
             <option class="" value="/">전체정렬기능</option>
             <option class="sort-names" value="?sort=names">이름순</option>
-            <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
-            <option class="sort-visitorScore" value="?sort=visitorScore">사용자평점순</option>
             <option class="sort-like" value="?sort=countLike">좋아요순</option>
-
-            {% if user.is_authenticated %}
-            <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
-            {% endif %}
         </select>
 
     </div>
 
-    <section class="t-block section-player-list t-bg-gray-200 pt-4">
-        <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-7 t-gap-5">
+    <section class="t-block section-player-list t-bg-gray-100 pt-4">
+        <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-5 xl:t-grid-cols-7 t-gap-5">
             {%for item in playerItems%}
             <li class="t-group ">
                 {% if item.countLike %}
@@ -52,7 +46,7 @@
                 {% endif %}
                 <a href="{%url 'player:playerDetail' item.id%}" class="">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1.1"
-                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
+                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all group-hover:t-border-yellow-400 group-hover:t-border-4">
                 </a>
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
@@ -63,16 +57,22 @@
 
                 </div>
 
-                {%for item1 in characteristicItems%}
-                {%if item.id == item1.playerJoin_id%}
-                <div class="t-inline-block d-flex justify-content-center">
-<!--                            {{item1.Characteristic}}-->
-                    <img src="{{item1.thumb_img_url}}" style="aspect-ratio: 1/1" width="15%" class="t-inline-block" >
-                </div>
-                {%else%}
+                <section class="t-border t-border-gray-300">
 
-                {%endif%}
-                {%endfor%}
+                    <div class="d-flex justify-content-center container mx-auto">
+                        <ul class="t-flex"> {%for item1 in characteristicItems%}
+                            {%if item.id == item1.playerJoin_id%}
+                            <li class="t-flex-1 t-max-w-[30px]"><img src="{{item1.thumb_img_url}}" style="aspect-ratio: 1/1" class="t-block t-w-full"></li>
+                            {%else%}
+
+                            {%endif%}
+                            {%endfor%}
+                        </ul>
+                        <!--                            {{item1.Characteristic}}-->
+
+                    </div>
+
+                </section>
             </li>
             {% endfor %}
         </ul>

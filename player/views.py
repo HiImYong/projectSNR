@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, F
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 
@@ -7,7 +7,22 @@ from player.models import Player, playerCharacteristic
 
 
 def playerMain(request: HttpRequest):
-    getPlayers = Player.objects.all().order_by('name')
+    getSearchKeyword = request.GET.get('searchKeyword', '')
+    sort = request.GET.get('sort', '')
+
+    if getSearchKeyword:
+        getPlayers = Player.objects.filter(name__icontains=getSearchKeyword).order_by('name')
+
+
+    else:
+        if sort == 'names':
+            getPlayers = Player.objects.order_by('name')
+        elif sort == 'countLike':
+            getPlayers = Player.objects.order_by(F('countLike').desc(nulls_last=True))
+
+        else:
+            getPlayers = Player.objects.order_by('name')
+
     getPlayerCharacteristic = playerCharacteristic.objects.all()
     return render(request, "player/playerMain.html", {'playerItems': getPlayers,
                                                       'characteristicItems': getPlayerCharacteristic})

@@ -16,8 +16,9 @@
                 <div class="card t-tm-3 t-bg-white t-text-black">
                     <div class="card-header ">
                         <div class="d-flex justify-content-center">
-                            <img class="fadein mt-3 t-bg-white"  src="{{playerItems.thumb_img_url}}" style="aspect-ratio: 1 / 1.1"
-                                  width="30%"></div>
+                            <img class="fadein mt-3 t-bg-white" src="{{playerItems.thumb_img_url}}"
+                                 style="aspect-ratio: 1 / 1.1"
+                                 width="30%"></div>
                         <br>
                         <div class="t-text-[10px] sm:t-text-[15px]">
                             <span class="t-text-[15px] sm:t-text-[25px]">- {{playerItems.country}} -</span><br>
@@ -27,37 +28,39 @@
                             <span>생일 : {{playerItems.birth|date:'Y-m-d'}} </span><br>
                             <span>포핸드 : {{playerItems.forehand}} </span><br>
                             <span>백핸드 : {{playerItems.backhand}} </span><br>
-                    </div>
-                        <div class="mt-4" > [선수특성]</div>
-                        <div class="mt-3" >
+                        </div>
+                        <div class="mt-4"> [선수특성]</div>
+                        <div class="mt-3">
 
                             {%if characteristicItems%}
                             {%for item in characteristicItems%}
-                            <span class="mx-1" id="playerChar"><img src="{{item.thumb_img_url}}" style="aspect-ratio: 1/1" width="10%"
-                         class="t-inline-block t-border t-border-gray-300 t-bg-white t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4"></span>
-                            <p class="arrow_box">{{item.Characteristic}}</p>
+                            <div class="mx-1 t-inline-block t-group t-relative">
+                                <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1/1" class="aa t-relative t-w-[100px] t-border t-border-gray-300 t-bg-white t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
+                                <p class="arrow_box group-hover:t-block t-hidden">{{item.Characteristic}}</p>
+                            </div>
                             {%endfor%}
                             {%endif%}
 
                         </div>
-                    <div class="t-grid-cols-7 mt-5"> <!-- 추천영역 -->
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'player:likePlayer' playerItems.id  %}" data-uri="{% url 'player:likePlayer' playerItems.id  %}"
-                           class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
-                        {%endif%}
-                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
-                            <span class="t-text-red-500"> {{playerItems.like.count}}</span>명이 이 선수를 좋아해요.
+                        <div class="t-grid-cols-7 mt-5"> <!-- 추천영역 -->
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'player:likePlayer' playerItems.id  %}"
+                               data-uri="{% url 'player:likePlayer' playerItems.id  %}"
+                               class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
+                            {%endif%}
+                            <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
+                                <span class="t-text-red-500"> {{playerItems.like.count}}</span>명이 이 선수를 좋아해요.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-{% endblock %}
+    {% endblock %}
 
 
-{% block script %}
-{% endblock %}
+    {% block script %}
+    {% endblock %}

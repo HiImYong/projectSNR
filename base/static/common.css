@@ -468,6 +468,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
+.t-relative {
+  position: relative;
+}
+
 .t-z-0 {
   z-index: 0;
 }
@@ -501,6 +505,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: inline-block;
 }
 
+.t-flex {
+  display: flex;
+}
+
 .t-inline-flex {
   display: inline-flex;
 }
@@ -527,6 +535,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .t-w-full {
   width: 100%;
+}
+
+.t-w-\[100px\] {
+  width: 100px;
+}
+
+.t-max-w-\[30px\] {
+  max-width: 30px;
+}
+
+.t-flex-1 {
+  flex: 1 1 0%;
 }
 
 .t-flex-grow {
@@ -576,14 +596,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.t-bg-gray-200 {
+.t-bg-gray-100 {
   --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .t-bg-gray-300 {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.t-bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .t-object-cover {
@@ -760,11 +785,6 @@ html > body .hidden{
   display: none;
 }
 
-#playerChar img{
-  position: relative;
-  display: inline-block;
-}
-
 .arrow_box {
   display: none;
   position: absolute;
@@ -774,7 +794,7 @@ html > body .hidden{
   border-radius: 8px;
   background: #333;
   color: #fff;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .arrow_box:after {
@@ -792,7 +812,7 @@ html > body .hidden{
   content: " ";
 }
 
-span:hover + p.arrow_box {
+.t-group:hover .group-hover\:t-block {
   display: block;
 }
 
@@ -803,6 +823,11 @@ span:hover + p.arrow_box {
 .t-group:hover .group-hover\:t-border-blue-400 {
   --tw-border-opacity: 1;
   border-color: rgb(96 165 250 / var(--tw-border-opacity));
+}
+
+.t-group:hover .group-hover\:t-border-yellow-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(250 204 21 / var(--tw-border-opacity));
 }
 
 .t-group:hover .group-hover\:t-border-yellow-600 {
@@ -855,6 +880,10 @@ span:hover + p.arrow_box {
     width: 60%;
   }
 
+  .lg\:t-grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
   .lg\:t-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -905,3 +934,4 @@ span:hover + p.arrow_box {
     font-size: 15px;
   }
 }
+
