@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from player.models import Player, playerCharacteristic
+from playerReview.models import PlayerReviewModel
 
 
 def playerMain(request: HttpRequest):
@@ -32,8 +33,11 @@ def playerDetail(request, parameter):
     getPlayerQs = Player.objects.filter(id=parameter)
     getPlayer = getPlayerQs.first()
     getPlayerCharacteristic = playerCharacteristic.objects.filter(playerJoin_id=parameter)
+    getPlayerReview = PlayerReviewModel.objects.filter(visitorPlayer_id=parameter)
     return render(request, "player/playerDetail.html", {'playerItems': getPlayer,
-                                                        'characteristicItems': getPlayerCharacteristic})
+                                                        'characteristicItems': getPlayerCharacteristic,
+                                                        'playerReviewItems': getPlayerReview,
+                                                        })
 
 
 def likePlayer(request, parameter, self=None):

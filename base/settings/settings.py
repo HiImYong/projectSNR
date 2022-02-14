@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'visitor.apps.VisitorConfig',
     'player.apps.PlayerConfig',
+    'playerReview.apps.PlayerreviewConfig',
 
     # 'racketstring.apps.RacketString',
 

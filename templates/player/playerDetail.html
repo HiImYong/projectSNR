@@ -18,7 +18,7 @@
                         <div class="d-flex justify-content-center">
                             <img class="fadein mt-3 t-bg-white" src="{{playerItems.thumb_img_url}}"
                                  style="aspect-ratio: 1 / 1.1"
-                                 width="30%"></div>
+                                 width="25%"></div>
                         <br>
                         <div class="t-text-[10px] sm:t-text-[15px]">
                             <span class="t-text-[15px] sm:t-text-[25px]">- {{playerItems.country}} -</span><br>
@@ -29,31 +29,145 @@
                             <span>포핸드 : {{playerItems.forehand}} </span><br>
                             <span>백핸드 : {{playerItems.backhand}} </span><br>
                         </div>
-                        <div class="mt-4"> [선수특성]</div>
-                        <div class="mt-3">
+                        <div class="mt-4 card-footer t-border t-border-gray-300"> [선수특성]
+                            <div class="mt-3">
 
-                            {%if characteristicItems%}
-                            {%for item in characteristicItems%}
-                            <div class="mx-1 t-inline-block t-group t-relative">
-                                <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1/1" class="aa t-relative t-w-[100px] t-border t-border-gray-300 t-bg-white t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
-                                <p class="arrow_box group-hover:t-block t-hidden">{{item.Characteristic}}</p>
+                                {%if characteristicItems%}
+                                {%for item in characteristicItems%}
+                                <div class="mx-1 t-inline-block t-group t-relative">
+                                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1/1"
+                                         class="aa t-relative t-w-[100px] t-border t-border-gray-300 t-bg-white t-transition-all group-hover:t-border-blue-400 group-hover:t-border-4">
+                                    <p class="arrow_box group-hover:t-block t-hidden">{{item.Characteristic}}</p>
+                                </div>
+                                {%endfor%}
+                                {%endif%}
+
                             </div>
-                            {%endfor%}
-                            {%endif%}
-
                         </div>
-                        <div class="t-grid-cols-7 mt-5"> <!-- 추천영역 -->
-                            {% if user.is_authenticated %}
-                            <a href="{% url 'player:likePlayer' playerItems.id  %}"
-                               data-uri="{% url 'player:likePlayer' playerItems.id  %}"
-                               class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
-                            {%endif%}
-                            <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
-                                <span class="t-text-red-500"> {{playerItems.like.count}}</span>명이 이 선수를 좋아해요.
-                            </div>
+
+                    </div>
+
+                    <div class="t-grid-cols-7 "> <!-- 추천영역 -->
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'player:likePlayer' playerItems.id  %}"
+                           data-uri="{% url 'player:likePlayer' playerItems.id  %}"
+                           class="recommend btn btn-sm btn-warning btn-block my-1 ">🧡+1</a>
+                        {%endif%}
+                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1 ">
+                            <span class="t-text-red-500"> {{playerItems.like.count}}</span>명이 이 선수를 좋아해요.
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card t-tm-3 ">
+                    {% if user.is_authenticated %}
+
+                    <h4 class="my-4 t-text-[20px] sm:t-text-[25px] mt-5">이 선수에 대한 의견을 댓글로 남겨주세요!<br>
+                        <span class="d-flex justify-content-center">
+                            <img src="https://media3.giphy.com/media/1ncq2WvQeEakJh3Um4/giphy.gif?cid=ecf05e47ye9cnglaw0i46esssdn3nqhythj2u6lb40refum9&rid=giphy.gif&ct=g"
+                                 width="200" class="mt-3 "></span>
+                    </h4>
+
+                    <div class="reviewForm">
+                        <form action="{% url 'playerReview:newPlayerReview' playerItems.id %}" method="POST">
+                            {%csrf_token%}
+                            <div class="d-flex"><input id="inputNumForm" name="visitorScore" class=""
+                                                       value="0"
+                                                       type="hidden"></div>
+                            <label for="id_content"></label><br>
+                            <input type="text" name="visitorReview" class="t-flex-grow textReview t-border-b-2"
+                                   placeholder="한줄평을 작성해주세요(최대 100자)" maxlength="100"
+                                   style="width:74%" required id="id_content"><br><br>
+                            <button type="submit" class="btn btn-success mb-2 reviewSubmit">
+                                리뷰 제출
+                            </button>
+                        </form>
+                    </div>
+
+                    {%else%}
+                    <div>로그인 후 이용할 수 있습니다.
+                        <a href="{%url 'account:kakaologin'%}"> <img src="https://i.imgur.com/zBJaCQd.png"
+                                                                     width="60"></a></div>
+                    {%endif%}
+
+                </div>
+
+                <div class="card t-tm-3 ">
+                    <h3 class="t-mt-[60px] mb-3 t-text-3xl">이 선수를 응원합니다! ╰(*°▽ °*)╯</h3>
+
+                    <div class="card-footer">
+                        <table class="table table-hover">
+                            <thead class="my-4">
+                            <caption class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">비방성, 광고성 등
+                                취지와
+                                관계없는 글은 안내없이 삭제될 수 있습니다.
+                            </caption>
+
+
+                            <tr class="table-info t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
+                                <th style="width:70%">사용 후기</th>
+                                <th style="width:15%">작성자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {%if playerReviewItems%}
+                            {%for item1 in playerReviewItems%}
+                            <a name="anchor{{9999}}"></a>
+
+                            <tr class="reviewTr{{item1.id}} t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
+                                <td class="d-flex justify-content-center" align="left">
+                                    <span class="showReview{{ item1.id }} ">{{item1.visitorReview}}</span><br>
+                                    <input type="text" style="width:100%" class="hidden classInputReview{{item1.id}} "
+                                           value="{{item1.visitorReview}}">
+
+                                </td>
+                                <td>
+                                    <span class="t-hidden spanVisitorAccount">{{item1.visitorAccount.username}}</span>
+                                    <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+                                         src="{{ item1.visitorAccount.profile_img.url }}"/>{{item1.visitorAccount.name}}
+                                    <span class="control hidden" id="control_id{{ forloop.counter0 }}">
+                                <ul class="d-flex justify-content-center">
+                                    <li class="modifyReview{{ item1.id }}">
+                                        <input type="button" class="btn btn-light" value="수정"
+                                               onclick="onModifyReview({{ item1.id }})" style="font-size:50%">
+                                    </li>
+                                    <li class="deleteReview{{ item1.id }}">
+                                        <input type="button" class="btn btn-light" value="삭제"
+                                               onclick="onDeleteReview({{ item1.id }}), window.location.reload()"
+                                               style="font-size:50%">
+                                    </li>
+                                    <li class="submitModify{{ item1.id }}" style="display:none">
+                                        <input type="button" class="btn btn-success" value="수정완료"
+                                               onclick="onSubmitModify({{ item1.id }}), window.location.reload(true)"
+                                               style="font-size:50%">
+                                    </li>
+                                    <li class="cancelModify{{ item1.id }}" style="display:none">
+                                        <input type="button" class="btn btn-light" value="취소"
+                                               onclick="onCancelModify({{ item1.id }})" style="font-size:50%">
+                                    </li>
+
+                                </ul>
+                                    </span>
+                                </td>
+                            </tr>
+                            {%endfor%}
+
+                            {%else%}
+                            <tr>
+                                <td class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
+                                    선수 응원이 없어요. 이 선수를 응원해주세요!
+                                </td>
+                            </tr>
+                            {%endif%}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>

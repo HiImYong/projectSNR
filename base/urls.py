@@ -26,7 +26,9 @@ urlpatterns = [
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
     path('visitor/', include('visitor.urls')),
-    path('player/', include('player.urls'))
+    path('player/', include('player.urls')),
+    path('playerReview/', include('playerReview.urls'))
+
 ]
 
 

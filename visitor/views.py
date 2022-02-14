@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, resolve_url
 # Create your views here.
 from django.views.decorators.http import require_POST
 
+from player.models import Player
 from racket.models import Racket
 from visitor.forms import ReviewForm
 from visitor.models import VisitorReview
@@ -13,9 +14,6 @@ from visitor.models import VisitorReview
 
 @require_POST
 def newReview(request, parameter):
-    getRacketQs = Racket.objects.filter(id=parameter)
-    getRacket = getRacketQs.first()
-
     if request.method == "POST":
         getForm = ReviewForm(request.POST)
 
@@ -63,3 +61,6 @@ def deleteReview(request):
         }
         return JsonResponse(context)
     return JsonResponse(context)
+
+
+
