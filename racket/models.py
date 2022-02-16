@@ -7,6 +7,9 @@ from django.db.models import Avg
 from account.models import User
 
 
+class RacketBrand(models.Model):
+    name = models.CharField('라켓제조사', max_length=20)
+
 class Racket(models.Model):
     name = models.CharField('라켓이름', max_length=20)
     weight = models.IntegerField('라켓무게', default=0)
@@ -15,7 +18,8 @@ class Racket(models.Model):
     length = models.FloatField('라켓길이', default=0)
     balance = models.IntegerField('라켓밸런스', default=0)
     regDateInt = models.IntegerField('라켓생산년도', default=0)
-    manufacturer = models.CharField('제조사', max_length=20, default="등록전")
+    # manufacturer = models.CharField('제조사', max_length=20, default="등록전")
+    brand = models.ForeignKey(RacketBrand, on_delete=models.CASCADE)
     like = models.ManyToManyField(User, related_name='like')
     visitorAvgScore = models.FloatField('사용자평점평균', default=0)
     countLike = models.IntegerField('좋아요개수', default=0)
@@ -70,12 +74,17 @@ class Racket(models.Model):
             41: '스피드 프로 v6',
             42: '스피드 프로 v7',
             43: '큐5 315',
+            44: '익스트림 투어 v1',
+            45: '퓨어 에어로 VS v1',
+            46: '퓨어 에어로 VS v2',
 
         }
 
         img_name = img_names[self.id]
 
         return f"https://raw.githubusercontent.com/HiImYong/snrPictures/master/{img_name}.jpg"
+
+
 
 
 class RacketDetail(models.Model):
@@ -87,3 +96,7 @@ class RacketDetail(models.Model):
     adminStability = models.FloatField('운영자면안정성평점', default=0)
     adminComfort = models.FloatField('운영자안락함평점', default=0)
     adminAvgScore = models.FloatField('운영자평점평균', default=0)
+
+
+
+

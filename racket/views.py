@@ -5,14 +5,17 @@ from django.http import HttpRequest, request
 from django.shortcuts import render, redirect, get_object_or_404
 
 import visitor.forms
-from racket.models import Racket, RacketDetail
+from racket.models import Racket, RacketDetail, RacketBrand
 from visitor.models import VisitorReview
 
 
 def racketMain(request: HttpRequest):
+    getBrand = RacketBrand.objects.all()
     getSearchKeyword = request.GET.get('searchKeyword', '')
+    sortBrandId = request.GET.get('sortBrand', '')
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
+
 
     if getSearchKeyword:
         getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
@@ -20,19 +23,31 @@ def racketMain(request: HttpRequest):
         page = request.GET.get('page')
         getRacket = paginator.get_page(page)
 
-        return render(request, "racket/racketMain.html", {'racketItems': getRacket, })
+        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
+                                                          'racketBrandItems': getBrand})
+
+    elif sortBrandId:
+        getRacket = Racket.objects.filter(brand_id=sortBrandId).order_by('name')
+
+        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
+        getRacket = paginator.get_page(page)
+
+        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
+                                                          'racketBrandItems': getBrand})
 
     else:
         if sort == 'names':
             getRacket = Racket.objects.order_by('name')
         elif sort == 'adminScore':
             getRacket = Racket.objects.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
-
         elif sort == 'visitorScore':
             getRacket = Racket.objects.order_by(F('visitorAvgScore').desc(nulls_last=True))
-
         elif sort == 'countLike':
             getRacket = Racket.objects.order_by(F('countLike').desc(nulls_last=True))
+
+        # elif sort == 'WILSON':
+        #     getRacket = Racket.objects.filter(manufacturer__icontains='WILSON').order_by('name')
+
 
         else:
             getRacket = Racket.objects.order_by('name')
@@ -40,7 +55,8 @@ def racketMain(request: HttpRequest):
         paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
         getRacket = paginator.get_page(page)
 
-        return render(request, "racket/racketMain.html", {'racketItems': getRacket, })
+        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
+                                                          'racketBrandItems': getBrand})
 
 
 def racketDetail(request, parameter):

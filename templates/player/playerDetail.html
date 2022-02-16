@@ -28,6 +28,16 @@
                             <span>생일 : {{playerItems.birth|date:'Y-m-d'}} </span><br>
                             <span>포핸드 : {{playerItems.forehand}} </span><br>
                             <span>백핸드 : {{playerItems.backhand}} </span><br>
+                            <div class="mt-3 p-2 t-border t-border-gray-300">
+                                <span class="">라켓 후원사 : {{playerItems.racketBrand}} </span><br>
+                                <span>홍보 라켓 : {{playerItems.racketUse}} </span><br>
+                                {%if playerItems.racketWeight == 0%}
+                                <span>알려진 라켓 무게 : 등록전 </span><br>
+                                {%else%}
+                                <span>알려진 라켓 무게 : {{playerItems.racketWeight}}gr(Strung) </span><br>
+                                {%endif%}
+                            </div>
+
                         </div>
                         <div class="mt-4 card-footer t-border t-border-gray-300"> [선수특성]
                             <div class="mt-3">
@@ -65,7 +75,7 @@
 
                     <h4 class="my-4 t-text-[20px] sm:t-text-[25px] mt-5">이 선수에 대한 의견을 댓글로 남겨주세요!<br>
                         <span class="d-flex justify-content-center">
-                            <img src="https://media3.giphy.com/media/1ncq2WvQeEakJh3Um4/giphy.gif?cid=ecf05e47ye9cnglaw0i46esssdn3nqhythj2u6lb40refum9&rid=giphy.gif&ct=g"
+                            <img src="https://c.tenor.com/_MxXvq3PgWYAAAAM/star-trek-ball-play.gif"
                                  width="200" class="mt-3 "></span>
                     </h4>
 

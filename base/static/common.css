@@ -489,12 +489,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 30px;
 }
 
-.t-ml-\[3px\] {
-  margin-left: 3px;
-}
-
 .t-mt-\[60px\] {
   margin-top: 60px;
+}
+
+.t-ml-\[3px\] {
+  margin-left: 3px;
 }
 
 .t-block {
@@ -648,14 +648,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 20px;
 }
 
-.t-text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .t-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.t-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .t-leading-normal {
@@ -860,12 +860,12 @@ html > body .hidden{
     font-size: 25px;
   }
 
-  .sm\:t-text-\[20px\] {
-    font-size: 20px;
-  }
-
   .sm\:t-text-\[12px\] {
     font-size: 12px;
+  }
+
+  .sm\:t-text-\[20px\] {
+    font-size: 20px;
   }
 }
 
@@ -904,12 +904,12 @@ html > body .hidden{
     font-size: 50px;
   }
 
-  .lg\:t-text-\[25px\] {
-    font-size: 25px;
-  }
-
   .lg\:t-text-\[13px\] {
     font-size: 13px;
+  }
+
+  .lg\:t-text-\[25px\] {
+    font-size: 25px;
   }
 }
 

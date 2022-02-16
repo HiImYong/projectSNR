@@ -17,27 +17,37 @@
             라켓은 계속 추가됩니다! 🧡╰( °▽° )_🎾</h4></marquee>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
-        <div class="mb-2">
+        <div class="mb-2 t-flex-grow">
             <form class="" action="{% url 'racket:racketMain'%}">
-                <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword"
+                <input class="form-control-lg  t-ml-[3px]" type="search" name="searchKeyword"
                        placeholder="라켓 이름"
-                       value="{{request.GET.searchKeyword}}" style="width:80%">
+                       value="{{request.GET.searchKeyword}}" style="width:50%">
                 <button type="submit" class="btn btn-warning t-ml-[3px]">검 색</button>
             </form>
         </div>
+        <div class="d-flex ">
+            <select class="btn btn-success t-flex-grow m-1" id="" name="" style=""
+                    onchange="location.href = this.value;">
+                {%for item in racketBrandItems%}
+                <option value="" selected disabled hidden>라켓 브랜드별 검색</option>
+                <option class="" value="?sortBrand={{item.id}}">{{item.name}}</option>
+                {%endfor%}
 
-        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style=""
-                onchange="location.href = this.value;">
-            <option class="" value="/">전체정렬기능</option>
-            <option class="sort-names" value="?sort=names">이름순</option>
-            <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
-            <option class="sort-visitorScore" value="?sort=visitorScore">사용자평점순</option>
-            <option class="sort-like" value="?sort=countLike">좋아요순</option>
+            </select>
 
-            {% if user.is_authenticated %}
-            <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
-            {% endif %}
-        </select>
+            <select class="btn btn-warning  t-flex-grow m-1" id="sort-select" name="sort-select" style=""
+                    onchange="location.href = this.value;">
+                <option class="" value="/" selected>전체정렬기능</option>
+                <option class="sort-names" value="?sort=names">이름순</option>
+                <option class="sort-adminScore" value="?sort=adminScore">세나라평점순</option>
+                <option class="sort-visitorScore" value="?sort=visitorScore">사용자평점순</option>
+                <option class="sort-like" value="?sort=countLike">좋아요순</option>
+                {% if user.is_authenticated %}
+                <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
+                {% endif %}
+            </select>
+        </div>
+
 
     </div>
 
@@ -59,7 +69,7 @@
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
                     <ul>
-                        <li> {{item.manufacturer}} ({{item.regDateInt}}년형)<br> - {{item.name}}</li>
+                        <li> {{item.RacketBrand.name}} ({{item.regDateInt}}년형)<br> - {{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>
@@ -89,7 +99,7 @@
         {% if racketItems.has_previous %}
         <li class="page-item">
             <a class="page-link"
-               href="?page={{ racketItems.previous_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">◀</a>
+               href="?page={{ racketItems.previous_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}&sortBrand={{request.GET.sortBrand}}">◀</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -103,12 +113,12 @@
         {% if page_number == racketItems.number %}
         <li class="page-item active" aria-current="page">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}&sortBrand={{request.GET.sortBrand}}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
             <a class="page-link"
-               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">{{ page_number }}</a>
+               href="?page={{ page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}&sortBrand={{request.GET.sortBrand}}">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endif %}
@@ -118,7 +128,7 @@
         {% if racketItems.has_next %}
         <li class="page-item">
             <a class="page-link"
-               href="?page={{ racketItems.next_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}">▶</a>
+               href="?page={{ racketItems.next_page_number }}&searchKeyword={{request.GET.searchKeyword}}&sort={{request.GET.sort}}&sortBrand={{request.GET.sortBrand}}">▶</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -139,13 +149,13 @@
 <script>
 
 $(function() {
-    var selectValue = localStorage.getItem("selectValue");
-    if(selectValue != null) {
-        $("select[name=sort-select]").val(selectValue);
+    var selectValue = sessionStorage.getItem("selectValue"); //세션에 저장된 selectValue 가져옴
+    if(selectValue != null) { // 만약에 세션에 selectValue가 존재시
+        $("select[name=sort-select]").val(selectValue); // name을 찾아 해당 값을 selectValue로 바꿔줌
     }
 
-    $("select[name=sort-select]").on("change", function() {
-        localStorage.setItem("selectValue", $(this).val());
+    $("select[name=sort-select]").on("change", function() { // name에 해당하는 select가 on-change 되었을 경우
+        sessionStorage.setItem("selectValue", $(this).val()); // 세션의 selectValue에 $(this).val()을 부여.
     });
 })
 
