@@ -14,6 +14,7 @@ class VisitorReview(models.Model):
     visitorReview = models.TextField()
     visitorRacket = models.ForeignKey(Racket, on_delete=models.CASCADE)
     visitorScore = models.FloatField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
 
 
 

@@ -28,7 +28,7 @@
                                   width="50%"></div>
                         <br>
                         <div class="t-text-[10px] sm:t-text-[15px]">
-                            <span class="t-text-[15px] sm:t-text-[25px]">{{racketItems.RacketBrand.name}}</span><br>
+                            <span class="t-text-[15px] sm:t-text-[25px]">{{racketItems.brand.name}}</span><br>
                             <span>무게 : {{racketItems.weight}} gr</span><br>
                             <span>패턴 : {{racketItems.pattern}}</span><br>
                             <span>헤드사이즈 : {{racketItems.headsize}} sq</span><br>
@@ -142,9 +142,9 @@
                     </div>
 
                     {%else%}
-                    <div>로그인 후 이용할 수 있습니다.
-                        <a href="{%url 'account:kakaologin'%}"> <img src="https://i.imgur.com/zBJaCQd.png"
-                                                                     width="60"></a></div>
+                    <div class="my-2">로그인 후 이용할 수 있습니다.
+                        <a href="{%url 'account:kakaologin'%}">
+                            <img src="https://i.imgur.com/zBJaCQd.png" class="t-inline-block" width="60"></a></div>
                     {%endif%}
 
                 </div>

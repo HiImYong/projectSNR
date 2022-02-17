@@ -14,3 +14,4 @@ class PlayerReviewModel(models.Model):
     visitorAccount = models.ForeignKey(User, on_delete=models.CASCADE)
     visitorReview = models.TextField()
     visitorPlayer = models.ForeignKey(Player, on_delete=models.CASCADE)
+    reg_date = models.DateTimeField('등록날짜', auto_now_add=True)
