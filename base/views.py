@@ -11,4 +11,8 @@ def index(request: HttpRequest):
     getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
 
     return render(request, "main.html", {'racketItems': getRacket,
-                                        'racketUserScore': getAvgScore})
+                                         'racketUserScore': getAvgScore})
+
+
+def aboutSNR(request: HttpRequest):
+    return render(request, "about/aboutSNR.html", {})

@@ -15,48 +15,33 @@ def racketMain(request: HttpRequest):
     sortBrandId = request.GET.get('sortBrand', '')
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
+    getRacket = Racket.objects.order_by('name')
 
+    # product_cate_item_name, = (product_cate_item.name for product_cate_item in product_cate_items if
+    #                            product_cate_item.id == int(product_cate_item_id)) if product_cate_item_id else tuple([''])
 
     if getSearchKeyword:
-        getRacket = Racket.objects.filter(name__icontains=getSearchKeyword).order_by('name')
-        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
-        page = request.GET.get('page')
-        getRacket = paginator.get_page(page)
+        getRacket = getRacket.filter(name__icontains=getSearchKeyword)
 
-        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
-                                                          'racketBrandItems': getBrand})
+    if getSearchKeyword and not sortBrandId:
+        getRacket = getRacket.filter(name__icontains=getSearchKeyword)
 
-    elif sortBrandId:
-        getRacket = Racket.objects.filter(brand_id=sortBrandId).order_by('name')
+    if sortBrandId:
+        getRacket = getRacket.filter(brand_id=sortBrandId)
 
-        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
-        getRacket = paginator.get_page(page)
+    if sort == 'names':
+        getRacket = getRacket.order_by('name')
+    elif sort == 'adminScore':
+        getRacket = getRacket.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
+    elif sort == 'visitorScore':
+        getRacket = getRacket.order_by(F('visitorAvgScore').desc(nulls_last=True))
+    elif sort == 'countLike':
+        getRacket = getRacket.order_by(F('countLike').desc(nulls_last=True))
 
-        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
-                                                          'racketBrandItems': getBrand})
-
-    else:
-        if sort == 'names':
-            getRacket = Racket.objects.order_by('name')
-        elif sort == 'adminScore':
-            getRacket = Racket.objects.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
-        elif sort == 'visitorScore':
-            getRacket = Racket.objects.order_by(F('visitorAvgScore').desc(nulls_last=True))
-        elif sort == 'countLike':
-            getRacket = Racket.objects.order_by(F('countLike').desc(nulls_last=True))
-
-        # elif sort == 'WILSON':
-        #     getRacket = Racket.objects.filter(manufacturer__icontains='WILSON').order_by('name')
-
-
-        else:
-            getRacket = Racket.objects.order_by('name')
-
-        paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
-        getRacket = paginator.get_page(page)
-
-        return render(request, "racket/racketMain.html", {'racketItems': getRacket,
-                                                          'racketBrandItems': getBrand})
+    paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
+    getRacket = paginator.get_page(page)
+    return render(request, "racket/racketMain.html", {'racketItems': getRacket,
+                                                      'racketBrandItems': getBrand})
 
 
 def racketDetail(request, parameter):

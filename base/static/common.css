@@ -497,6 +497,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 3px;
 }
 
+.t-mt-\[50ps\] {
+  margin-top: 50ps;
+}
+
+.t-mt-\[50px\] {
+  margin-top: 50px;
+}
+
+.t-mb-\[50px\] {
+  margin-bottom: 50px;
+}
+
+.t-mb-\[60px\] {
+  margin-bottom: 60px;
+}
+
 .t-block {
   display: block;
 }
@@ -878,6 +894,10 @@ html > body .hidden{
 @media (min-width: 1024px) {
   .lg\:t-w-\[60\%\] {
     width: 60%;
+  }
+
+  .lg\:t-w-\[50\%\] {
+    width: 50%;
   }
 
   .lg\:t-grid-cols-5 {

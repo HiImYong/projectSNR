@@ -23,6 +23,8 @@ from base import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="main"),
+    path('aboutSNR/', views.aboutSNR, name="aboutSNR"),
+
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
     path('visitor/', include('visitor.urls')),
