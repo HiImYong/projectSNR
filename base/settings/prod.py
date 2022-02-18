@@ -5,7 +5,7 @@ DEBUG = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nginx',
+        'NAME': 'snr',
         'USER': 'sbsst',
         'PASSWORD': 'sbs123414',
         'HOST': '172.17.0.1',
