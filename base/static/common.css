@@ -513,6 +513,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 60px;
 }
 
+.t-mb-\[15px\] {
+  margin-bottom: 15px;
+}
+
 .t-block {
   display: block;
 }
@@ -690,6 +694,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.t-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .t-transition-all {
