@@ -8,7 +8,7 @@ DATABASES = {
         'NAME': 'snr',
         'PASSWORD': 'sbs123414',
         'HOST': '127.0.0.1',
-        'PORT': '3308',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             # 추가, 만약에 이 부분 때문에 오류가 난다면 삭제할 것
