@@ -16,9 +16,9 @@
                 <div class="card t-tm-3 t-bg-white t-text-black">
                     <div class="card-header ">
                         <div class="d-flex justify-content-center">
-                            <img class="fadein mt-3 t-bg-white" src="{{playerItems.thumb_img_url}}"
-                                 style="aspect-ratio: 1 / 1.1"
-                                 width="25%"></div>
+                            <img class="fadein mt-3 t-bg-white sm:t-max-w-sm" src="{{playerItems.thumb_img_url}}"
+                                 style="aspect-ratio: 1 / 1.1" width="100%"
+                                 ></div>
                         <br>
                         <div class="t-text-[10px] sm:t-text-[15px]">
                             <span class="t-text-[15px] sm:t-text-[25px]">- {{playerItems.country}} -</span><br>
@@ -181,11 +181,146 @@
             </div>
         </div>
     </div>
+</div>
+<div>
+    <span class="t-hidden" id="spanUserName">{{ user.username }}</span>
+</div>
 
-    <div></div>
-
-    {% endblock %}
+{% endblock %}
 
 
-    {% block script %}
-    {% endblock %}
+{% block script %}
+
+<script type='text/javascript'>
+
+$("#spanUserName").text() //# = 태그의 아이디로서 태그값을 가져온다.
+$(".spanVisitorAccount") //. = 태그의 클래스로서 태그값을 가져온다
+$(".spanVisitorAccount")[0].innerHTML
+
+for(i = 0; i < $(".spanVisitorAccount").length; i++){
+  if($("#spanUserName").text() == $(".spanVisitorAccount")[i].innerHTML){
+    $("#control_id"+i).removeClass("hidden");
+    $(".reviewForm").addClass("hidden");
+    $("h4").html("✅ 남겨주신 댓글에 감사드립니다.");
+
+  }
+}
+
+
+
+
+
+const onModifyReview = (id) => {
+  let showReview = document.querySelector(`.showReview${id}`);
+  let modifyReview = document.querySelector(`.modifyReview${id}`);
+  let deleteReview = document.querySelector(`.deleteReview${id}`);
+  let submitModify = document.querySelector(`.submitModify${id}`);
+  let cancelModify = document.querySelector(`.cancelModify${id}`);
+  let classInputReview = document.querySelector(`.classInputReview${id}`);
+
+  showReview.style.display = 'none';
+  modifyReview.style.display = 'none';
+  deleteReview.style.display = 'none';
+  submitModify.style.display = 'inline-block';
+  cancelModify.style.display = 'inline-block';
+  classInputReview.style.display = 'inline-block';
+
+  //classInputReview.readOnly=false;
+}
+
+// 매개변수(id)를 받아와서 내용을 수정하고 버튼 상태를 재조정한다.
+const onSubmitModify = (id) => {
+    let classInputReview = document.querySelector(`.classInputReview${id}`).value;
+    let param = {
+        'id': id,
+        'content': classInputReview
+    }
+
+    $.ajax({
+        url: '{%url 'playerReview:modifyReview' %}',
+        type: 'POST',
+        headers: {
+            'X-CSRFTOKEN': '{{csrf_token}}'
+        },
+        data: JSON.stringify(param),
+
+        // 내용 수정 완료 후 버튼 상태 변경
+        success:function(data){
+            console.log(data);
+            if(data.result=='ok') {
+            let showReview = document.querySelector(`.showReview${id}`);
+            let modifyReview = document.querySelector(`.modifyReview${id}`);
+            let deleteReview = document.querySelector(`.deleteReview${id}`);
+            let submitModify = document.querySelector(`.submitModify${id}`);
+            let cancelModify = document.querySelector(`.cancelModify${id}`);
+            let classInputReview = document.querySelector(`.classInputReview${id}`);
+
+            showReview.style.display = 'inline-block';
+            modifyReview.style.display = 'inline-block';
+            deleteReview.style.display = 'inline-block';
+            submitModify.style.display = 'none';
+            cancelModify.style.display = 'none';
+            classInputReview.style.display='none';
+
+            }
+        },
+        error: function(){
+            alert('불가');
+        }
+    });
+}
+
+
+const onDeleteReview = (id) => {
+    let param = {
+        'id': id,
+    }
+
+    $.ajax({
+        url: '{%url 'playerReview:deleteReview' %}',
+        type: 'POST',
+        headers: {
+            'X-CSRFTOKEN': '{{csrf_token}}'
+        },
+        data: JSON.stringify(param),
+
+        success:function(data){
+            if(data.result == 'ok'){
+            let reviewTr = document.querySelector(`.reviewTr${id}`);
+            reviewTr.remove;
+            alert('삭제되었습니다.')
+
+            }
+        },
+        error: function(){
+            alert('불가');
+        }
+    });
+}
+
+
+const onCancelModify = (id) => {
+  let showReview = document.querySelector(`.showReview${id}`);
+  let modifyReview = document.querySelector(`.modifyReview${id}`);
+  let deleteReview = document.querySelector(`.deleteReview${id}`);
+  let submitModify = document.querySelector(`.submitModify${id}`);
+  let cancelModify = document.querySelector(`.cancelModify${id}`);
+  let classInputReview = document.querySelector(`.classInputReview${id}`);
+
+  showReview.style.display = 'inline-block';
+  modifyReview.style.display = 'inline-block';
+  deleteReview.style.display = 'inline-block';
+  submitModify.style.display = 'none';
+  cancelModify.style.display = 'none';
+  classInputReview.style.display = 'none';
+
+  //classInputReview.readOnly=false;
+}
+
+
+
+
+
+</script>
+
+{% endblock %}

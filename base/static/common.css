@@ -489,32 +489,24 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 30px;
 }
 
-.t-mt-\[60px\] {
-  margin-top: 60px;
-}
-
-.t-ml-\[3px\] {
-  margin-left: 3px;
-}
-
-.t-mt-\[50ps\] {
-  margin-top: 50ps;
-}
-
 .t-mt-\[50px\] {
   margin-top: 50px;
 }
 
-.t-mb-\[50px\] {
-  margin-bottom: 50px;
+.t-mb-\[15px\] {
+  margin-bottom: 15px;
 }
 
 .t-mb-\[60px\] {
   margin-bottom: 60px;
 }
 
-.t-mb-\[15px\] {
-  margin-bottom: 15px;
+.t-mt-\[60px\] {
+  margin-top: 60px;
+}
+
+.t-ml-\[3px\] {
+  margin-left: 3px;
 }
 
 .t-block {
@@ -565,6 +557,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 30px;
 }
 
+.t-max-w-sm {
+  max-width: 24rem;
+}
+
+.t-max-w-\[50px\] {
+  max-width: 50px;
+}
+
+.t-max-w-\[60px\] {
+  max-width: 60px;
+}
+
+.t-max-w-\[650px\] {
+  max-width: 650px;
+}
+
+.t-max-w-\[65px\] {
+  max-width: 65px;
+}
+
 .t-flex-1 {
   flex: 1 1 0%;
 }
@@ -601,9 +613,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-bottom-width: 2px;
 }
 
+.t-border-dashed {
+  border-style: dashed;
+}
+
+.t-border-dotted {
+  border-style: dotted;
+}
+
+.t-border-double {
+  border-style: double;
+}
+
 .t-border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
+.t-border-purple-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(216 180 254 / var(--tw-border-opacity));
 }
 
 .t-bg-gray-500 {
@@ -686,6 +715,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.625;
 }
 
+.t-text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .t-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -694,11 +728,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-
-.t-text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .t-transition-all {
@@ -861,6 +890,22 @@ html > body .hidden{
 }
 
 @media (min-width: 640px) {
+  .sm\:t-max-w-sm {
+    max-width: 24rem;
+  }
+
+  .sm\:t-max-w-\[30px\] {
+    max-width: 30px;
+  }
+
+  .sm\:t-max-w-\[29px\] {
+    max-width: 29px;
+  }
+
+  .sm\:t-max-w-\[25px\] {
+    max-width: 25px;
+  }
+
   .sm\:t-grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -901,12 +946,12 @@ html > body .hidden{
 }
 
 @media (min-width: 1024px) {
-  .lg\:t-w-\[60\%\] {
-    width: 60%;
-  }
-
   .lg\:t-w-\[50\%\] {
     width: 50%;
+  }
+
+  .lg\:t-max-w-sm {
+    max-width: 24rem;
   }
 
   .lg\:t-grid-cols-5 {

@@ -6,8 +6,6 @@ app_name = 'playerReview'
 
 urlpatterns = [
     path('player/<int:parameter>', views.newPlayerReview, name='newPlayerReview'),
-    # path('player/modifyReview/', views.modifyReview, name='modifyReview'),
-    # path('racketDetail/deleteReview', views.deleteReview, name='deleteReview')
-
-
+    path('player/modifyReview/', views.modifyReview, name='modifyReview'),
+    path('racketDetail/deleteReview', views.deleteReview, name='deleteReview')
 ]

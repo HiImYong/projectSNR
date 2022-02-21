@@ -1,4 +1,7 @@
+import json
+
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, resolve_url
 
 # Create your views here.
@@ -31,3 +34,33 @@ def newPlayerReview(request, parameter):
 
     else:
         getForm = ReviewForm()
+
+
+def modifyReview(request):
+    jsonObject = json.loads(request.body)
+    getReview = PlayerReviewModel.objects.filter(id=jsonObject.get('id'))
+    context = {
+        'result': 'no'
+    }
+    if getReview is not None:
+        getReview.update(visitorReview=jsonObject.get('content'))
+        context = {
+            'result': 'ok'
+        }
+        return JsonResponse(context)
+    return JsonResponse(context)
+
+
+def deleteReview(request):
+    jsonObject = json.loads(request.body)
+    getReview = PlayerReviewModel.objects.filter(id=jsonObject.get('id'))
+    context = {
+        'result': 'no'
+    }
+    if getReview is not None:
+        getReview.delete()
+        context = {
+            'result': 'ok'
+        }
+        return JsonResponse(context)
+    return JsonResponse(context)

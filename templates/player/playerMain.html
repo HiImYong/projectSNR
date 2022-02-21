@@ -57,12 +57,13 @@
 
                 </div>
 
-                <section class="t-border t-bg-gray-100 t-border-gray-300">
+                <section class="t-border t-bg-gray-100 t-border-dashed t-border-purple-300">
 
-                    <div class="d-flex justify-content-center container mx-auto">
+                    <div class="d-flex justify-content-center t-container-lg mx-auto ">
                         <ul class="t-flex"> {%for item1 in characteristicItems%}
                             {%if item.id == item1.playerJoin_id%}
-                            <li class="t-flex-1 t-max-w-[30px]"><img src="{{item1.thumb_img_url}}" style="aspect-ratio: 1/1" class="t-block t-w-full"></li>
+                            <li class="t-flex-1 t-max-w-[65px] sm:t-max-w-[25px] " >
+                                <img src="{{item1.thumb_img_url}}" width="100%" style="aspect-ratio: 1/1" class="t-block t-w-full"></li>
                             {%else%}
 
                             {%endif%}
