@@ -37,14 +37,12 @@
 
             <select class="btn btn-warning  t-flex-grow m-1" id="sort-select" name="sort-select" style=""
                     onchange="location.href = '?searchKeyword={{request.GET.searchKeyword}}&sort=' + this.value + '&sortBrand={{request.GET.sortBrand}}';">
-                <option value="" selected disabled hidden>정렬</option>
+                <option value="" selected disabled hidden>정렬 기능</option>
                 <option class="sort-names" value="names">이름순</option>
                 <option class="sort-adminScore" value="adminScore">세나라평점순</option>
                 <option class="sort-visitorScore" value="visitorScore">사용자평점순</option>
                 <option class="sort-like" value="countLike">좋아요순</option>
-                {% if user.is_authenticated %}
-                <option class="sort-mypost t-hidden" value="?sort=mypost">좋아요 순으로 구현 예정</option>
-                {% endif %}
+
             </select>
         </div>
 

@@ -23,10 +23,11 @@
         </div>
 
         <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style=""
-                onchange="location.href = this.value;">
-            <option class="" value="/">전체정렬기능</option>
-            <option class="sort-names" value="?sort=names">이름순</option>
-            <option class="sort-like" value="?sort=countLike">좋아요순</option>
+                onchange="location.href = '?searchKeyword={{request.GET.searchKeyword}}&sort=' + this.value;">
+
+            <option value="" selected disabled hidden>정렬 기능</option>
+            <option class="sort-names" value="names">이름순</option>
+            <option class="sort-like" value="countLike">좋아요순</option>
         </select>
 
     </div>
@@ -62,8 +63,9 @@
                     <div class="d-flex justify-content-center t-container-lg mx-auto ">
                         <ul class="t-flex"> {%for item1 in characteristicItems%}
                             {%if item.id == item1.playerJoin_id%}
-                            <li class="t-flex-1 t-max-w-[65px] sm:t-max-w-[25px] " >
-                                <img src="{{item1.thumb_img_url}}" width="100%" style="aspect-ratio: 1/1" class="t-block t-w-full"></li>
+                            <li class="t-flex-1 t-max-w-[65px] sm:t-max-w-[25px] ">
+                                <img src="{{item1.thumb_img_url}}" width="100%" style="aspect-ratio: 1/1"
+                                     class="t-block t-w-full"></li>
                             {%else%}
 
                             {%endif%}
@@ -84,4 +86,9 @@
 
 
 {% block script %}
+<script>
+
+$('select[name=sort-select]').last().val('{{request.GET.sort}}');
+</script>
+
 {% endblock %}

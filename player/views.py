@@ -10,23 +10,21 @@ from playerReview.models import PlayerReviewModel
 def playerMain(request: HttpRequest):
     getSearchKeyword = request.GET.get('searchKeyword', '')
     sort = request.GET.get('sort', '')
+    getPlayers = Player.objects.order_by('name')
 
     if getSearchKeyword:
-        getPlayers = Player.objects.filter(name__icontains=getSearchKeyword).order_by('name')
+        getPlayers = getPlayers.filter(name__icontains=getSearchKeyword)
 
+    if sort == 'names':
+        getPlayers = getPlayers.order_by('name')
+    elif sort == 'countLike':
+        getPlayers = getPlayers.order_by(F('countLike').desc(nulls_last=True))
 
-    else:
-        if sort == 'names':
-            getPlayers = Player.objects.order_by('name')
-        elif sort == 'countLike':
-            getPlayers = Player.objects.order_by(F('countLike').desc(nulls_last=True))
-
-        else:
-            getPlayers = Player.objects.order_by('name')
 
     getPlayerCharacteristic = playerCharacteristic.objects.all()
     return render(request, "player/playerMain.html", {'playerItems': getPlayers,
-                                                      'characteristicItems': getPlayerCharacteristic})
+                                                      'characteristicItems': getPlayerCharacteristic
+                                                      })
 
 
 def playerDetail(request, parameter):
