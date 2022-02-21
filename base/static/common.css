@@ -597,6 +597,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
+.t-items-center {
+  align-items: center;
+}
+
 .t-gap-5 {
   gap: 1.25rem;
 }

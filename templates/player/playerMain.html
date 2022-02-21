@@ -13,7 +13,7 @@
             프로 선수의 정보를 확인해보세요. 원하는 선수에 대해 의견을 남겨보세요! 🟡✧( •̀ ω •́ )_🎾</h4></marquee>
 
     <div class="t-grid sm:t-grid-cols-2 py-2 px-2 navbar-dark bg-dark">
-        <div class="mb-2">
+        <div class="t-flex t-items-center">
             <form class="" action="{% url 'player:playerMain'%}">
                 <input class="form-control-lg t-flex-grow t-ml-[3px]" type="search" name="searchKeyword"
                        placeholder="선수 이름"
@@ -22,7 +22,7 @@
             </form>
         </div>
 
-        <select class="btn btn-dark ml-auto" id="sort-select" name="sort-select" style=""
+        <select class="btn btn-dark ml-auto t-flex-grow m-1" id="sort-select" name="sort-select" style=""
                 onchange="location.href = '?searchKeyword={{request.GET.searchKeyword}}&sort=' + this.value;">
 
             <option value="" selected disabled hidden>정렬 기능</option>
