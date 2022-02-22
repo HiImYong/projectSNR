@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     'racket.apps.RacketConfig',
     'account.apps.AccountConfig',
-    'visitor.apps.VisitorConfig',
+    'racketReview.apps.racketReviewConfig',
     'player.apps.PlayerConfig',
     'playerReview.apps.PlayerreviewConfig',
 

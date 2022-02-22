@@ -9,7 +9,7 @@ User = user_model()
 
 # Create your models here.
 
-class VisitorReview(models.Model):
+class RacketReviewModel(models.Model):
     visitorAccount = models.ForeignKey(User, on_delete=models.CASCADE)
     visitorReview = models.TextField()
     visitorRacket = models.ForeignKey(Racket, on_delete=models.CASCADE)

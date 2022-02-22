@@ -110,7 +110,7 @@
         {% endif %}
         <!-- 페이지리스트 -->
         {% for page_number in racketItems.paginator.page_range %}
-        {% if page_number >= racketItems.number|add:-5 and page_number <= racketItems.number|add:5 %}
+        {% if page_number >= racketItems.number|add:-2 and page_number <= racketItems.number|add:2 %}
 
         {% if page_number == racketItems.number %}
         <li class="page-item active" aria-current="page">

@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class VisitorConfig(AppConfig):
+class racketReviewConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'visitor'
+    name = 'racketReview'
 
     def ready(self):
         import racket.signals

@@ -3,12 +3,12 @@ from django.http import HttpRequest
 from django.shortcuts import render
 
 from racket.models import Racket
-from visitor.models import VisitorReview
+from racketReview.models import RacketReviewModel
 
 
 def index(request: HttpRequest):
     getRacket = Racket.objects.order_by('name')
-    getAvgScore = VisitorReview.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
+    getAvgScore = RacketReviewModel.objects.filter(visitorRacket_id=1).aggregate(Avg('visitorScore'))
 
     return render(request, "main.html", {'racketItems': getRacket,
                                          'racketUserScore': getAvgScore})

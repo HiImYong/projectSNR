@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Avg, Func, FloatField, F, Count
-from django.http import HttpRequest, request
+from django.http import HttpRequest
 from django.shortcuts import render, redirect, get_object_or_404
 
-import visitor.forms
+import racketReview.forms
 from racket.models import Racket, RacketDetail, RacketBrand
-from visitor.models import VisitorReview
+from racketReview.models import RacketReviewModel
 
 
 def racketMain(request: HttpRequest):
@@ -16,9 +16,6 @@ def racketMain(request: HttpRequest):
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
     getRacket = Racket.objects.order_by('name')
-
-    # product_cate_item_name, = (product_cate_item.name for product_cate_item in product_cate_items if
-    #                            product_cate_item.id == int(product_cate_item_id)) if product_cate_item_id else tuple([''])
 
     if getSearchKeyword:
         getRacket = getRacket.filter(name__icontains=getSearchKeyword)
@@ -48,9 +45,9 @@ def racketDetail(request, parameter):
     getRacketQs = Racket.objects.filter(id=parameter)
     getRacket = getRacketQs.first()
     getRacketDetail = RacketDetail.objects.filter(racket_id=parameter)
-    getReviewForm = visitor.forms.ReviewForm()
-    getReivewList = VisitorReview.objects.filter(visitorRacket_id=parameter)
-    getAvgScore = VisitorReview.objects.filter(visitorRacket_id=parameter).aggregate(Avg('visitorScore'))
+    getReviewForm = racketReview.forms.ReviewForm()
+    getReivewList = RacketReviewModel.objects.filter(visitorRacket_id=parameter)
+    getAvgScore = RacketReviewModel.objects.filter(visitorRacket_id=parameter).aggregate(Avg('visitorScore'))
 
     return render(request, 'racket/racketDetail.html', {'racketItems': getRacket,
                                                         'racketDetailItems': getRacketDetail,

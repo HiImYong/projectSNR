@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import VisitorReview
+from .models import RacketReviewModel
 
 
 # class ReviewForm(ModelForm):

@@ -121,7 +121,7 @@
                         <div id="confirm-box">별을 눌러서 점수를 매겨주세요!</div>
 
 
-                        <form action="{% url 'visitor:newReview' racketItems.id %}" method="POST">
+                        <form action="{% url 'racketReview:newReview' racketItems.id %}" method="POST">
 
                             {%csrf_token%}
 
@@ -280,7 +280,7 @@ const onSubmitModify = (id) => {
     }
 
     $.ajax({
-        url: '{%url 'visitor:modifyReview' %}',
+        url: '{%url 'racketReview:modifyReview' %}',
         type: 'POST',
         headers: {
             'X-CSRFTOKEN': '{{csrf_token}}'
@@ -320,7 +320,7 @@ const onDeleteReview = (id) => {
     }
 
     $.ajax({
-        url: '{%url 'visitor:deleteReview' %}',
+        url: '{%url 'racketReview:deleteReview' %}',
         type: 'POST',
         headers: {
             'X-CSRFTOKEN': '{{csrf_token}}'

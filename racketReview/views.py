@@ -8,8 +8,8 @@ from django.views.decorators.http import require_POST
 
 from player.models import Player
 from racket.models import Racket
-from visitor.forms import ReviewForm
-from visitor.models import VisitorReview
+from racketReview.forms import ReviewForm
+from racketReview.models import RacketReviewModel
 
 
 @require_POST
@@ -21,8 +21,8 @@ def newReview(request, parameter):
             savedText = getForm.cleaned_data['visitorReview']
             savedScore = getForm.cleaned_data['visitorScore']
 
-            VisitorReview.objects.create(visitorAccount=request.user, visitorReview=savedText,
-                                         visitorRacket_id=parameter, visitorScore=savedScore)
+            RacketReviewModel.objects.create(visitorAccount=request.user, visitorReview=savedText,
+                                             visitorRacket_id=parameter, visitorScore=savedScore)
             messages.success(request, "리뷰가 등록되었습니다")
             return redirect('{}#anchor{}'.format(resolve_url('racket:racketDetail', parameter=parameter), 9999))
 
@@ -35,7 +35,7 @@ def newReview(request, parameter):
 
 def modifyReview(request):
     jsonObject = json.loads(request.body)
-    getReview = VisitorReview.objects.filter(id=jsonObject.get('id'))
+    getReview = RacketReviewModel.objects.filter(id=jsonObject.get('id'))
     context = {
         'result': 'no'
     }
@@ -50,7 +50,7 @@ def modifyReview(request):
 
 def deleteReview(request):
     jsonObject = json.loads(request.body)
-    getReview = VisitorReview.objects.filter(id=jsonObject.get('id'))
+    getReview = RacketReviewModel.objects.filter(id=jsonObject.get('id'))
     context = {
         'result': 'no'
     }
@@ -61,6 +61,3 @@ def deleteReview(request):
         }
         return JsonResponse(context)
     return JsonResponse(context)
-
-
-
