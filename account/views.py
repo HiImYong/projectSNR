@@ -12,7 +12,7 @@ from account.models import User
 
 def logOut(request: HttpRequest):
     messages.success(request, "로그아웃 되었습니다.")
-    return logout_then_login(request, login_url='/racket')
+    return logout_then_login(request, login_url='/')
 
 
 def kakaoLogin(request: HttpRequest):

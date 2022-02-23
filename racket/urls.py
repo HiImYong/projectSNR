@@ -6,7 +6,7 @@ app_name = 'racket'
 
 urlpatterns = [
     path('', views.racketMain, name='racketMain'),
-    path('racketDetail/<int:parameter>', views.racketDetail, name='racketDetail'),
-    path('like/racket/<int:parameter>/', views.like, name='like'),
+    path('racketDetail/<parameter>', views.racketDetail, name='racketDetail'),
+    path('like/racket/<parameter>/', views.like, name='like'),
 
 ]

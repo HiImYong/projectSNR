@@ -71,7 +71,7 @@
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
                     <ul>
-                        <li> {{item.RacketBrand.name}} ({{item.regDateInt}}년형)<br> - {{item.name}}</li>
+                        <li> {{item.RacketBrand.name}} ({{item.weight}}gram)<br> - {{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>

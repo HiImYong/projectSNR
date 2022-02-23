@@ -1,3 +1,4 @@
+import requests
 from django.db.models import Avg
 from django.http import HttpRequest
 from django.shortcuts import render
@@ -15,4 +16,8 @@ def index(request: HttpRequest):
 
 
 def aboutSNR(request: HttpRequest):
+    r = requests.get('https://api.racketlogger.com/rackets')
+    data = r.json()
+    for ele in data:
+        print(ele['brand'])
     return render(request, "about/aboutSNR.html", {})

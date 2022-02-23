@@ -7,29 +7,20 @@
     <meta charset="UTF-8">
     <title>세상에 나쁜 라켓은 없다</title>
     <!--bootstrap.min.js 는 jquery-3.0.0.min.js를 필요로 하므로 jquery-3.0.0.min.js를 먼저 적어주어야 한다. 순서에 유의-->
-    <!-- jQuery JS -->
     <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
-    <!-- pybo CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'common.css' %}">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
     <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">-->
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="fontawesome-stars.css">
-
     <script src="{%static 'star.js'%}" defer></script>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
-
 
 </head>
 
@@ -57,7 +48,6 @@
                 <a class="nav-link" href="{%url 'player:playerMain'%}" tabindex="-1" aria-disabled="true">선수도감</a>
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">스트링</a>
                 <a class="nav-link " href="{%url 'aboutSNR'%}" aria-disabled="true">About 세나라</a>
-
             </div>
         </div>
     </div>

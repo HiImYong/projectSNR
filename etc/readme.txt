@@ -86,5 +86,12 @@ arr.forEach(item=> item.addEventListener('click', (event)=>{
     }))
 }
 
+필요사항
+필로우
+마이에스큐엘클라이언트
+장고익스텐션
 
-
+#https://dreampuf.github.io/GraphvisOnline
+./manage.py graph_models -a >my_project.dot
+ ./manage.py graph_models -a > graph_models.dot
+ ./manage.py graph_models -a > graph_models.dot

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
 
     # 'racketstring.apps.RacketString',
 
-    'django_bootstrap5',
+    #'django_bootstrap5',
+    'django_extensions',
 
 ]
 
@@ -168,3 +169,8 @@ CSRF_TRUSTED_ORIGINS = ['https://tennis.uyong.site', 'https://cdpn.io']
 
 # 이거 안하면 외부에서 이 서버의 API를 사용하지 못합니다.
 CORS_ORIGIN_WHITELIST = CSRF_TRUSTED_ORIGINS
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
