@@ -46,7 +46,7 @@ def gen_master(apps, schema_editor):
                headsize=element['head_size'],
                stiffness=element['stiffness'], length=27, balance=element['balance'],
                visitorAvgScore=0, countLike=0,
-               brand_id=[checkbrand]).save()
+               brand_id=checkbrand).save()
 
 
 class Migration(migrations.Migration):

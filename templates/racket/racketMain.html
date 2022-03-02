@@ -50,7 +50,7 @@
     </div>
 
     <section class="t-block section-racket-list t-bg-gray-200 pt-4">
-        <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-5 t-gap-5">
+        <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-6 t-gap-5">
             {%for item in racketItems%}
             <li class="t-group">
                 {% if item.countLike %}
@@ -64,14 +64,16 @@
                 {% endif %}
                 <a href="{%url 'racket:racketDetail' item.id%}"
                    class="t-block t-block overflow-hidden ">
-                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1"
-                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all group-hover:t-border-yellow-600 group-hover:t-border-4  ">
+                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 0.84 / 1"
+                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all
+                         group-hover:t-border-yellow-600 group-hover:t-border-4"
+                    onerror="this.src='https://i.imgur.com/ziktI49.png'">
                 </a>
 
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
                     <ul>
-                        <li> {{item.RacketBrand.name}} ({{item.weight}}gram)<br> - {{item.name}}</li>
+                        <li> {{item.brand.name}} ({{item.weight}}gram)<br> ＊{{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>

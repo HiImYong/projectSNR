@@ -35,7 +35,7 @@ def racketMain(request: HttpRequest):
     elif sort == 'countLike':
         getRacket = getRacket.order_by(F('countLike').desc(nulls_last=True))
 
-    paginator = Paginator(getRacket, 10)  # 페이지당 10개씩 보여주기
+    paginator = Paginator(getRacket, 12)  # 페이지당 10개씩 보여주기
     getRacket = paginator.get_page(page)
     return render(request, "racket/racketMain.html", {'racketItems': getRacket,
                                                       'racketBrandItems': getBrand})

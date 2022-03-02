@@ -476,10 +476,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: 0;
 }
 
-.t-z-\[-1\] {
-  z-index: -1;
-}
-
 .t-z-\[10\] {
   z-index: 10;
 }
@@ -561,26 +557,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100px;
 }
 
-.t-max-w-\[30px\] {
-  max-width: 30px;
-}
-
-.t-max-w-sm {
-  max-width: 24rem;
-}
-
-.t-max-w-\[50px\] {
-  max-width: 50px;
-}
-
-.t-max-w-\[60px\] {
-  max-width: 60px;
-}
-
-.t-max-w-\[650px\] {
-  max-width: 650px;
-}
-
 .t-max-w-\[65px\] {
   max-width: 65px;
 }
@@ -627,14 +603,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .t-border-dashed {
   border-style: dashed;
-}
-
-.t-border-dotted {
-  border-style: dotted;
-}
-
-.t-border-double {
-  border-style: double;
 }
 
 .t-border-gray-300 {
@@ -709,14 +677,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 20px;
 }
 
-.t-text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .t-text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.t-text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .t-leading-normal {
@@ -906,14 +874,6 @@ html > body .hidden{
     max-width: 24rem;
   }
 
-  .sm\:t-max-w-\[30px\] {
-    max-width: 30px;
-  }
-
-  .sm\:t-max-w-\[29px\] {
-    max-width: 29px;
-  }
-
   .sm\:t-max-w-\[25px\] {
     max-width: 25px;
   }
@@ -962,10 +922,6 @@ html > body .hidden{
     width: 50%;
   }
 
-  .lg\:t-max-w-sm {
-    max-width: 24rem;
-  }
-
   .lg\:t-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -1004,8 +960,8 @@ html > body .hidden{
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 
-  .xl\:t-grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .xl\:t-grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .xl\:t-text-\[70px\] {
