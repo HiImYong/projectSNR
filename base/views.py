@@ -21,3 +21,5 @@ def aboutSNR(request: HttpRequest):
     for ele in data:
         print(ele['brand'])
     return render(request, "about/aboutSNR.html", {})
+
+

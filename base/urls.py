@@ -25,11 +25,13 @@ urlpatterns = [
     path('', views.index, name="main"),
     path('aboutSNR/', views.aboutSNR, name="aboutSNR"),
 
+
     path('racket/', include('racket.urls')),
     path('account/', include('account.urls')),
     path('racketReview/', include('racketReview.urls')),
     path('player/', include('player.urls')),
-    path('playerReview/', include('playerReview.urls'))
+    path('playerReview/', include('playerReview.urls')),
+    path('feedbackSNR/', include('feedback.urls')),
 
 ]
 

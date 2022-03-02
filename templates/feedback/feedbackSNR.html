@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+
+
+<div>
+    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+        피드백<br></h1>
+
+
+    <div class="d-flex justify-content-center t-mt-[50px]  t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+        서비스 이용 중 문제가 되는 부분이나 건의사항, 문의는 아래에 작성해 주시기 바랍니다.
+    </div>
+    <br>
+    <div class="d-flex justify-content-center t-mb-[15px] t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">등록되지 않은 라켓이나
+        선수 요청시 추가해드립니다.
+    </div>
+    <div class="d-flex justify-content-center t-mb-[60px] t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">잘못된 정보에 대해서
+        수정요청 또한 검토 후 적용해 드리겠습니다.
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <div class="reviewForm">
+        <form action="{% url 'feedback:feedbackSNR'%}" method="POST">
+            {%csrf_token%}
+            <div>질문 등록</div>
+
+            <textarea class="form-control t-inline-block" name="content" id="exampleFormControlTextarea1" rows="4"
+                      maxlength="200"></textarea>
+            <div class="mx-auto t-text-right" >
+                <button type="submit" class="btn btn-success my-2 reviewSubmit t-block ">
+                    제출
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<div>
+    <table class="table table-hover container t-text-[8px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
+        <thead class="my-4">
+        <caption class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">비방성, 광고성 등
+            취지와 관계없는 글은 안내없이 삭제될 수 있습니다.
+        </caption>
+
+        <tr class="table-info ">
+            <th style="width:70% font-size:50%"
+                class="table-info">질문
+            </th>
+            <th style="width:20%" class="table-info ">
+                날짜
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {%for question in questions%}
+
+        <tr>
+            <td>
+                {{question.content}}
+            </td>
+            <td>
+                {{question.reg_date|date:'y-m-d'}}
+            </td>
+        </tr>
+        {%endfor%}
+        </tbody>
+
+    </table>
+
+
+</div>
+{%endblock%}
+
+
+{% block script %}
+
+
+{% endblock %}

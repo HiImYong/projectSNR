@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'racketReview.apps.racketReviewConfig',
     'player.apps.PlayerConfig',
     'playerReview.apps.PlayerreviewConfig',
+    'feedback.apps.FeedbackConfig',
 
     # 'racketstring.apps.RacketString',
 

@@ -493,6 +493,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 30px;
 }
 
+.t-mt-\[100px\] {
+  margin-top: 100px;
+}
+
+.t-mt-\[150px\] {
+  margin-top: 150px;
+}
+
 .t-mt-\[50px\] {
   margin-top: 50px;
 }
@@ -653,6 +661,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: center;
 }
 
+.t-text-right {
+  text-align: right;
+}
+
 .t-text-\[30px\] {
   font-size: 30px;
 }
@@ -685,6 +697,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.t-text-\[8px\] {
+  font-size: 8px;
 }
 
 .t-leading-normal {
@@ -846,6 +862,10 @@ html > body .hidden{
   content: " ";
 }
 
+.table tr,td {
+  text-align: center;
+}
+
 .t-group:hover .group-hover\:t-block {
   display: block;
 }
@@ -894,16 +914,16 @@ html > body .hidden{
     font-size: 40px;
   }
 
+  .sm\:t-text-\[12px\] {
+    font-size: 12px;
+  }
+
   .sm\:t-text-\[15px\] {
     font-size: 15px;
   }
 
   .sm\:t-text-\[25px\] {
     font-size: 25px;
-  }
-
-  .sm\:t-text-\[12px\] {
-    font-size: 12px;
   }
 
   .sm\:t-text-\[20px\] {
@@ -942,12 +962,12 @@ html > body .hidden{
     font-size: 45px;
   }
 
-  .lg\:t-text-\[50px\] {
-    font-size: 50px;
-  }
-
   .lg\:t-text-\[13px\] {
     font-size: 13px;
+  }
+
+  .lg\:t-text-\[50px\] {
+    font-size: 50px;
   }
 
   .lg\:t-text-\[25px\] {
@@ -968,12 +988,12 @@ html > body .hidden{
     font-size: 70px;
   }
 
-  .xl\:t-text-\[50px\] {
-    font-size: 50px;
-  }
-
   .xl\:t-text-\[15px\] {
     font-size: 15px;
+  }
+
+  .xl\:t-text-\[50px\] {
+    font-size: 50px;
   }
 }
 
