@@ -46,8 +46,7 @@
 <div>
     <table class="table table-hover container t-text-[8px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">
         <thead class="my-4">
-        <caption class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">비방성, 광고성 등
-            취지와 관계없는 글은 안내없이 삭제될 수 있습니다.
+        <caption class="t-text-[10px] sm:t-text-[12px] lg:t-text-[13px] xl:t-text-[15px]">질의와 상관 없는 글은 안내없이 삭제될 수 있습니다.
         </caption>
 
         <tr class="table-info ">
@@ -62,6 +61,7 @@
 
         <tbody>
         {%for question in questions%}
+        {%if question.visitorAccount == user.providerAccountsId%}
 
         <tr>
             <td>
@@ -71,6 +71,7 @@
                 {{question.reg_date|date:'y-m-d'}}
             </td>
         </tr>
+        {%endif%}
         {%endfor%}
         </tbody>
 
