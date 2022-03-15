@@ -1,4 +1,4 @@
-console.log("hello~~~~~");
+console.log("welcomeSNR");
 
 const one = document.getElementById('first')
 const two = document.getElementById('second')
