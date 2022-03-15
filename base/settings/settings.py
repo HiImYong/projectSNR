@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # 'racketstring.apps.RacketString',
 
     #'django_bootstrap5',
-    'django_extensions',
+    # 'django_extensions',
 
 ]
 
