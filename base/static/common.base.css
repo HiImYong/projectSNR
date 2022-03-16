@@ -157,3 +157,13 @@ html > body .hidden{
 text-align: center;
 }
 
+.racketlist{
+  color : black;
+  text-decoration: none;
+}
+
+.racketlist:hover{
+  color : red;
+  text-decoration: none;
+
+}

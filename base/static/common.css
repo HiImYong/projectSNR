@@ -549,6 +549,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 22px;
 }
 
+.t-h-\[80px\] {
+  height: 80px;
+}
+
+.t-h-\[100px\] {
+  height: 100px;
+}
+
+.t-h-\[300px\] {
+  height: 300px;
+}
+
 .t-w-\[22px\] {
   width: 22px;
 }
@@ -565,6 +577,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100px;
 }
 
+.t-w-\[60px\] {
+  width: 60px;
+}
+
+.t-w-\[80px\] {
+  width: 80px;
+}
+
 .t-max-w-\[65px\] {
   max-width: 65px;
 }
@@ -577,8 +597,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-grow: 1;
 }
 
+.t-grid-flow-row {
+  grid-auto-flow: row;
+}
+
 .t-grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.t-grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .t-items-center {
@@ -589,8 +617,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.25rem;
 }
 
+.t-overflow-auto {
+  overflow: auto;
+}
+
 .t-whitespace-nowrap {
   white-space: nowrap;
+}
+
+.t-whitespace-pre-wrap {
+  white-space: pre-wrap;
 }
 
 .t-rounded-full {
@@ -603,6 +639,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .t-border {
   border-width: 1px;
+}
+
+.t-border-2 {
+  border-width: 2px;
 }
 
 .t-border-b-2 {
@@ -677,6 +717,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 25px;
 }
 
+.t-text-\[8px\] {
+  font-size: 8px;
+}
+
 .t-text-\[10px\] {
   font-size: 10px;
 }
@@ -699,8 +743,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 2.25rem;
 }
 
-.t-text-\[8px\] {
-  font-size: 8px;
+.t-text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.t-font-bold {
+  font-weight: 700;
 }
 
 .t-leading-normal {
@@ -724,6 +773,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
+.t-text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
 .t-transition-all {
@@ -866,6 +920,16 @@ html > body .hidden{
   text-align: center;
 }
 
+.racketlist{
+  color : black;
+  text-decoration: none;
+}
+
+.racketlist:hover{
+  color : red;
+  text-decoration: none;
+}
+
 .t-group:hover .group-hover\:t-block {
   display: block;
 }
@@ -996,4 +1060,3 @@ html > body .hidden{
     font-size: 50px;
   }
 }
-

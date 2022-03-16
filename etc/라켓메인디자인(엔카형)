@@ -30,7 +30,7 @@
                     onchange="location.href  = '?searchKeyword={{request.GET.searchKeyword}}&sortBrand=' + this.value + '&sort={{request.GET.sort}}';">
                 {%for item in racketBrandItems%}
                 <option value="" selected disabled hidden>라켓 브랜드별 검색</option>
-                <option class="" value="{{item.id}}"><a href="?sortBrand{{item.id}}">{{item.k_name}}</a></option>
+                <option class="" value="{{item.id}}"><a href="?sortBrand{{item.id}}">{{item.name}}</a></option>
                 {%endfor%}
 
             </select>
@@ -73,7 +73,7 @@
 
                 <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
                     <ul>
-                        <li> {{item.brand.k_name}}<br> [ {{item.k_name}} ]<br> (스트링 포함 {{item.weight}}gr)</li>
+                        <li> {{item.brand.name}} ({{item.weight}}gram)<br> ＊{{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>

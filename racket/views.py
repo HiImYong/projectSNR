@@ -15,19 +15,19 @@ def racketMain(request: HttpRequest):
     sortBrandId = request.GET.get('sortBrand', '')
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
-    getRacket = Racket.objects.order_by('name')
+    getRacket = Racket.objects.order_by('k_name')
 
     if getSearchKeyword:
-        getRacket = getRacket.filter(name__icontains=getSearchKeyword)
+        getRacket = getRacket.filter(k_name__icontains=getSearchKeyword)
 
     if getSearchKeyword and not sortBrandId:
-        getRacket = getRacket.filter(name__icontains=getSearchKeyword)
+        getRacket = getRacket.filter(k_name__icontains=getSearchKeyword)
 
     if sortBrandId:
         getRacket = getRacket.filter(brand_id=sortBrandId)
 
     if sort == 'names':
-        getRacket = getRacket.order_by('name')
+        getRacket = getRacket.order_by('k_name')
     elif sort == 'adminScore':
         getRacket = getRacket.order_by(F('detail__adminAvgScore').desc(nulls_last=True))
     elif sort == 'visitorScore':

@@ -30,7 +30,7 @@
                     onchange="location.href  = '?searchKeyword={{request.GET.searchKeyword}}&sortBrand=' + this.value + '&sort={{request.GET.sort}}';">
                 {%for item in racketBrandItems%}
                 <option value="" selected disabled hidden>라켓 브랜드별 검색</option>
-                <option class="" value="{{item.id}}"><a href="?sortBrand{{item.id}}">{{item.k_name}}</a></option>
+                <option class="" value="{{item.id}}"><a href="?sortBrand{{item.id}}">{{item.name}}</a></option>
                 {%endfor%}
 
             </select>
@@ -49,7 +49,59 @@
 
     </div>
 
-    <section class="t-block section-racket-list t-bg-gray-200 pt-4">
+
+
+
+<section class="t-block section-racket-list t-bg-gray-200 py-4">
+
+        {%for item in racketItems%}
+    <a href="{%url 'racket:racketDetail' item.id%}"
+                   class="racketlist t-block overflow-hidden  t-transition-all group-hover:t-border-yellow-600 group-hover:t-border-4">
+    <div class="t-grid sm:t-grid-cols-2 my-2">
+    <div class="t-flex t-h-[80px] t-border-2 t-bg-white ml-4 px-3">
+
+            <div class="my-auto t-border-2 t-inline-block t-w-[80px] t-w-full" >
+                <img src="{{item.thumb_img_url}}" class="block"
+                     width=60px style="aspect-ratio: 0.84 / 1"></div>
+            <div class="t-grid-flow-row  my-auto ml-3 t-font-bold t-text-xl">{{item.brand.name}}</div>
+            <div class="my-auto ml-3 t-font-bold t-text-3xl">
+                {{item.name}}
+            </div>
+
+
+    </div>
+
+
+        <div class="t-grid t-grid-cols-2 t-bg-gray-300 t-h-[80px] t-border-2 t-bg-white mr-4  px-3">
+
+            <div class="my-auto mx-auto t-text-xl">
+                세나라 평점 :
+                            {% if item.detail.adminAvgScore %}
+                            <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>
+                            {% else %}
+                            <span class="t-text-red-500">[ 평가전 ]</span>
+                            {% endif %}
+            </div>
+            <div class="my-auto mx-auto t-text-xl">
+                사용자 평점 :
+                            {% if item.visitorAvgScore %}
+                            <span class="t-text-red-500">[ {{item.visitorAvgScore|floatformat:"1"}} ]</span></li>
+                        {% else %}
+                        <span class="t-text-red-500">[ 평가전 ]</span>
+                        {% endif %}
+            </div>
+
+        </div>
+
+
+        </div>
+{% endfor %}
+        </a>
+    </section>
+
+
+
+<section class="t-block section-racket-list t-bg-gray-200 pt-4">
         <ul class="t-grid sm:t-grid-cols-2 md:t-grid-cols-3 lg:t-grid-cols-4 xl:t-grid-cols-6 t-gap-5">
             {%for item in racketItems%}
             <li class="t-group">
@@ -63,7 +115,7 @@
                 </div>
                 {% endif %}
                 <a href="{%url 'racket:racketDetail' item.id%}"
-                   class="t-block t-block overflow-hidden ">
+                   class="t-block overflow-hidden ">
                     <img src="{{item.thumb_img_url}}" style="aspect-ratio: 0.84 / 1"
                          class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all
                          group-hover:t-border-yellow-600 group-hover:t-border-4"
@@ -71,9 +123,9 @@
                 </a>
 
 
-                <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px]">
+                <div class="d-flex justify-content-center t-bg-gray-300 t-text-[15px] t-overflow-auto">
                     <ul>
-                        <li> {{item.brand.k_name}}<br> [ {{item.k_name}} ]<br> (스트링 포함 {{item.weight}}gr)</li>
+                        <li> {{item.brand.name}} ({{item.weight}}gram)<br> ＊{{item.name}}</li>
                         <li>세나라 평점 :
                             {% if item.detail.adminAvgScore %}
                             <span class="t-text-red-500">[ {{item.detail.adminAvgScore|floatformat:"1"}} ]</span>
