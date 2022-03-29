@@ -811,7 +811,7 @@ class Racket(models.Model):
 
 
         img_name = img_names[self.name]
-        return f"https://raw.githubusercontent.com/HiImYong/snrPictures/master/{img_name}.jpg"
+        return f"/static/pictures/{img_name}.jpg"
 
 
 class RacketDetail(models.Model):

@@ -47,7 +47,7 @@ const handleSelect = (selection) => {
         }
     }
 }
-////////////////////////////////////////////////////////////////////////// 선택한 것에 따른 점수
+////////////////////////////////////////////////////////////////////////// 선택한 것에 따른 점수 변경
 
 const getNumericValue = (stringValue) => {
     let numericValue;
@@ -80,10 +80,10 @@ if (one) {  //1. 만약 one 변수가 있다면
     const arr = [one, two, three, four, five] // 2. 행렬을 만들어준다.
 
     arr.forEach(item=> item.addEventListener('mouseover', (event)=>{ //3. 마우스 오버에 대한 별 색상 변경 이벤트
-        handleSelect(event.target.id)
+        handleSelect(event.target.id) // 누른 타켓의 아이디로 handleSelect 함수 실행
     }))
 
-    arr.forEach(item=> item.addEventListener('click', (event)=>{ //4. 별을 클릭했을 때 발생하는 이벤트
+    arr.forEach(item=> item.addEventListener('click', (event)=>{ //4. 각 행렬의 별을 클릭했을 때 발생하는 이벤트
         const val = event.target.id
 
         let isSubmit = false // 5. isSubmit 변수 선언. 현재 별점이 제출 되었는지 여부 판단

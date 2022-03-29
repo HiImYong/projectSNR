@@ -46,11 +46,15 @@
             <div class="navbar-nav">
                 <a class="nav-link" aria-current="page" href="{%url 'racket:racketMain'%}">라켓</a>
                 <a class="nav-link" href="{%url 'player:playerMain'%}" tabindex="-1" aria-disabled="true">선수도감</a>
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">스트링</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" title="곧 오픈 예정입니다.">스트링</a>
+                <a class="nav-link" href="{%url 'article:articleMain'%}" tabindex="-1" aria-disabled="true">자유게시판</a>
+
                 {% if user.is_authenticated %}
                 <a href="{%url 'feedback:feedbackSNR'%}" class=" nav-link text-yellow-200">피드백</a>
                 {%endif%}
+
                 <a class="nav-link " href="{%url 'aboutSNR'%}" aria-disabled="true">About 세나라</a>
+
             </div>
         </div>
     </div>

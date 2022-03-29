@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+
+<h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+    자유게시판</h1>
+<marquee scrollamount=8>
+    <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+        비방성, 광고성 등 취지와 맞지 않는 글은 삭제될 수 있습니다.</h4></marquee>
+<div class="t-mx-auto">
+    <form method="post" class="form" action="">
+        {%csrf_token%}
+        질문 제목 :
+        <input type="text" name="articleSubject" class="border">
+        질문 내용 :
+        <input type="text" name="articleContent" class="border">
+        <button type="submit" class="btn btn-primary">제출하기</button>
+    </form>
+</div>
+
+{% endblock %}

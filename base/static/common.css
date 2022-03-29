@@ -485,6 +485,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.75rem;
 }
 
+.t-mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .t-mb-9 {
   margin-bottom: 2.25rem;
 }
@@ -497,8 +502,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 100px;
 }
 
-.t-mt-\[150px\] {
-  margin-top: 150px;
+.t-mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .t-mt-\[50px\] {
@@ -549,22 +554,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 22px;
 }
 
-.t-h-\[80px\] {
-  height: 80px;
-}
-
-.t-h-\[100px\] {
-  height: 100px;
-}
-
-.t-h-\[300px\] {
-  height: 300px;
-}
-
-.t-w-\[22px\] {
-  width: 22px;
-}
-
 .t-w-\[100\%\] {
   width: 100%;
 }
@@ -573,16 +562,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+.t-w-\[30px\] {
+  width: 30px;
+}
+
+.t-w-\[22px\] {
+  width: 22px;
+}
+
 .t-w-\[100px\] {
   width: 100px;
-}
-
-.t-w-\[60px\] {
-  width: 60px;
-}
-
-.t-w-\[80px\] {
-  width: 80px;
 }
 
 .t-max-w-\[65px\] {
@@ -597,16 +586,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-grow: 1;
 }
 
-.t-grid-flow-row {
-  grid-auto-flow: row;
-}
-
 .t-grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.t-grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .t-items-center {
@@ -617,32 +598,28 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.25rem;
 }
 
-.t-overflow-auto {
-  overflow: auto;
-}
-
 .t-whitespace-nowrap {
   white-space: nowrap;
-}
-
-.t-whitespace-pre-wrap {
-  white-space: pre-wrap;
-}
-
-.t-rounded-full {
-  border-radius: 9999px;
 }
 
 .t-rounded {
   border-radius: 0.25rem;
 }
 
-.t-border {
-  border-width: 1px;
+.t-rounded-full {
+  border-radius: 9999px;
+}
+
+.t-rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .t-border-2 {
   border-width: 2px;
+}
+
+.t-border {
+  border-width: 1px;
 }
 
 .t-border-b-2 {
@@ -653,6 +630,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-style: dashed;
 }
 
+.t-border-red-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(239 68 68 / var(--tw-border-opacity));
+}
+
 .t-border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -661,6 +643,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-border-purple-300 {
   --tw-border-opacity: 1;
   border-color: rgb(216 180 254 / var(--tw-border-opacity));
+}
+
+.t-border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
 .t-bg-gray-500 {
@@ -686,6 +673,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.t-object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .t-object-cover {
@@ -717,6 +709,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 25px;
 }
 
+.t-text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .t-text-\[8px\] {
   font-size: 8px;
 }
@@ -733,23 +730,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 20px;
 }
 
-.t-text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .t-text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
-}
-
-.t-text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
-.t-font-bold {
-  font-weight: 700;
 }
 
 .t-leading-normal {
@@ -765,6 +748,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.t-text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
 .t-text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -775,9 +763,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
-.t-text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity));
+.t-underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .t-transition-all {

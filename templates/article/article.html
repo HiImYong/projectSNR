@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+
+
+    <h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+        자유게시판</h1>
+    <marquee scrollamount=8>
+        <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+            테니스에 관련된 이야기를 자유롭게 나눠보세요 (￣ ▽￣)╭🧡（*＾-＾*）</h4></marquee>
+
+
+<div class="container t-mx-auto">
+    <table class="t-w-full table table-striped table-hover t-border-2 t-border-red-500">
+        <thead class="">
+        <tr class="">
+            <th class="t-text-center">글번호</th>
+            <th class="t-text-center">제목</th>
+            <th class="t-text-center">작성자</th>
+            <th class="t-text-center">등록일</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%if articleItems%}
+        {%for item in articleItems%}
+        <tr>
+            <td>{{item.id}}</td>
+            <td><a href="{%url 'article:articleContent' item.id%}">{{item.subject}}</a></td>
+            <td><img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+                                     src="{{ item.visitorAccount.profile_img.url }}"/></td>
+            <td>{{item.regDate}}</td>
+        </tr>
+
+        {%endfor%}
+        {%endif%}
+        </tbody>
+    </table>
+
+</div>
+<div class="container t-mx-auto t-mb-3">
+<a href="{% url 'article:articleCreate'%}" class="btn btn-primary">질문등록</a>
+</div>
+
+
+{% endblock %}

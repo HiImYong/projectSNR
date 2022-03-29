@@ -37,7 +37,7 @@
 
             <select class="btn btn-dark  t-flex-grow m-1" id="sort-select" name="sort-select" style=""
                     onchange="location.href = '?searchKeyword={{request.GET.searchKeyword}}&sort=' + this.value + '&sortBrand={{request.GET.sortBrand}}';">
-                <option value="" selected disabled hidden>정렬 기능</option>
+                <option value="" selected disabled hidden>정렬</option>
                 <option class="sort-names" value="names">이름순</option>
                 <option class="sort-adminScore" value="adminScore">세나라평점순</option>
                 <option class="sort-visitorScore" value="visitorScore">사용자평점순</option>
@@ -63,9 +63,9 @@
                 </div>
                 {% endif %}
                 <a href="{%url 'racket:racketDetail' item.id%}"
-                   class="t-block t-block overflow-hidden ">
-                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 0.84 / 1"
-                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-transition-all
+                   class="t-block overflow-hidden ">
+                    <img src="{{item.thumb_img_url}}" style="aspect-ratio: 1 / 1"
+                         class="t-border t-border-gray-300 t-bg-white t-w-full block t-object-contain t-transition-all
                          group-hover:t-border-yellow-600 group-hover:t-border-4"
                     onerror="this.src='https://i.imgur.com/ziktI49.png'">
                 </a>

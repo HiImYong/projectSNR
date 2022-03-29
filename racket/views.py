@@ -15,7 +15,7 @@ def racketMain(request: HttpRequest):
     sortBrandId = request.GET.get('sortBrand', '')
     sort = request.GET.get('sort', '')
     page = request.GET.get('page', '1')
-    getRacket = Racket.objects.order_by('k_name')
+    getRacket = Racket.objects.order_by('name')
 
     if getSearchKeyword:
         getRacket = getRacket.filter(k_name__icontains=getSearchKeyword)

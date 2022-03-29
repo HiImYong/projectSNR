@@ -16,10 +16,10 @@ def index(request: HttpRequest):
 
 
 def aboutSNR(request: HttpRequest):
-    r = requests.get('https://api.racketlogger.com/rackets')
-    data = r.json()
-    for ele in data:
-        print(ele['brand'])
+    # r = requests.get('https://api.racketlogger.com/rackets')
+    # data = r.json()
+    # for ele in data:
+    #     print(ele['brand'])
     return render(request, "about/aboutSNR.html", {})
 
 

@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% load static%}
+
+{% block content %}
+
+
+<h1 class="d-flex justify-content-center mt-7 t-text-[30px] sm:t-text-[50px] lg:t-text-[60px] xl:t-text-[70px] bannerfont">
+    자유게시판</h1>
+<marquee scrollamount=8>
+    <h4 class="mt-4 t-mb-9 t-text-[11px] sm:t-text-[13px] lg:t-text-[15px]">
+        테니스에 관련된 이야기를 자유롭게 나눠보세요 (￣ ▽￣)╭🧡（*＾-＾*）</h4></marquee>
+<div>
+    {%if articleItems%}
+    <div class="container t-border-2 t-border-red-500">
+        <div class="">
+            <div class="t-text-2xl t-rounded-sm t-inline-block">제목 :</div>
+            <div class="mt-2 t-underline t-text-2xl t-inline-block">&nbsp{{articleItems.subject}}</div>
+        </div>
+        <div class="my-2 ml-1">내용 : {{articleItems.content}}</div>
+        <div class="ml-1">작성자 : {{articleItems.visitorAccount.name}}</div>
+        <div class="my-2 ml-1">작성일자 : {{articleItems.regDate}}</div>
+    </div>
+    {%endif%}
+
+    <hr style="width:90%;border: solid lightgray 1px" class="mx-auto">
+
+    {%if replyItems%}
+    {%for item in replyItems%}
+    <div class="container t-border-2 t-border-blue-500 mt-1">
+        <div class="my-2 ml-1">내용 : {{item.content}}</div>
+        <div class="ml-1">작성자 : {{item.visitorAccount.name}}</div>
+        <div class="my-2 ml-1">작성일자 : {{item.regDate}}</div>
+    </div>
+    {%endfor%}
+    {%endif%}
+
+
+
+    <div class="reviewForm">
+        <form action="{% url 'article:replyCreate' articleItems.id %}" method="POST">
+            {%csrf_token%}
+
+            <div class="container mt-3">답글제목<br>
+                <input type="text" name="replySubject" class="border">
+
+            </div>
+
+            <div class="container mt-3">답글내용
+
+
+                <textarea class="form-control t-inline-block" name="replyContent" id="exampleFormControlTextarea1" rows="4"
+                          maxlength="500"></textarea>
+                <div class="mx-auto t-text-right">
+                    <button type="submit" class="btn btn-success my-2  t-block ">
+                        제출
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
