@@ -11,12 +11,24 @@
 <div class="t-mx-auto">
     <form method="post" class="form" action="">
         {%csrf_token%}
-        질문 제목 :
-        <input type="text" name="articleSubject" class="border">
-        질문 내용 :
-        <input type="text" name="articleContent" class="border">
-        <button type="submit" class="btn btn-primary">제출하기</button>
+            <div class="container mt-3">질문제목<br>
+                <input type="text" name="articleSubject" class="border">
+
+            </div>
+            <div class="container mt-3">질문내용
+
+
+                <textarea class="form-control t-inline-block" name="articleContent" id="exampleFormControlTextarea1" rows="4"
+                          maxlength="500"></textarea>
+                <div class="mx-auto t-text-right">
+                    <button type="submit" class="btn btn-success my-2  t-block ">
+                        제출
+                    </button>
+                </div>
+            </div>
+
     </form>
 </div>
 
 {% endblock %}
+

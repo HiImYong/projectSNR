@@ -41,9 +41,8 @@ def replyCreate(request, parameter):
     if request.method == "POST":
         getForm = ReplyForm(request.POST)
         if getForm.is_valid():
-            getInputSubject = getForm.cleaned_data['replySubject']
             getInputContent = getForm.cleaned_data['replyContent']
-            Reply.objects.create(subject=getInputSubject, articleForeignKey_id=parameter,
+            Reply.objects.create(articleForeignKey_id=parameter,
                                  content=getInputContent, visitorAccount=request.user)
             messages.success(request, "답글이 등록되었습니다")
             return redirect('article:articleContent', parameter)

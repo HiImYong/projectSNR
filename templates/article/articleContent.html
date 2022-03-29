@@ -40,11 +40,6 @@
         <form action="{% url 'article:replyCreate' articleItems.id %}" method="POST">
             {%csrf_token%}
 
-            <div class="container mt-3">답글제목<br>
-                <input type="text" name="replySubject" class="border">
-
-            </div>
-
             <div class="container mt-3">답글내용
 
 
