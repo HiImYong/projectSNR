@@ -167,3 +167,15 @@ text-align: center;
   text-decoration: none;
 
 }
+
+.imganima {
+  animation: rotate_image  7s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(-360deg);
+  }
+}

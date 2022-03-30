@@ -566,6 +566,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 30px;
 }
 
+.t-w-\[500px\] {
+  width: 500px;
+}
+
+.t-w-\[70px\] {
+  width: 70px;
+}
+
 .t-w-\[22px\] {
   width: 22px;
 }
@@ -635,6 +643,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
 }
 
+.t-border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
 .t-border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -643,11 +656,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .t-border-purple-300 {
   --tw-border-opacity: 1;
   border-color: rgb(216 180 254 / var(--tw-border-opacity));
-}
-
-.t-border-blue-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 
 .t-bg-gray-500 {
@@ -916,6 +924,24 @@ html > body .hidden{
 .racketlist:hover{
   color : red;
   text-decoration: none;
+}
+
+.imganima {
+  -webkit-animation: rotate_image  7s linear infinite;
+          animation: rotate_image  7s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@-webkit-keyframes rotate_image {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotate_image {
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 
 .t-group:hover .group-hover\:t-block {

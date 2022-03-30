@@ -17,23 +17,31 @@
             <div class="mt-2 t-underline t-text-2xl t-inline-block">&nbsp{{articleItems.subject}}</div>
         </div>
         <div class="my-2 ml-1">내용 : {{articleItems.content}}</div>
-        <div class="ml-1">작성자 : {{articleItems.visitorAccount.name}}</div>
-        <div class="my-2 ml-1">작성일자 : {{articleItems.regDate}}</div>
+        <hr style="width:30%;border: dot solid lightgray 1px" class="mr-auto">
+        <div class="ml-1">작성자 : {{articleItems.visitorAccount.name}}
+            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+                 src="{{ articleItems.visitorAccount.profile_img.url }}"/>
+        </div>
+        <div class="my-2 ml-1">작성일자 : {{articleItems.regDate|date:'y/m/d'}}</div>
     </div>
     {%endif%}
 
-    <hr style="width:90%;border: solid lightgray 1px" class="mx-auto">
+    <hr style="width:60%;border: dot solid lightgray 1px" class="mx-auto">
 
     {%if replyItems%}
     {%for item in replyItems%}
     <div class="container t-border-2 t-border-blue-500 mt-1">
-        <div class="my-2 ml-1">내용 : {{item.content}}</div>
-        <div class="ml-1">작성자 : {{item.visitorAccount.name}}</div>
-        <div class="my-2 ml-1">작성일자 : {{item.regDate}}</div>
+        <div class="my-2 ml-1">답글 : {{item.content}}</div>
+        <hr style="width:30%;border: dot lightgray 1px" class="mr-auto">
+
+        <div class="ml-1">작성자 : {{item.visitorAccount.name}}
+            <img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+                 src="{{ item.visitorAccount.profile_img.url }}"/>
+        </div>
+        <div class="my-2 ml-1">작성일자 : {{item.regDate|date:'y/m/d'}}</div>
     </div>
     {%endfor%}
     {%endif%}
-
 
 
     <div class="reviewForm">
@@ -43,7 +51,8 @@
             <div class="container mt-3">답글내용
 
 
-                <textarea class="form-control t-inline-block" name="replyContent" id="exampleFormControlTextarea1" rows="4"
+                <textarea class="form-control t-inline-block" name="replyContent" id="exampleFormControlTextarea1"
+                          rows="4"
                           maxlength="500"></textarea>
                 <div class="mx-auto t-text-right">
                     <button type="submit" class="btn btn-success my-2  t-block ">

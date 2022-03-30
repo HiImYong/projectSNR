@@ -15,10 +15,10 @@
     <table class="t-w-full table table-striped table-hover t-border-2 t-border-red-500">
         <thead class="">
         <tr class="">
-            <th class="t-text-center">글번호</th>
+            <th class="t-text-center">NO.</th>
             <th class="t-text-center">제목</th>
-            <th class="t-text-center">작성자</th>
-            <th class="t-text-center">등록일</th>
+            <th class="t-text-center">작성</th>
+            <th class="t-text-center">일자</th>
         </tr>
         </thead>
         <tbody>
@@ -26,10 +26,10 @@
         {%for item in articleItems%}
         <tr>
             <td>{{item.id}}</td>
-            <td><a href="{%url 'article:articleContent' item.id%}">{{item.subject}}</a></td>
-            <td><img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
+            <td class="t-w-[500px]"><a href="{%url 'article:articleContent' item.id%}">{{item.subject}}</a></td>
+            <td class="t-w-[70px]"><img class="t-w-[22px] t-h-[22px] t-rounded-full t-object-fit t-inline-block"
                                      src="{{ item.visitorAccount.profile_img.url }}"/></td>
-            <td>{{item.regDate}}</td>
+            <td>{{item.regDate|date:'y/m/d'}}</td>
         </tr>
 
         {%endfor%}
