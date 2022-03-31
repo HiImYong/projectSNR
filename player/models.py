@@ -123,6 +123,7 @@ class Player(models.Model):
             '줄리앙 베네토': '줄리앙 베네토',
             '어네스트 굴비스': '어네스트 굴비스',
             '알렉세이 포피린': '알렉세이 포피린',
+            '양상국': '양상국',
         }
 
         img_name = img_names[self.name]
