@@ -47,6 +47,7 @@
     <div class="reviewForm">
         <form action="{% url 'article:replyCreate' articleItems.id %}" method="POST">
             {%csrf_token%}
+                        {% if user.is_authenticated %}
 
             <div class="container mt-3">답글내용
 
@@ -58,6 +59,9 @@
                     <button type="submit" class="btn btn-success my-2  t-block ">
                         제출
                     </button>
+                        {%else%}
+    <div class="container mx-auto my-3">* 로그인 후 등록 가능합니다</div>
+    {%endif%}
                 </div>
             </div>
 

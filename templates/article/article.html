@@ -39,7 +39,11 @@
 
 </div>
 <div class="container t-mx-auto t-mb-3">
+                        {% if user.is_authenticated %}
 <a href="{% url 'article:articleCreate'%}" class="btn btn-primary">질문등록</a>
+    {%else%}
+    <div>* 로그인 후 등록 가능합니다</div>
+    {%endif%}
 </div>
 
 
