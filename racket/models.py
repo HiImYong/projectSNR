@@ -423,7 +423,7 @@ class Racket(models.Model):
             'Ultra 108 v3': 'Ultra 108 v3',
             'Ultra 110': 'Ultra 110',
             'Ultra 97': 'Ultra 97',
-            'Ultra Tour': 'Ultra Tour',
+            'Ultra pro': 'Ultra pro',
             'Ultra XP 100LS': 'Ultra XP 100LS',
             'Ultra XP 100S': 'Ultra XP 100S',
             'Ultra XP 110S': 'Ultra XP 110S',
@@ -842,6 +842,13 @@ class Racket(models.Model):
             'X-P Dual Lite White 102': 'X-P Dual Lite White 102',
             'X-P Dual Black 102': 'X-P Dual Black 102',
             'XP1': 'XP1',
+            'N3': 'N3',
+            'Pro Staff 6.0 95': 'Pro Staff 6.0 95',
+            'Ultra pro v3': 'Ultra pro v3',
+            'Ultra tour 95 v3': 'Ultra tour 95 v3',
+            'Ultra tour 95': 'Ultra tour 95',
+            'youtek ig speed pro': 'youtek ig speed pro',
+            'youtek speed pro': 'youtek speed pro',
         }
 
 
